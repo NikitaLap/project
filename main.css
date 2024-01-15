@@ -21,5 +21,6 @@
 }
 
 .foo4 {
-    display: flex;
+    display: block;
+    justify-content: center;
 }
