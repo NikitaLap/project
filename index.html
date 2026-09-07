@@ -1,647 +1,612 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Phrases</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-      background: #f6f7fb;
-      color: #202124;
-    }
-
-    button,
-    textarea {
-      font-family: inherit;
-    }
-
-    .container {
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 28px 20px 60px;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-    }
-
-    .title-block h1 {
-      margin: 0;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .title-block p {
-      margin: 7px 0 0;
-      color: #70757a;
-      font-size: 14px;
-    }
-
-    .counter {
-      background: white;
-      border: 1px solid #e0e2e7;
-      border-radius: 12px;
-      padding: 10px 16px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* =========================
-       DIRECTION
-    ========================= */
-
-    .top-controls {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .direction-btn {
-      background: white;
-      border: 1px solid #d8dbe2;
-      border-radius: 10px;
-      padding: 9px 15px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: 0.2s;
-    }
-
-    .direction-btn:hover {
-      background: #f1f3f8;
-    }
-
-    .direction-btn.active {
-      background: #202124;
-      color: white;
-      border-color: #202124;
-    }
-
-    /* =========================
-       STUDY AREA
-    ========================= */
-
-    .card-wrapper {
-      display: flex;
-      justify-content: center;
-      perspective: 1200px;
-    }
-
-    .flashcard {
-      width: min(760px, 100%);
-      height: 420px;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .card-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.55s;
-    }
-
-    .flashcard.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-
-      border-radius: 20px;
-      background: white;
-      border: 1px solid #e0e2e7;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      padding: 50px 70px;
-      text-align: center;
-    }
-
-    .card-back {
-      transform: rotateY(180deg);
-    }
-
-    .card-label {
-      position: absolute;
-      top: 20px;
-      left: 24px;
-
-      font-size: 13px;
-      color: #8a8d93;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* =========================
-       SPEAKER BUTTON
-    ========================= */
-
-    .speak-btn {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-
-      width: 44px;
-      height: 44px;
-
-      border: 1px solid #dfe1e6;
-      border-radius: 50%;
-
-      background: white;
-      color: #202124;
-
-      cursor: pointer;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 19px;
-
-      z-index: 20;
-
-      transition:
-        transform 0.15s,
-        background 0.15s,
-        box-shadow 0.15s;
-    }
-
-    .speak-btn:hover {
-      background: #f1f3f6;
-      transform: scale(1.05);
-    }
-
-    .speak-btn:active {
-      transform: scale(0.95);
-    }
-
-    .speak-btn.speaking {
-      background: #202124;
-      color: white;
-    }
-
-    /* =========================
-       CARD TEXT
-    ========================= */
-
-    .card-main {
-      font-size: clamp(26px, 4vw, 42px);
-      line-height: 1.25;
-      font-weight: 600;
-      max-width: 650px;
-      word-break: break-word;
-    }
-
-    .card-hint {
-      position: absolute;
-      bottom: 21px;
-      color: #9aa0a6;
-      font-size: 13px;
-    }
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    .navigation {
-      width: min(760px, 100%);
-      margin: 18px auto 0;
-
-      display: grid;
-      grid-template-columns: 52px 1fr 52px;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .nav-btn {
-      width: 52px;
-      height: 46px;
-
-      border: 1px solid #d8dbe2;
-      background: white;
-      border-radius: 12px;
-
-      font-size: 25px;
-      cursor: pointer;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      transition: 0.2s;
-    }
-
-    .nav-btn:hover {
-      background: #eef0f4;
-    }
-
-    .page-counter {
-      text-align: center;
-      font-size: 16px;
-      font-weight: 600;
-      color: #4d5156;
-    }
-
-    /* =========================
-       ANSWERS
-    ========================= */
-
-    .answer-buttons {
-      width: min(760px, 100%);
-      margin: 18px auto 0;
-
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .answer-btn {
-      height: 50px;
-
-      border-radius: 12px;
-      border: 1px solid #d8dbe2;
-
-      background: white;
-
-      cursor: pointer;
-
-      font-size: 15px;
-      font-weight: 600;
-
-      transition: 0.2s;
-    }
-
-    .answer-btn:hover {
-      background: #f1f3f6;
-    }
-
-    .answer-btn.unknown:hover {
-      color: #d93025;
-      border-color: #d93025;
-    }
-
-    .answer-btn.known:hover {
-      color: #188038;
-      border-color: #188038;
-    }
-
-    /* =========================
-       PROGRESS
-    ========================= */
-
-    .progress-section {
-      width: min(760px, 100%);
-      margin: 22px auto 0;
-    }
-
-    .progress-text {
-      display: flex;
-      justify-content: space-between;
-
-      font-size: 13px;
-      color: #70757a;
-
-      margin-bottom: 8px;
-    }
-
-    .progress {
-      height: 7px;
-      background: #e6e8ed;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-
-      background: #202124;
-
-      transition: width 0.3s;
-    }
-
-    /* =========================
-       EXTRA BUTTONS
-    ========================= */
-
-    .extra-controls {
-      width: min(760px, 100%);
-      margin: 22px auto 0;
-
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Phrases</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: #f6f7fb;
+  color: #202124;
+}
+
+button,
+textarea {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.title-block h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.title-block p {
+  margin: 7px 0 0;
+  color: #70757a;
+  font-size: 14px;
+}
+
+.counter {
+  background: white;
+  border: 1px solid #e0e2e7;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* DIRECTION */
+
+.top-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.direction-btn {
+  background: white;
+  border: 1px solid #d8dbe2;
+  border-radius: 10px;
+  padding: 9px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.direction-btn:hover {
+  background: #f1f3f8;
+}
+
+.direction-btn.active {
+  background: #202124;
+  color: white;
+  border-color: #202124;
+}
+
+/* CARD */
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.flashcard {
+  width: min(760px, 100%);
+  height: 420px;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.55s;
+}
+
+.flashcard.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  border-radius: 20px;
+  background: white;
+  border: 1px solid #e0e2e7;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 70px;
+  text-align: center;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-label {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+
+  font-size: 13px;
+  color: #8a8d93;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* SPEAKER */
+
+.speak-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid #dfe1e6;
+  border-radius: 50%;
+
+  background: white;
+  color: #202124;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 19px;
+
+  z-index: 30;
 
-    .secondary-btn {
-      border: 1px solid #d8dbe2;
-      background: white;
+  transition: 0.2s;
+}
 
-      padding: 10px 15px;
+.speak-btn:hover {
+  background: #f1f3f6;
+  transform: scale(1.05);
+}
 
-      border-radius: 10px;
+.speak-btn:active {
+  transform: scale(0.95);
+}
 
-      cursor: pointer;
-
-      font-size: 14px;
-    }
-
-    .secondary-btn:hover {
-      background: #f1f3f6;
-    }
-
-    /* =========================
-       SPEECH SETTINGS
-    ========================= */
+.speak-btn.speaking {
+  background: #202124;
+  color: white;
+}
+
+/* CARD TEXT */
 
-    .speech-settings {
-      width: min(760px, 100%);
-      margin: 15px auto 0;
+.card-main {
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.25;
+  font-weight: 600;
+  max-width: 650px;
+  word-break: break-word;
+}
+
+.card-hint {
+  position: absolute;
+  bottom: 21px;
+  color: #9aa0a6;
+  font-size: 13px;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+/* NAVIGATION */
 
-      gap: 8px;
+.navigation {
+  width: min(760px, 100%);
+  margin: 18px auto 0;
+
+  display: grid;
+  grid-template-columns: 52px 1fr 52px;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-btn {
+  width: 52px;
+  height: 46px;
 
-      color: #70757a;
-      font-size: 13px;
-    }
+  border: 1px solid #d8dbe2;
+  background: white;
+  border-radius: 12px;
 
-    .speed-btn {
-      border: 1px solid #d8dbe2;
-      background: white;
+  font-size: 25px;
+  cursor: pointer;
 
-      padding: 5px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      border-radius: 8px;
+  transition: 0.2s;
+}
 
-      cursor: pointer;
-      font-size: 12px;
+.nav-btn:hover {
+  background: #eef0f4;
+}
 
-      color: #555;
-    }
+.page-counter {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4d5156;
+}
 
-    .speed-btn:hover {
-      background: #f1f3f6;
-    }
+/* ANSWERS */
 
-    .speed-btn.active {
-      background: #202124;
-      color: white;
-      border-color: #202124;
-    }
+.answer-buttons {
+  width: min(760px, 100%);
+  margin: 18px auto 0;
 
-    /* =========================
-       ADD PANEL
-    ========================= */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
 
-    .add-panel {
-      margin-top: 45px;
+.answer-btn {
+  height: 50px;
 
-      background: white;
-      border: 1px solid #e0e2e7;
-      border-radius: 16px;
+  border-radius: 12px;
+  border: 1px solid #d8dbe2;
 
-      padding: 22px;
-    }
+  background: white;
 
-    .add-panel h2 {
-      margin: 0 0 7px;
-      font-size: 20px;
-    }
+  cursor: pointer;
 
-    .add-description {
-      color: #70757a;
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
+  font-size: 15px;
+  font-weight: 600;
 
-    textarea {
-      width: 100%;
-      min-height: 150px;
+  transition: 0.2s;
+}
 
-      resize: vertical;
+.answer-btn:hover {
+  background: #f1f3f6;
+}
 
-      border: 1px solid #d8dbe2;
-      border-radius: 12px;
+.answer-btn.unknown:hover {
+  color: #d93025;
+  border-color: #d93025;
+}
 
-      padding: 15px;
+.answer-btn.known:hover {
+  color: #188038;
+  border-color: #188038;
+}
 
-      font-size: 15px;
+/* PROGRESS */
 
-      outline: none;
-    }
+.progress-section {
+  width: min(760px, 100%);
+  margin: 22px auto 0;
+}
 
-    textarea:focus {
-      border-color: #202124;
-    }
+.progress-text {
+  display: flex;
+  justify-content: space-between;
 
-    .add-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
+  font-size: 13px;
+  color: #70757a;
 
-    .primary-btn {
-      background: #202124;
-      color: white;
+  margin-bottom: 8px;
+}
 
-      border: none;
+.progress {
+  height: 7px;
+  background: #e6e8ed;
+  border-radius: 999px;
+  overflow: hidden;
+}
 
-      padding: 11px 17px;
+.progress-bar {
+  height: 100%;
+  width: 0%;
 
-      border-radius: 10px;
+  background: #202124;
 
-      cursor: pointer;
+  transition: width 0.3s;
+}
 
-      font-size: 14px;
-      font-weight: 600;
-    }
+/* VOICE SETTINGS */
 
-    .primary-btn:hover {
-      background: #000;
-    }
+.voice-settings {
+  width: min(760px, 100%);
+  margin: 16px auto 0;
 
-    /* =========================
-       LIST
-    ========================= */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .list-panel {
-      margin-top: 25px;
+  gap: 8px;
+  flex-wrap: wrap;
 
-      background: white;
-      border: 1px solid #e0e2e7;
-      border-radius: 16px;
+  color: #70757a;
+  font-size: 13px;
+}
 
-      padding: 22px;
-    }
+.voice-btn,
+.speed-btn {
+  border: 1px solid #d8dbe2;
+  background: white;
 
-    .list-panel h2 {
-      margin: 0 0 15px;
-      font-size: 20px;
-    }
+  padding: 7px 11px;
 
-    .card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+  border-radius: 8px;
 
-    .list-item {
-      display: grid;
+  cursor: pointer;
+  font-size: 13px;
 
-      grid-template-columns:
-        1fr
-        1fr
-        auto;
+  color: #555;
 
-      gap: 15px;
+  transition: 0.2s;
+}
 
-      align-items: center;
+.voice-btn:hover,
+.speed-btn:hover {
+  background: #f1f3f6;
+}
 
-      padding: 12px;
+.voice-btn.active,
+.speed-btn.active {
+  background: #202124;
+  color: white;
+  border-color: #202124;
+}
 
-      border: 1px solid #eceef2;
-      border-radius: 10px;
-    }
+.voice-divider {
+  margin: 0 4px;
+  color: #c2c4ca;
+}
 
-    .list-en {
-      font-weight: 600;
-    }
+/* EXTRA */
 
-    .list-ru {
-      color: #70757a;
-    }
+.extra-controls {
+  width: min(760px, 100%);
+  margin: 22px auto 0;
 
-    .delete-btn {
-      border: none;
-      background: transparent;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
-      cursor: pointer;
+.secondary-btn {
+  border: 1px solid #d8dbe2;
+  background: white;
 
-      color: #8a8d93;
+  padding: 10px 15px;
 
-      font-size: 20px;
-    }
+  border-radius: 10px;
 
-    .delete-btn:hover {
-      color: #d93025;
-    }
+  cursor: pointer;
 
-    /* =========================
-       EMPTY STATE
-    ========================= */
+  font-size: 14px;
+}
 
-    .empty {
-      text-align: center;
-      padding: 80px 20px;
+.secondary-btn:hover {
+  background: #f1f3f6;
+}
 
-      color: #70757a;
-    }
+/* ADD */
 
-    .empty strong {
-      display: block;
+.add-panel {
+  margin-top: 45px;
 
-      color: #202124;
+  background: white;
+  border: 1px solid #e0e2e7;
+  border-radius: 16px;
 
-      font-size: 22px;
+  padding: 22px;
+}
 
-      margin-bottom: 8px;
-    }
+.add-panel h2 {
+  margin: 0 0 7px;
+  font-size: 20px;
+}
 
-    /* =========================
-       MOBILE
-    ========================= */
+.add-description {
+  color: #70757a;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
 
-    @media (max-width: 700px) {
+textarea {
+  width: 100%;
+  min-height: 150px;
 
-      .container {
-        padding: 20px 14px 40px;
-      }
+  resize: vertical;
 
-      .header {
-        align-items: flex-start;
-      }
+  border: 1px solid #d8dbe2;
+  border-radius: 12px;
 
-      .title-block h1 {
-        font-size: 23px;
-      }
+  padding: 15px;
 
-      .counter {
-        padding: 8px 11px;
-        font-size: 12px;
-      }
+  font-size: 15px;
 
-      .flashcard {
-        height: 360px;
-      }
+  outline: none;
+}
 
-      .card-face {
-        padding: 45px 25px;
-      }
+textarea:focus {
+  border-color: #202124;
+}
 
-      .card-main {
-        font-size: 27px;
-      }
+.add-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
 
-      .list-item {
-        grid-template-columns: 1fr;
-        gap: 5px;
-      }
+.primary-btn {
+  background: #202124;
+  color: white;
 
-      .delete-btn {
-        text-align: right;
-      }
+  border: none;
 
-      .speech-settings {
-        flex-wrap: wrap;
-      }
-    }
-  </style>
+  padding: 11px 17px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  background: #000;
+}
+
+/* LIST */
+
+.list-panel {
+  margin-top: 25px;
+
+  background: white;
+  border: 1px solid #e0e2e7;
+  border-radius: 16px;
+
+  padding: 22px;
+}
+
+.list-panel h2 {
+  margin: 0 0 15px;
+  font-size: 20px;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+
+  gap: 15px;
+
+  align-items: center;
+
+  padding: 12px;
+
+  border: 1px solid #eceef2;
+  border-radius: 10px;
+}
+
+.list-en {
+  font-weight: 600;
+}
+
+.list-ru {
+  color: #70757a;
+}
+
+.delete-btn {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #8a8d93;
+
+  font-size: 20px;
+}
+
+.delete-btn:hover {
+  color: #d93025;
+}
+
+/* EMPTY */
+
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+
+  color: #70757a;
+}
+
+.empty strong {
+  display: block;
+
+  color: #202124;
+
+  font-size: 22px;
+
+  margin-bottom: 8px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .container {
+    padding: 20px 14px 40px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .title-block h1 {
+    font-size: 23px;
+  }
+
+  .counter {
+    padding: 8px 11px;
+    font-size: 12px;
+  }
+
+  .flashcard {
+    height: 360px;
+  }
+
+  .card-face {
+    padding: 45px 25px;
+  }
+
+  .card-main {
+    font-size: 27px;
+  }
+
+  .list-item {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .delete-btn {
+    text-align: right;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+  <!-- HEADER -->
 
   <div class="header">
 
@@ -664,9 +629,7 @@
   </div>
 
 
-  <!-- =========================
-       DIRECTION
-  ========================= -->
+  <!-- DIRECTION -->
 
   <div class="top-controls">
 
@@ -694,9 +657,7 @@
   </div>
 
 
-  <!-- =========================
-       EMPTY STATE
-  ========================= -->
+  <!-- EMPTY -->
 
   <div
     id="emptyState"
@@ -713,9 +674,7 @@
   </div>
 
 
-  <!-- =========================
-       STUDY AREA
-  ========================= -->
+  <!-- STUDY -->
 
   <div id="studyArea">
 
@@ -730,6 +689,7 @@
 
         <div class="card-inner">
 
+
           <!-- FRONT -->
 
           <div class="card-face card-front">
@@ -739,6 +699,7 @@
               id="frontLabel">
               English
             </div>
+
 
             <button
               class="speak-btn"
@@ -750,10 +711,12 @@
 
             </button>
 
+
             <div
               class="card-main"
               id="frontText">
             </div>
+
 
             <div class="card-hint">
 
@@ -776,6 +739,7 @@
               Русский
             </div>
 
+
             <button
               class="speak-btn"
               id="speakBackBtn"
@@ -786,10 +750,12 @@
 
             </button>
 
+
             <div
               class="card-main"
               id="backText">
             </div>
+
 
             <div class="card-hint">
 
@@ -807,9 +773,7 @@
     </div>
 
 
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
+    <!-- NAVIGATION -->
 
     <div class="navigation">
 
@@ -821,6 +785,7 @@
 
       </button>
 
+
       <div
         class="page-counter"
         id="pageCounter">
@@ -828,6 +793,7 @@
         1 / 0
 
       </div>
+
 
       <button
         class="nav-btn"
@@ -840,9 +806,7 @@
     </div>
 
 
-    <!-- =========================
-         ANSWERS
-    ========================= -->
+    <!-- ANSWERS -->
 
     <div class="answer-buttons">
 
@@ -853,6 +817,7 @@
         ✕ Не знаю
 
       </button>
+
 
       <button
         class="answer-btn known"
@@ -865,9 +830,7 @@
     </div>
 
 
-    <!-- =========================
-         PROGRESS
-    ========================= -->
+    <!-- PROGRESS -->
 
     <div class="progress-section">
 
@@ -883,6 +846,7 @@
 
       </div>
 
+
       <div class="progress">
 
         <div
@@ -895,50 +859,88 @@
     </div>
 
 
-    <!-- =========================
-         SPEECH SPEED
-    ========================= -->
+    <!-- VOICE -->
 
-    <div class="speech-settings">
+    <div class="voice-settings">
+
+      <span>
+        Голос:
+      </span>
+
+
+      <button
+        class="voice-btn active"
+        id="usVoiceBtn"
+        onclick="setVoice('en-US')">
+
+        🇺🇸 English US
+
+      </button>
+
+
+      <button
+        class="voice-btn"
+        id="ukVoiceBtn"
+        onclick="setVoice('en-GB')">
+
+        🇬🇧 English UK
+
+      </button>
+
+
+      <span class="voice-divider">
+        |
+      </span>
+
 
       <span>
         Скорость:
       </span>
 
+
       <button
         class="speed-btn"
         data-speed="0.75"
         onclick="setSpeechRate(0.75)">
+
         0.75×
+
       </button>
+
 
       <button
         class="speed-btn active"
         data-speed="0.9"
         onclick="setSpeechRate(0.9)">
+
         0.9×
+
       </button>
+
 
       <button
         class="speed-btn"
         data-speed="1"
         onclick="setSpeechRate(1)">
+
         1×
+
       </button>
+
 
       <button
         class="speed-btn"
         data-speed="1.25"
         onclick="setSpeechRate(1.25)">
+
         1.25×
+
       </button>
 
     </div>
 
 
-    <!-- =========================
-         EXTRA
-    ========================= -->
+    <!-- EXTRA -->
 
     <div class="extra-controls">
 
@@ -949,6 +951,7 @@
         🔀 Перемешать
 
       </button>
+
 
       <button
         class="secondary-btn"
@@ -963,15 +966,14 @@
   </div>
 
 
-  <!-- =========================
-       ADD CARDS
-  ========================= -->
+  <!-- ADD CARDS -->
 
   <div class="add-panel">
 
     <h2>
       Добавить карточки
     </h2>
+
 
     <div class="add-description">
 
@@ -983,11 +985,13 @@
 
     </div>
 
+
     <textarea
       id="cardInput"
       placeholder="How did you pull that off? — Как тебе это удалось?
 I'm still mortified about everything — Мне до сих пор ужасно неловко из-за всего">
     </textarea>
+
 
     <div class="add-actions">
 
@@ -999,6 +1003,7 @@ I'm still mortified about everything — Мне до сих пор ужасно 
 
       </button>
 
+
       <button
         class="secondary-btn"
         onclick="loadExample()">
@@ -1006,6 +1011,7 @@ I'm still mortified about everything — Мне до сих пор ужасно 
         Пример
 
       </button>
+
 
       <button
         class="secondary-btn"
@@ -1020,15 +1026,14 @@ I'm still mortified about everything — Мне до сих пор ужасно 
   </div>
 
 
-  <!-- =========================
-       LIST
-  ========================= -->
+  <!-- LIST -->
 
   <div class="list-panel">
 
     <h2>
       Все карточки
     </h2>
+
 
     <div
       class="card-list"
@@ -1042,1130 +1047,1272 @@ I'm still mortified about everything — Мне до сих пор ужасно 
 
 <script>
 
-  /* =========================
-     DATA
-  ========================= */
+/* =========================
+   DATA
+========================= */
 
-  let cards = JSON.parse(
-    localStorage.getItem("englishCards") || "[]"
-  );
+let cards = JSON.parse(
+  localStorage.getItem("englishCards") || "[]"
+);
 
-  let currentIndex = 0;
+let currentIndex = 0;
 
-  let known = Number(
-    localStorage.getItem("knownCards") || 0
-  );
+let known = Number(
+  localStorage.getItem("knownCards") || 0
+);
 
-  let unknown = Number(
-    localStorage.getItem("unknownCards") || 0
-  );
+let unknown = Number(
+  localStorage.getItem("unknownCards") || 0
+);
 
-  let direction =
-    localStorage.getItem("cardDirection") ||
-    "en-ru";
+let direction =
+  localStorage.getItem("cardDirection") ||
+  "en-ru";
 
-  let currentDirection =
-    direction;
+let currentDirection =
+  direction;
 
-  let speechRate = Number(
-    localStorage.getItem("speechRate") ||
-    "0.9"
-  );
 
+/* =========================
+   SPEECH SETTINGS
+========================= */
 
-  /* =========================
-     ELEMENTS
-  ========================= */
+let speechRate = Number(
+  localStorage.getItem("speechRate") ||
+  "0.9"
+);
 
-  const flashcard =
-    document.getElementById("flashcard");
+let voiceLanguage =
+  localStorage.getItem("voiceLanguage") ||
+  "en-US";
 
-  const frontText =
-    document.getElementById("frontText");
 
-  const backText =
-    document.getElementById("backText");
+/* =========================
+   ELEMENTS
+========================= */
 
-  const frontLabel =
-    document.getElementById("frontLabel");
+const flashcard =
+  document.getElementById("flashcard");
 
-  const backLabel =
-    document.getElementById("backLabel");
+const frontText =
+  document.getElementById("frontText");
 
-  const pageCounter =
-    document.getElementById("pageCounter");
+const backText =
+  document.getElementById("backText");
 
-  const totalCounter =
-    document.getElementById("totalCounter");
+const frontLabel =
+  document.getElementById("frontLabel");
 
-  const progressBar =
-    document.getElementById("progressBar");
+const backLabel =
+  document.getElementById("backLabel");
 
-  const progressPercent =
-    document.getElementById("progressPercent");
+const pageCounter =
+  document.getElementById("pageCounter");
 
-  const cardList =
-    document.getElementById("cardList");
+const totalCounter =
+  document.getElementById("totalCounter");
 
-  const emptyState =
-    document.getElementById("emptyState");
+const progressBar =
+  document.getElementById("progressBar");
 
-  const studyArea =
-    document.getElementById("studyArea");
+const progressPercent =
+  document.getElementById("progressPercent");
 
-  const cardInput =
-    document.getElementById("cardInput");
+const cardList =
+  document.getElementById("cardList");
 
-  const speakBtn =
-    document.getElementById("speakBtn");
+const emptyState =
+  document.getElementById("emptyState");
 
-  const speakBackBtn =
-    document.getElementById("speakBackBtn");
+const studyArea =
+  document.getElementById("studyArea");
 
+const cardInput =
+  document.getElementById("cardInput");
 
-  /* =========================
-     EXAMPLES
-  ========================= */
+const speakBtn =
+  document.getElementById("speakBtn");
 
-  const examples = {
+const speakBackBtn =
+  document.getElementById("speakBackBtn");
 
-    "en-ru":
-      "How did you pull that off? — Как тебе это удалось?",
 
-    "ru-en":
-      "Как тебе это удалось? — How did you pull that off?"
+/* =========================
+   EXAMPLES
+========================= */
 
-  };
+const examples = {
 
+  "en-ru":
+    "How did you pull that off? — Как тебе это удалось?",
 
-  /* =========================
-     DIRECTION
-  ========================= */
+  "ru-en":
+    "Как тебе это удалось? — How did you pull that off?"
 
-  function setDirection(newDirection) {
-
-    direction = newDirection;
-
-    localStorage.setItem(
-      "cardDirection",
-      direction
-    );
-
-    if (direction === "mixed") {
-
-      currentDirection =
-        Math.random() < 0.5
-          ? "en-ru"
-          : "ru-en";
-
-    } else {
-
-      currentDirection =
-        direction;
-
-    }
-
-    updateDirectionButtons();
-
-    updatePlaceholder();
-
-    showCard();
-
-  }
-
-
-  function updateDirectionButtons() {
-
-    document
-      .getElementById("enRuBtn")
-      .classList
-      .toggle(
-        "active",
-        direction === "en-ru"
-      );
-
-    document
-      .getElementById("ruEnBtn")
-      .classList
-      .toggle(
-        "active",
-        direction === "ru-en"
-      );
-
-    document
-      .getElementById("mixedBtn")
-      .classList
-      .toggle(
-        "active",
-        direction === "mixed"
-      );
-
-  }
-
-
-  /* =========================
-     PLACEHOLDER
-  ========================= */
-
-  function updatePlaceholder() {
-
-    if (direction === "ru-en") {
-
-      cardInput.placeholder =
-        examples["ru-en"];
-
-    } else {
-
-      cardInput.placeholder =
-        examples["en-ru"];
-
-    }
-
-  }
-
-
-  /* =========================
-     ADD CARDS
-  ========================= */
-
-  function addCards() {
-
-    const text =
-      cardInput.value.trim();
-
-    if (!text) {
-      return;
-    }
-
-    const lines =
-      text.split("\n");
-
-    let added = 0;
-
-    lines.forEach(line => {
-
-      line = line.trim();
-
-      if (!line) {
-        return;
-      }
-
-      let parts;
-
-      if (line.includes("—")) {
-
-        parts =
-          line.split("—");
-
-      } else if (line.includes("–")) {
-
-        parts =
-          line.split("–");
-
-      } else {
-
-        parts =
-          line.split(/\s+-\s+/);
-
-      }
-
-      if (parts.length < 2) {
-        return;
-      }
-
-      const english =
-        parts[0].trim();
-
-      const russian =
-        parts
-          .slice(1)
-          .join("—")
-          .trim();
-
-      if (
-        !english ||
-        !russian
-      ) {
-        return;
-      }
-
-      const exists =
-        cards.some(card =>
-
-          card.english.toLowerCase() ===
-            english.toLowerCase() &&
-
-          card.russian.toLowerCase() ===
-            russian.toLowerCase()
-
-        );
-
-      if (exists) {
-        return;
-      }
-
-      cards.push({
-
-        english:
-          english,
-
-        russian:
-          russian
-
-      });
-
-      added++;
-
-    });
-
-
-    if (added === 0) {
-
-      alert(
-        "Не удалось добавить карточки.\n\n" +
-        "Проверь формат:\n" +
-        "English — Русский"
-      );
-
-      return;
-
-    }
-
-
-    saveCards();
-
-    cardInput.value = "";
-
-    currentIndex = 0;
-
-    showCard();
-
-    renderList();
-
-  }
-
-
-  /* =========================
-     SHOW CARD
-  ========================= */
-
-  function showCard() {
-
-    if (cards.length === 0) {
-
-      studyArea.style.display =
-        "none";
-
-      emptyState.style.display =
-        "block";
-
-      totalCounter.textContent =
-        "0 terms";
-
-      renderList();
-
-      return;
-    }
-
-
-    studyArea.style.display =
-      "block";
-
-    emptyState.style.display =
-      "none";
-
-
-    if (
-      currentIndex >=
-      cards.length
-    ) {
-
-      currentIndex =
-        cards.length - 1;
-
-    }
-
-
-    if (
-      currentIndex < 0
-    ) {
-
-      currentIndex = 0;
-
-    }
-
-
-    const card =
-      cards[currentIndex];
-
-
-    /* MIXED */
-
-    if (
-      direction === "mixed"
-    ) {
-
-      currentDirection =
-        Math.random() < 0.5
-          ? "en-ru"
-          : "ru-en";
-
-    } else {
-
-      currentDirection =
-        direction;
-
-    }
-
-
-    /* RESET FLIP */
-
-    flashcard.classList.remove(
-      "flipped"
-    );
-
-    stopSpeaking();
-
-
-    /* CONTENT */
-
-    if (
-      currentDirection ===
-      "en-ru"
-    ) {
-
-      frontLabel.textContent =
-        "English";
-
-      backLabel.textContent =
-        "Русский";
-
-      frontText.textContent =
-        card.english;
-
-      backText.textContent =
-        card.russian;
-
-    } else {
-
-      frontLabel.textContent =
-        "Русский";
-
-      backLabel.textContent =
-        "English";
-
-      frontText.textContent =
-        card.russian;
-
-      backText.textContent =
-        card.english;
-
-    }
-
-
-    pageCounter.textContent =
-      `${currentIndex + 1} / ${cards.length}`;
-
-
-    totalCounter.textContent =
-      `${cards.length} ${
-        cards.length === 1
-          ? "term"
-          : "terms"
-      }`;
-
-
-    updateProgress();
-
-  }
-
-
-  /* =========================
-     FLIP
-  ========================= */
-
-  function flipCard() {
-
-    if (
-      cards.length === 0
-    ) {
-      return;
-    }
-
-    flashcard.classList.toggle(
-      "flipped"
-    );
-
-  }
-
-
-  /* =========================
-     NAVIGATION
-  ========================= */
-
-  function nextCard() {
-
-    if (
-      cards.length === 0
-    ) {
-      return;
-    }
-
-    currentIndex++;
-
-    if (
-      currentIndex >=
-      cards.length
-    ) {
-
-      currentIndex = 0;
-
-    }
-
-    showCard();
-
-  }
-
-
-  function previousCard() {
-
-    if (
-      cards.length === 0
-    ) {
-      return;
-    }
-
-    currentIndex--;
-
-    if (
-      currentIndex < 0
-    ) {
-
-      currentIndex =
-        cards.length - 1;
-
-    }
-
-    showCard();
-
-  }
-
-
-  /* =========================
-     KNOWN / UNKNOWN
-  ========================= */
-
-  function markKnown() {
-
-    known++;
-
-    localStorage.setItem(
-      "knownCards",
-      known
-    );
-
-    nextCard();
-
-  }
-
-
-  function markUnknown() {
-
-    unknown++;
-
-    localStorage.setItem(
-      "unknownCards",
-      unknown
-    );
-
-    nextCard();
-
-  }
-
-
-  /* =========================
-     PROGRESS
-  ========================= */
-
-  function updateProgress() {
-
-    if (
-      cards.length === 0
-    ) {
-
-      progressBar.style.width =
-        "0%";
-
-      progressPercent.textContent =
-        "0%";
-
-      return;
-
-    }
-
-
-    const percent =
-      Math.round(
-        (
-          (currentIndex + 1) /
-          cards.length
-        ) * 100
-      );
-
-
-    progressBar.style.width =
-      percent + "%";
-
-    progressPercent.textContent =
-      percent + "%";
-
-  }
-
-
-  /* =========================
-     SHUFFLE
-  ========================= */
-
-  function shuffleCards() {
-
-    if (
-      cards.length < 2
-    ) {
-      return;
-    }
-
-    for (
-      let i = cards.length - 1;
-      i > 0;
-      i--
-    ) {
-
-      const j =
-        Math.floor(
-          Math.random() *
-          (i + 1)
-        );
-
-      [
-        cards[i],
-        cards[j]
-      ] =
-      [
-        cards[j],
-        cards[i]
-      ];
-
-    }
-
-    saveCards();
-
-    currentIndex = 0;
-
-    showCard();
-
-    renderList();
-
-  }
-
-
-  /* =========================
-     RESET STATS
-  ========================= */
-
-  function resetStats() {
-
-    known = 0;
-
-    unknown = 0;
-
-    localStorage.setItem(
-      "knownCards",
-      "0"
-    );
-
-    localStorage.setItem(
-      "unknownCards",
-      "0"
-    );
-
-  }
-
-
-  /* =========================
-     SPEECH RATE
-  ========================= */
-
-  function setSpeechRate(rate) {
-
-    speechRate =
-      Number(rate);
-
-    localStorage.setItem(
-      "speechRate",
-      speechRate
-    );
-
-    document
-      .querySelectorAll(".speed-btn")
-      .forEach(button => {
-
-        button.classList.toggle(
-          "active",
-          Number(
-            button.dataset.speed
-          ) === speechRate
-        );
-
-      });
-
-  }
-
-
-  /* =========================
-     SPEAK ENGLISH
-  ========================= */
-
-function speakEnglish(event) {
-
-  event.stopPropagation();
-
-  if (cards.length === 0) {
-    return;
-  }
-
-  const text = cards[currentIndex].english;
-
-  if (!text) {
-    return;
-  }
-
-  // Останавливаем предыдущую озвучку
-  window.speechSynthesis.cancel();
-
-  const utterance =
-    new SpeechSynthesisUtterance(text);
-
-  /*
-    Получаем доступные голоса браузера
-  */
-  const voices =
-    window.speechSynthesis.getVoices();
-
-  /*
-    Сначала пытаемся найти американский английский,
-    потом британский, потом любой английский.
-  */
-  let voice =
-    voices.find(v =>
-      v.lang.toLowerCase() === "en-us"
-    );
-
-  if (!voice) {
-    voice =
-      voices.find(v =>
-        v.lang.toLowerCase() === "en-gb"
-      );
-  }
-
-  if (!voice) {
-    voice =
-      voices.find(v =>
-        v.lang.toLowerCase().startsWith("en")
-      );
-  }
-
-  if (voice) {
-    utterance.voice = voice;
-    utterance.lang = voice.lang;
-  } else {
-    utterance.lang = "en-US";
-  }
-
-  // Скорость
-  utterance.rate = speechRate;
-
-  // Обычная высота голоса
-  utterance.pitch = 1;
-
-  // Громкость
-  utterance.volume = 1;
-
-  /*
-    Включаем визуальное состояние кнопки
-  */
-
-  utterance.onstart = function() {
-
-    speakBtn.classList.add("speaking");
-    speakBackBtn.classList.add("speaking");
-
-  };
-
-  utterance.onend = function() {
-
-    speakBtn.classList.remove("speaking");
-    speakBackBtn.classList.remove("speaking");
-
-  };
-
-  utterance.onerror = function() {
-
-    speakBtn.classList.remove("speaking");
-    speakBackBtn.classList.remove("speaking");
-
-  };
-
-  window.speechSynthesis.speak(
-    utterance
-  );
-}
-
-
-/*
-  Браузер иногда загружает голоса
-  не сразу. Поэтому обновляем их,
-  когда они становятся доступны.
-*/
-
-window.speechSynthesis.onvoiceschanged = function() {
-  window.speechSynthesis.getVoices();
 };
 
 
-  /* =========================
-     STOP SPEAKING
-  ========================= */
+/* =========================
+   DIRECTION
+========================= */
 
-  function stopSpeaking() {
+function setDirection(newDirection) {
 
-    if (
-      "speechSynthesis" in window
-    ) {
+  direction = newDirection;
 
-      window.speechSynthesis.cancel();
-
-    }
-
-    if (speakBtn) {
-
-      speakBtn.classList.remove(
-        "speaking"
-      );
-
-    }
-
-    if (speakBackBtn) {
-
-      speakBackBtn.classList.remove(
-        "speaking"
-      );
-
-    }
-
-  }
-
-
-  /* =========================
-     LIST
-  ========================= */
-
-  function renderList() {
-
-    cardList.innerHTML = "";
-
-
-    cards.forEach(
-      (card, index) => {
-
-        const item =
-          document.createElement(
-            "div"
-          );
-
-
-        item.className =
-          "list-item";
-
-
-        item.innerHTML = `
-
-          <div class="list-en">
-            ${escapeHtml(
-              card.english
-            )}
-          </div>
-
-          <div class="list-ru">
-            ${escapeHtml(
-              card.russian
-            )}
-          </div>
-
-          <button
-            class="delete-btn"
-            onclick="deleteCard(${index})"
-            title="Удалить">
-
-            ×
-
-          </button>
-
-        `;
-
-
-        cardList.appendChild(
-          item
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================
-     DELETE
-  ========================= */
-
-  function deleteCard(index) {
-
-    cards.splice(
-      index,
-      1
-    );
-
-
-    if (
-      currentIndex >=
-      cards.length
-    ) {
-
-      currentIndex =
-        Math.max(
-          0,
-          cards.length - 1
-        );
-
-    }
-
-
-    saveCards();
-
-    showCard();
-
-    renderList();
-
-  }
-
-
-  /* =========================
-     CLEAR
-  ========================= */
-
-  function clearAll() {
-
-    if (
-      cards.length === 0
-    ) {
-      return;
-    }
-
-
-    const confirmed =
-      confirm(
-        "Удалить все карточки?"
-      );
-
-
-    if (!confirmed) {
-      return;
-    }
-
-
-    cards = [];
-
-    currentIndex = 0;
-
-    known = 0;
-
-    unknown = 0;
-
-
-    localStorage.removeItem(
-      "englishCards"
-    );
-
-    localStorage.removeItem(
-      "knownCards"
-    );
-
-    localStorage.removeItem(
-      "unknownCards"
-    );
-
-
-    stopSpeaking();
-
-    showCard();
-
-    renderList();
-
-  }
-
-
-  /* =========================
-     EXAMPLE
-  ========================= */
-
-  function loadExample() {
-
-    cardInput.value =
-      direction === "ru-en"
-        ? examples["ru-en"]
-        : examples["en-ru"];
-
-  }
-
-
-  /* =========================
-     SAVE
-  ========================= */
-
-  function saveCards() {
-
-    localStorage.setItem(
-      "englishCards",
-      JSON.stringify(cards)
-    );
-
-  }
-
-
-  /* =========================
-     ESCAPE HTML
-  ========================= */
-
-  function escapeHtml(text) {
-
-    const div =
-      document.createElement(
-        "div"
-      );
-
-    div.textContent =
-      text;
-
-    return div.innerHTML;
-
-  }
-
-
-  /* =========================
-     KEYBOARD
-  ========================= */
-
-  document.addEventListener(
-    "keydown",
-    function(event) {
-
-      /*
-        Не реагируем,
-        когда пользователь
-        печатает карточки.
-      */
-
-      if (
-        event.target.tagName ===
-          "TEXTAREA" ||
-
-        event.target.tagName ===
-          "INPUT"
-      ) {
-
-        return;
-
-      }
-
-
-      /* Space = flip */
-
-      if (
-        event.code === "Space"
-      ) {
-
-        event.preventDefault();
-
-        flipCard();
-
-      }
-
-
-      /* Right arrow */
-
-      if (
-        event.key ===
-        "ArrowRight"
-      ) {
-
-        nextCard();
-
-      }
-
-
-      /* Left arrow */
-
-      if (
-        event.key ===
-        "ArrowLeft"
-      ) {
-
-        previousCard();
-
-      }
-
-
-      /* 1 = don't know */
-
-      if (
-        event.key === "1"
-      ) {
-
-        markUnknown();
-
-      }
-
-
-      /* 2 = know */
-
-      if (
-        event.key === "2"
-      ) {
-
-        markKnown();
-
-      }
-
-    }
+  localStorage.setItem(
+    "cardDirection",
+    direction
   );
 
+  if (
+    direction === "mixed"
+  ) {
 
-  /* =========================
-     INIT
-  ========================= */
+    currentDirection =
+      Math.random() < 0.5
+        ? "en-ru"
+        : "ru-en";
+
+  } else {
+
+    currentDirection =
+      direction;
+
+  }
 
   updateDirectionButtons();
 
   updatePlaceholder();
 
-  setSpeechRate(
-    speechRate
-  );
+  showCard();
+
+}
+
+
+function updateDirectionButtons() {
+
+  document
+    .getElementById("enRuBtn")
+    .classList.toggle(
+      "active",
+      direction === "en-ru"
+    );
+
+  document
+    .getElementById("ruEnBtn")
+    .classList.toggle(
+      "active",
+      direction === "ru-en"
+    );
+
+  document
+    .getElementById("mixedBtn")
+    .classList.toggle(
+      "active",
+      direction === "mixed"
+    );
+
+}
+
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+function updatePlaceholder() {
+
+  cardInput.placeholder =
+    direction === "ru-en"
+      ? examples["ru-en"]
+      : examples["en-ru"];
+
+}
+
+
+/* =========================
+   ADD CARDS
+========================= */
+
+function addCards() {
+
+  const text =
+    cardInput.value.trim();
+
+  if (!text) {
+    return;
+  }
+
+
+  const lines =
+    text.split("\n");
+
+  let added = 0;
+
+
+  lines.forEach(line => {
+
+    line = line.trim();
+
+    if (!line) {
+      return;
+    }
+
+
+    let parts;
+
+
+    if (line.includes("—")) {
+
+      parts = line.split("—");
+
+    } else if (line.includes("–")) {
+
+      parts = line.split("–");
+
+    } else {
+
+      parts =
+        line.split(/\s+-\s+/);
+
+    }
+
+
+    if (parts.length < 2) {
+      return;
+    }
+
+
+    const english =
+      parts[0].trim();
+
+    const russian =
+      parts
+        .slice(1)
+        .join("—")
+        .trim();
+
+
+    if (
+      !english ||
+      !russian
+    ) {
+      return;
+    }
+
+
+    const exists =
+      cards.some(card =>
+
+        card.english.toLowerCase() ===
+          english.toLowerCase() &&
+
+        card.russian.toLowerCase() ===
+          russian.toLowerCase()
+
+      );
+
+
+    if (exists) {
+      return;
+    }
+
+
+    cards.push({
+
+      english:
+        english,
+
+      russian:
+        russian
+
+    });
+
+
+    added++;
+
+  });
+
+
+  if (added === 0) {
+
+    alert(
+      "Не удалось добавить карточки.\n\n" +
+      "Проверь формат:\n" +
+      "English — Русский"
+    );
+
+    return;
+  }
+
+
+  saveCards();
+
+  cardInput.value = "";
+
+  currentIndex = 0;
 
   showCard();
 
   renderList();
 
+}
+
+
+/* =========================
+   SHOW CARD
+========================= */
+
+function showCard() {
+
+  if (cards.length === 0) {
+
+    studyArea.style.display =
+      "none";
+
+    emptyState.style.display =
+      "block";
+
+    totalCounter.textContent =
+      "0 terms";
+
+    renderList();
+
+    return;
+  }
+
+
+  studyArea.style.display =
+    "block";
+
+  emptyState.style.display =
+    "none";
+
+
+  if (
+    currentIndex >=
+    cards.length
+  ) {
+
+    currentIndex =
+      cards.length - 1;
+
+  }
+
+
+  if (
+    currentIndex < 0
+  ) {
+
+    currentIndex = 0;
+
+  }
+
+
+  const card =
+    cards[currentIndex];
+
+
+  if (
+    direction === "mixed"
+  ) {
+
+    currentDirection =
+      Math.random() < 0.5
+        ? "en-ru"
+        : "ru-en";
+
+  } else {
+
+    currentDirection =
+      direction;
+
+  }
+
+
+  flashcard.classList.remove(
+    "flipped"
+  );
+
+  stopSpeaking();
+
+
+  if (
+    currentDirection ===
+    "en-ru"
+  ) {
+
+    frontLabel.textContent =
+      "English";
+
+    backLabel.textContent =
+      "Русский";
+
+    frontText.textContent =
+      card.english;
+
+    backText.textContent =
+      card.russian;
+
+  } else {
+
+    frontLabel.textContent =
+      "Русский";
+
+    backLabel.textContent =
+      "English";
+
+    frontText.textContent =
+      card.russian;
+
+    backText.textContent =
+      card.english;
+
+  }
+
+
+  pageCounter.textContent =
+    `${currentIndex + 1} / ${cards.length}`;
+
+
+  totalCounter.textContent =
+    `${cards.length} ${
+      cards.length === 1
+        ? "term"
+        : "terms"
+    }`;
+
+
+  updateProgress();
+
+}
+
+
+/* =========================
+   FLIP
+========================= */
+
+function flipCard() {
+
+  if (
+    cards.length === 0
+  ) {
+    return;
+  }
+
+  flashcard.classList.toggle(
+    "flipped"
+  );
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function nextCard() {
+
+  if (
+    cards.length === 0
+  ) {
+    return;
+  }
+
+  currentIndex++;
+
+  if (
+    currentIndex >=
+    cards.length
+  ) {
+
+    currentIndex = 0;
+
+  }
+
+  showCard();
+
+}
+
+
+function previousCard() {
+
+  if (
+    cards.length === 0
+  ) {
+    return;
+  }
+
+  currentIndex--;
+
+  if (
+    currentIndex < 0
+  ) {
+
+    currentIndex =
+      cards.length - 1;
+
+  }
+
+  showCard();
+
+}
+
+
+/* =========================
+   KNOWN / UNKNOWN
+========================= */
+
+function markKnown() {
+
+  known++;
+
+  localStorage.setItem(
+    "knownCards",
+    known
+  );
+
+  nextCard();
+
+}
+
+
+function markUnknown() {
+
+  unknown++;
+
+  localStorage.setItem(
+    "unknownCards",
+    unknown
+  );
+
+  nextCard();
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress() {
+
+  if (
+    cards.length === 0
+  ) {
+
+    progressBar.style.width =
+      "0%";
+
+    progressPercent.textContent =
+      "0%";
+
+    return;
+
+  }
+
+
+  const percent =
+    Math.round(
+      (
+        (currentIndex + 1) /
+        cards.length
+      ) * 100
+    );
+
+
+  progressBar.style.width =
+    percent + "%";
+
+  progressPercent.textContent =
+    percent + "%";
+
+}
+
+
+/* =========================
+   SHUFFLE
+========================= */
+
+function shuffleCards() {
+
+  if (
+    cards.length < 2
+  ) {
+    return;
+  }
+
+
+  for (
+    let i = cards.length - 1;
+    i > 0;
+    i--
+  ) {
+
+    const j =
+      Math.floor(
+        Math.random() *
+        (i + 1)
+      );
+
+
+    [
+      cards[i],
+      cards[j]
+    ] = [
+      cards[j],
+      cards[i]
+    ];
+
+  }
+
+
+  saveCards();
+
+  currentIndex = 0;
+
+  showCard();
+
+  renderList();
+
+}
+
+
+/* =========================
+   RESET STATS
+========================= */
+
+function resetStats() {
+
+  known = 0;
+
+  unknown = 0;
+
+  localStorage.setItem(
+    "knownCards",
+    "0"
+  );
+
+  localStorage.setItem(
+    "unknownCards",
+    "0"
+  );
+
+}
+
+
+/* =========================
+   VOICE TYPE
+========================= */
+
+function setVoice(language) {
+
+  voiceLanguage =
+    language;
+
+  localStorage.setItem(
+    "voiceLanguage",
+    language
+  );
+
+
+  document
+    .getElementById("usVoiceBtn")
+    .classList.toggle(
+      "active",
+      language === "en-US"
+    );
+
+
+  document
+    .getElementById("ukVoiceBtn")
+    .classList.toggle(
+      "active",
+      language === "en-GB"
+    );
+
+
+  /*
+    Если голос уже был выбран,
+    следующая озвучка использует
+    новый вариант.
+  */
+
+}
+
+
+/* =========================
+   SPEECH RATE
+========================= */
+
+function setSpeechRate(rate) {
+
+  speechRate =
+    Number(rate);
+
+
+  localStorage.setItem(
+    "speechRate",
+    speechRate
+  );
+
+
+  document
+    .querySelectorAll(".speed-btn")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        Number(
+          button.dataset.speed
+        ) === speechRate
+      );
+
+    });
+
+}
+
+
+/* =========================
+   FIND VOICE
+========================= */
+
+function findEnglishVoice(language) {
+
+  const voices =
+    window.speechSynthesis
+      .getVoices();
+
+
+  if (!voices.length) {
+    return null;
+  }
+
+
+  /*
+    Сначала ищем точное совпадение:
+    en-US или en-GB
+  */
+
+  let voice =
+    voices.find(
+      v =>
+        v.lang.toLowerCase() ===
+        language.toLowerCase()
+    );
+
+
+  if (voice) {
+    return voice;
+  }
+
+
+  /*
+    Некоторые Windows-голоса
+    имеют дополнительные варианты,
+    поэтому ищем начало языка.
+  */
+
+  voice =
+    voices.find(
+      v =>
+        v.lang.toLowerCase()
+          .startsWith(
+            language
+              .substring(0, 2)
+              .toLowerCase()
+          )
+    );
+
+
+  return voice || null;
+
+}
+
+
+/* =========================
+   SPEAK ENGLISH
+========================= */
+
+function speakEnglish(event) {
+
+  /*
+    Не переворачиваем карточку
+    при клике на динамик.
+  */
+
+  event.stopPropagation();
+
+
+  if (
+    cards.length === 0
+  ) {
+    return;
+  }
+
+
+  const text =
+    cards[currentIndex].english;
+
+
+  if (!text) {
+    return;
+  }
+
+
+  /*
+    Останавливаем предыдущую фразу.
+  */
+
+  window.speechSynthesis.cancel();
+
+
+  /*
+    Создаём новый объект речи.
+  */
+
+  const utterance =
+    new SpeechSynthesisUtterance(
+      text
+    );
+
+
+  /*
+    Ищем выбранный голос.
+  */
+
+  const voice =
+    findEnglishVoice(
+      voiceLanguage
+    );
+
+
+  if (voice) {
+
+    utterance.voice =
+      voice;
+
+    utterance.lang =
+      voice.lang;
+
+  } else {
+
+    /*
+      Даже если конкретного
+      голоса нет, говорим браузеру,
+      что текст английский.
+    */
+
+    utterance.lang =
+      voiceLanguage;
+
+  }
+
+
+  utterance.rate =
+    speechRate;
+
+  utterance.pitch =
+    1;
+
+  utterance.volume =
+    1;
+
+
+  utterance.onstart =
+    function() {
+
+      speakBtn
+        .classList
+        .add("speaking");
+
+      speakBackBtn
+        .classList
+        .add("speaking");
+
+    };
+
+
+  utterance.onend =
+    function() {
+
+      speakBtn
+        .classList
+        .remove("speaking");
+
+      speakBackBtn
+        .classList
+        .remove("speaking");
+
+    };
+
+
+  utterance.onerror =
+    function() {
+
+      speakBtn
+        .classList
+        .remove("speaking");
+
+      speakBackBtn
+        .classList
+        .remove("speaking");
+
+    };
+
+
+  window.speechSynthesis.speak(
+    utterance
+  );
+
+}
+
+
+/* =========================
+   STOP SPEAKING
+========================= */
+
+function stopSpeaking() {
+
+  if (
+    "speechSynthesis" in window
+  ) {
+
+    window.speechSynthesis.cancel();
+
+  }
+
+
+  if (speakBtn) {
+
+    speakBtn
+      .classList
+      .remove("speaking");
+
+  }
+
+
+  if (speakBackBtn) {
+
+    speakBackBtn
+      .classList
+      .remove("speaking");
+
+  }
+
+}
+
+
+/* =========================
+   LIST
+========================= */
+
+function renderList() {
+
+  cardList.innerHTML = "";
+
+
+  cards.forEach(
+    (card, index) => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "list-item";
+
+
+      item.innerHTML = `
+
+        <div class="list-en">
+          ${escapeHtml(
+            card.english
+          )}
+        </div>
+
+        <div class="list-ru">
+          ${escapeHtml(
+            card.russian
+          )}
+        </div>
+
+        <button
+          class="delete-btn"
+          onclick="deleteCard(${index})"
+          title="Удалить">
+
+          ×
+
+        </button>
+
+      `;
+
+
+      cardList.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteCard(index) {
+
+  cards.splice(
+    index,
+    1
+  );
+
+
+  if (
+    currentIndex >=
+    cards.length
+  ) {
+
+    currentIndex =
+      Math.max(
+        0,
+        cards.length - 1
+      );
+
+  }
+
+
+  saveCards();
+
+  showCard();
+
+  renderList();
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearAll() {
+
+  if (
+    cards.length === 0
+  ) {
+    return;
+  }
+
+
+  const confirmed =
+    confirm(
+      "Удалить все карточки?"
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  cards = [];
+
+  currentIndex = 0;
+
+  known = 0;
+
+  unknown = 0;
+
+
+  localStorage.removeItem(
+    "englishCards"
+  );
+
+  localStorage.removeItem(
+    "knownCards"
+  );
+
+  localStorage.removeItem(
+    "unknownCards"
+  );
+
+
+  stopSpeaking();
+
+  showCard();
+
+  renderList();
+
+}
+
+
+/* =========================
+   EXAMPLE
+========================= */
+
+function loadExample() {
+
+  cardInput.value =
+    direction === "ru-en"
+      ? examples["ru-en"]
+      : examples["en-ru"];
+
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveCards() {
+
+  localStorage.setItem(
+    "englishCards",
+    JSON.stringify(cards)
+  );
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(text) {
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+  div.textContent =
+    text;
+
+  return div.innerHTML;
+
+}
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.target.tagName ===
+        "TEXTAREA" ||
+
+      event.target.tagName ===
+        "INPUT"
+    ) {
+      return;
+    }
+
+
+    if (
+      event.code === "Space"
+    ) {
+
+      event.preventDefault();
+
+      flipCard();
+
+    }
+
+
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
+      nextCard();
+
+    }
+
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
+      previousCard();
+
+    }
+
+
+    if (
+      event.key === "1"
+    ) {
+
+      markUnknown();
+
+    }
+
+
+    if (
+      event.key === "2"
+    ) {
+
+      markKnown();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   VOICES LOADING
+========================= */
+
+function initializeSpeech() {
+
+  /*
+    В некоторых браузерах
+    голоса появляются не сразу.
+  */
+
+  window.speechSynthesis.getVoices();
+
+}
+
+
+window.speechSynthesis.onvoiceschanged =
+  initializeSpeech;
+
+
+/* =========================
+   INIT
+========================= */
+
+updateDirectionButtons();
+
+updatePlaceholder();
+
+setSpeechRate(
+  speechRate
+);
+
+setVoice(
+  voiceLanguage
+);
+
+initializeSpeech();
+
+showCard();
+
+renderList();
+
 </script>
 
 </body>
 </html>
+```
