@@ -93,6 +93,146 @@ body {
     border-color: #202124;
 }
 
+/* ================= GROUPS ================= */
+
+.groups-view {
+    display: none;
+}
+
+.groups-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-bottom: 12px;
+}
+
+.groups-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.create-group-btn {
+    border: none;
+    background: #202124;
+    color: white;
+
+    min-height: 44px;
+    padding: 9px 14px;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+    touch-action: manipulation;
+
+    white-space: nowrap;
+}
+
+.create-group-btn:active {
+    transform: scale(.97);
+}
+
+.group-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.group-item {
+    width: 100%;
+
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+
+    background: white;
+
+    border: 1px solid #e0e2e6;
+
+    border-radius: 15px;
+
+    padding: 11px 12px;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+.group-item:active {
+    transform: scale(.99);
+}
+
+.group-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+
+    background: #f1f3f4;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+
+    flex-shrink: 0;
+}
+
+.group-main {
+    min-width: 0;
+    flex: 1;
+
+    margin-left: 11px;
+}
+
+.group-name {
+    font-size: 16px;
+    font-weight: 650;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.group-count {
+    margin-top: 4px;
+
+    color: #777d85;
+
+    font-size: 13px;
+}
+
+.group-menu {
+    width: 40px;
+    height: 42px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #70757d;
+
+    font-size: 24px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    touch-action: manipulation;
+}
+
+.group-menu:active {
+    background: #f1f3f4;
+}
+
 /* ================= EMPTY ================= */
 
 .empty-state {
@@ -117,15 +257,23 @@ body {
 
 .add-main-btn {
     width: 100%;
+
     border: none;
+
     background: #202124;
     color: white;
+
     border-radius: 13px;
+
     min-height: 52px;
+
     padding: 12px 18px;
+
     font-size: 16px;
     font-weight: 650;
+
     cursor: pointer;
+
     touch-action: manipulation;
 }
 
@@ -133,25 +281,32 @@ body {
     transform: scale(0.98);
 }
 
-/* ================= ADD MOBILE ================= */
+/* ================= ADD ================= */
 
 .add-mobile {
     margin-top: 16px;
+
     background: white;
+
     border: 1px solid #e0e2e6;
+
     border-radius: 16px;
+
     padding: 16px;
 }
 
 .add-mobile h3 {
     margin: 0 0 10px;
+
     font-size: 17px;
 }
 
 .add-mobile textarea,
 .section-content textarea {
     display: block;
+
     width: 100%;
+
     height: 130px;
     min-height: 130px;
     max-height: 300px;
@@ -162,6 +317,7 @@ body {
     appearance: none;
 
     border: 1px solid #d8dbe2;
+
     border-radius: 10px;
 
     padding: 13px;
@@ -169,10 +325,12 @@ body {
     outline: none;
 
     font-family: inherit;
+
     font-size: 16px;
     line-height: 1.4;
 
     background: #fff;
+
     color: #202124;
 
     box-shadow: none;
@@ -188,26 +346,131 @@ body {
     border-color: #9aa0a6;
 }
 
+/* ================= GROUP SELECT ================= */
+
+.group-select-wrap {
+    margin-top: 12px;
+}
+
+.group-select-wrap label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #5f6368;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.group-select {
+    width: 100%;
+
+    min-height: 45px;
+
+    border: 1px solid #d8dbe2;
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 9px 11px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    color: #202124;
+
+    outline: none;
+}
+
+.group-select:focus {
+    border-color: #9aa0a6;
+}
+
 /* ================= STUDY ================= */
 
 .study-area {
     display: none;
 }
 
+.study-topbar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+.back-groups-btn {
+    border: 1px solid #d8dbe2;
+
+    background: white;
+
+    color: #30343a;
+
+    min-height: 42px;
+
+    padding: 8px 13px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+.back-groups-btn:active {
+    transform: scale(.97);
+}
+
+.current-group-name {
+    min-width: 0;
+
+    font-size: 15px;
+
+    font-weight: 650;
+
+    color: #5f6368;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    text-align: right;
+}
+
+/* ================= FLASHCARD ================= */
+
 .flashcard {
     width: 100%;
+
     min-height: 310px;
 
     background: white;
 
     border: 1px solid #e0e2e6;
+
     border-radius: 20px;
 
     padding: 28px 22px;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
 
     cursor: pointer;
@@ -220,11 +483,15 @@ body {
 
 .card-label {
     color: #8a9098;
+
     font-size: 13px;
+
     margin-bottom: 18px;
+
     font-weight: 650;
 
     text-transform: uppercase;
+
     letter-spacing: .04em;
 }
 
@@ -232,6 +499,7 @@ body {
     text-align: center;
 
     font-size: clamp(25px, 4vw, 40px);
+
     line-height: 1.25;
 
     font-weight: 700;
@@ -243,7 +511,9 @@ body {
 
 .card-hint {
     margin-top: 18px;
+
     color: #8a9098;
+
     font-size: 13px;
 }
 
@@ -254,6 +524,7 @@ body {
     height: 44px;
 
     border: 1px solid #d8dbe2;
+
     background: white;
 
     border-radius: 50%;
@@ -263,6 +534,7 @@ body {
     font-size: 19px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -281,7 +553,9 @@ body {
     margin: 14px auto 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     gap: 0;
@@ -294,6 +568,7 @@ body {
     padding: 0;
 
     border: 1px solid #d8dbe2;
+
     background: white;
 
     border-radius: 13px;
@@ -303,6 +578,7 @@ body {
     cursor: pointer;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -323,6 +599,7 @@ body {
     color: #4d5156;
 
     font-size: 15px;
+
     font-weight: 650;
 
     flex-shrink: 0;
@@ -332,6 +609,7 @@ body {
 
 .answer-buttons {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     gap: 10px;
@@ -345,9 +623,11 @@ body {
     border-radius: 13px;
 
     border: 1px solid #d8dbe2;
+
     background: white;
 
     font-size: 15px;
+
     font-weight: 650;
 
     cursor: pointer;
@@ -375,6 +655,7 @@ body {
 
 .progress-info {
     display: flex;
+
     justify-content: space-between;
 
     color: #777d85;
@@ -386,6 +667,7 @@ body {
 
 .progress-bar {
     width: 100%;
+
     height: 7px;
 
     background: #e2e4e8;
@@ -397,6 +679,7 @@ body {
 
 .progress-fill {
     height: 100%;
+
     width: 0%;
 
     background: #202124;
@@ -426,6 +709,7 @@ summary {
     padding: 15px 16px;
 
     font-size: 15px;
+
     font-weight: 650;
 
     user-select: none;
@@ -446,11 +730,13 @@ summary {
     min-height: 46px;
 
     border: 1px solid #d8dbe2;
+
     background: #f8f9fa;
 
     border-radius: 10px;
 
     font-size: 15px;
+
     font-weight: 600;
 
     cursor: pointer;
@@ -476,6 +762,7 @@ summary {
     border-radius: 10px;
 
     font-size: 15px;
+
     font-weight: 650;
 
     cursor: pointer;
@@ -491,7 +778,9 @@ summary {
 
 .voice-row {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 12px;
@@ -523,6 +812,7 @@ summary {
 
 .card-list {
     display: flex;
+
     flex-direction: column;
 
     gap: 8px;
@@ -546,11 +836,13 @@ summary {
 
 .card-list-en {
     font-weight: 650;
+
     margin-bottom: 4px;
 }
 
 .card-list-ru {
     color: #70757d;
+
     font-size: 14px;
 }
 
@@ -584,6 +876,13 @@ summary {
     }
 
     .add-mobile {
+        max-width: 850px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .groups-view {
         max-width: 850px;
 
         margin-left: auto;
@@ -625,6 +924,39 @@ summary {
         padding: 8px 11px;
 
         font-size: 13px;
+    }
+
+    .groups-header h2 {
+        font-size: 19px;
+    }
+
+    .create-group-btn {
+        min-height: 42px;
+
+        padding: 8px 11px;
+
+        font-size: 13px;
+    }
+
+    .group-item {
+        min-height: 64px;
+
+        padding: 9px 10px;
+    }
+
+    .group-icon {
+        width: 39px;
+        height: 39px;
+
+        font-size: 19px;
+    }
+
+    .group-main {
+        margin-left: 9px;
+    }
+
+    .group-name {
+        font-size: 15px;
     }
 
     .flashcard {
@@ -670,6 +1002,22 @@ summary {
         min-height: 50px;
 
         font-size: 14px;
+    }
+
+    .study-topbar {
+        margin-bottom: 10px;
+    }
+
+    .back-groups-btn {
+        min-height: 40px;
+
+        padding: 7px 10px;
+
+        font-size: 13px;
+    }
+
+    .current-group-name {
+        font-size: 13px;
     }
 }
 
@@ -792,7 +1140,37 @@ summary {
     </div>
 
 
-    <!-- ================= EMPTY STATE ================= -->
+    <!-- ================= GROUPS ================= -->
+
+    <div
+        class="groups-view"
+        id="groupsView">
+
+        <div class="groups-header">
+
+            <h2>
+                Мои группы
+            </h2>
+
+            <button
+                class="create-group-btn"
+                onclick="showCreateGroup()">
+
+                ＋ Группа
+
+            </button>
+
+        </div>
+
+        <div
+            class="group-list"
+            id="groupList">
+        </div>
+
+    </div>
+
+
+    <!-- ================= EMPTY ================= -->
 
     <div
         class="empty-state"
@@ -803,15 +1181,15 @@ summary {
         </h2>
 
         <p>
-            Добавь английские фразы и их перевод,
+            Создай группу и добавь в неё карточки,
             чтобы начать учить.
         </p>
 
         <button
             class="add-main-btn"
-            onclick="showAddPanel()">
+            onclick="showCreateGroup()">
 
-            ＋ Добавить карточки
+            ＋ Создать группу
 
         </button>
 
@@ -834,6 +1212,21 @@ summary {
             placeholder="How did you pull that off? — Как тебе удалось это сделать?
 I can't believe it. — Я не могу в это поверить."></textarea>
 
+
+        <div class="group-select-wrap">
+
+            <label for="firstGroupSelect">
+                Группа
+            </label>
+
+            <select
+                class="group-select"
+                id="firstGroupSelect">
+            </select>
+
+        </div>
+
+
         <button
             class="add-main-btn"
             style="margin-top:10px;"
@@ -851,6 +1244,29 @@ I can't believe it. — Я не могу в это поверить."></textarea
     <div
         class="study-area"
         id="studyArea">
+
+
+        <!-- ================= STUDY TOP ================= -->
+
+        <div class="study-topbar">
+
+            <button
+                class="back-groups-btn"
+                onclick="showGroups()">
+
+                ← Все группы
+
+            </button>
+
+            <div
+                class="current-group-name"
+                id="currentGroupName">
+
+                Все карточки
+
+            </div>
+
+        </div>
 
 
         <!-- ================= FLASHCARD ================= -->
@@ -1058,8 +1474,24 @@ I can't believe it. — Я не могу в это поверить."></textarea
                     id="cardInputStudy"
                     placeholder="English — Русский"></textarea>
 
+
+                <div class="group-select-wrap">
+
+                    <label for="studyGroupSelect">
+                        Группа
+                    </label>
+
+                    <select
+                        class="group-select"
+                        id="studyGroupSelect">
+                    </select>
+
+                </div>
+
+
                 <button
                     class="section-btn"
+                    style="margin-top:10px;"
                     onclick="addCardsFromStudy()">
 
                     Добавить карточки
@@ -1076,7 +1508,7 @@ I can't believe it. — Я не могу в это поверить."></textarea
         <details>
 
             <summary>
-                📚 Все карточки
+                📚 Карточки этой группы
             </summary>
 
             <div class="section-content">
@@ -1086,20 +1518,21 @@ I can't believe it. — Я не могу в это поверить."></textarea
                     id="cardList">
                 </div>
 
-
-                <!-- DELETE ALL -->
-
-                <button
-                    class="delete-all-btn"
-                    onclick="deleteAllCards()">
-
-                    🗑️ Удалить все карточки
-
-                </button>
-
             </div>
 
         </details>
+
+
+        <!-- ================= DELETE ALL ================= -->
+
+        <button
+            class="delete-all-btn"
+            id="deleteCurrentBtn"
+            onclick="deleteCurrentGroupCards()">
+
+            🗑️ Удалить карточки этой группы
+
+        </button>
 
     </div>
 
@@ -1124,6 +1557,13 @@ let unknownCards = JSON.parse(
     localStorage.getItem("unknownCards") || "[]"
 );
 
+let groups = JSON.parse(
+    localStorage.getItem("cardGroups") || "[]"
+);
+
+let currentGroupId =
+    localStorage.getItem("currentGroupId") || null;
+
 let direction =
     localStorage.getItem("cardDirection") || "en-ru";
 
@@ -1139,6 +1579,135 @@ let currentIndex = 0;
 
 let isFlipped = false;
 
+let studyCards = [];
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+function makeId() {
+
+    return Date.now() +
+        "_" +
+        Math.random()
+            .toString(36)
+            .slice(2, 9);
+
+}
+
+
+/* =========================================================
+   MIGRATION OLD CARDS
+========================================================= */
+
+function migrateOldCards() {
+
+    /*
+        Если приложение уже использовалось раньше,
+        старые карточки не пропадут.
+
+        Они автоматически попадут
+        в группу "Без группы".
+    */
+
+    if (cards.length === 0) {
+        return;
+    }
+
+
+    let changed = false;
+
+
+    if (groups.length === 0) {
+
+        const defaultGroup = {
+
+            id: makeId(),
+
+            name: "Без группы"
+
+        };
+
+
+        groups.push(defaultGroup);
+
+
+        cards.forEach(card => {
+
+            if (!card.groupId) {
+
+                card.groupId =
+                    defaultGroup.id;
+
+                changed = true;
+
+            }
+
+        });
+
+    } else {
+
+        let fallback =
+            groups.find(
+                group =>
+                    group.name === "Без группы"
+            );
+
+
+        const hasOrphans =
+            cards.some(
+                card => !card.groupId
+            );
+
+
+        if (
+            hasOrphans &&
+            !fallback
+        ) {
+
+            fallback = {
+
+                id: makeId(),
+
+                name: "Без группы"
+
+            };
+
+
+            groups.push(fallback);
+
+        }
+
+
+        if (fallback) {
+
+            cards.forEach(card => {
+
+                if (!card.groupId) {
+
+                    card.groupId =
+                        fallback.id;
+
+                    changed = true;
+
+                }
+
+            });
+
+        }
+
+    }
+
+
+    if (changed) {
+
+        saveAll();
+
+    }
+
+}
+
 
 /* =========================================================
    INIT
@@ -1147,6 +1716,9 @@ let isFlipped = false;
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
+        migrateOldCards();
+
 
         document.getElementById(
             "speechRate"
@@ -1196,36 +1768,98 @@ document.addEventListener(
 
         updateDirectionButtons();
 
+        updateGroupSelects();
+
+        updateCounters();
+
 
         if (cards.length > 0) {
 
-            document
-                .getElementById("emptyState")
-                .style.display = "none";
+            /*
+                При открытии приложения
+                возвращаем последнюю группу,
+                если она существует.
+            */
+
+            if (
+                currentGroupId &&
+                !groups.some(
+                    group =>
+                        group.id === currentGroupId
+                )
+            ) {
+
+                currentGroupId = null;
+
+            }
 
 
-            document
-                .getElementById("addCardsMobile")
-                .style.display = "none";
-
-
-            document
-                .getElementById("studyArea")
-                .style.display = "block";
-
-
-            showCard();
-
-            renderList();
+            openGroup(
+                currentGroupId,
+                false
+            );
 
         } else {
 
-            updateCounters();
+            showEmpty();
 
         }
 
     }
 );
+
+
+/* =========================================================
+   SAVE EVERYTHING
+========================================================= */
+
+function saveAll() {
+
+    localStorage.setItem(
+        "englishCards",
+        JSON.stringify(cards)
+    );
+
+
+    localStorage.setItem(
+        "knownCards",
+        JSON.stringify(knownCards)
+    );
+
+
+    localStorage.setItem(
+        "unknownCards",
+        JSON.stringify(unknownCards)
+    );
+
+
+    localStorage.setItem(
+        "cardGroups",
+        JSON.stringify(groups)
+    );
+
+
+    if (currentGroupId) {
+
+        localStorage.setItem(
+            "currentGroupId",
+            currentGroupId
+        );
+
+    } else {
+
+        localStorage.removeItem(
+            "currentGroupId"
+        );
+
+    }
+
+
+    updateCounters();
+
+    renderGroups();
+
+}
 
 
 /* =========================================================
@@ -1247,12 +1881,18 @@ function setDirection(value) {
 
     updateDirectionButtons();
 
-    if (cards.length > 0) {
+    if (studyCards.length > 0) {
+
         showCard();
+
     }
 
 }
 
+
+/* =========================================================
+   DIRECTION BUTTONS
+========================================================= */
 
 function updateDirectionButtons() {
 
@@ -1283,17 +1923,879 @@ function updateDirectionButtons() {
 
 
 /* =========================================================
+   GROUP COUNT WORD
+========================================================= */
+
+function plural(
+    number,
+    one,
+    few,
+    many
+) {
+
+    if (
+        number % 10 === 1 &&
+        number % 100 !== 11
+    ) {
+
+        return one;
+
+    }
+
+
+    if (
+        number % 10 >= 2 &&
+        number % 10 <= 4 &&
+        (
+            number % 100 < 10 ||
+            number % 100 >= 20
+        )
+    ) {
+
+        return few;
+
+    }
+
+
+    return many;
+
+}
+
+
+/* =========================================================
+   RENDER GROUPS
+========================================================= */
+
+function renderGroups() {
+
+    const list =
+        document.getElementById(
+            "groupList"
+        );
+
+
+    if (!list) {
+        return;
+    }
+
+
+    list.innerHTML = "";
+
+
+    /*
+        ВСЕ КАРТОЧКИ
+    */
+
+    const allItem =
+        document.createElement("div");
+
+
+    allItem.className =
+        "group-item";
+
+
+    allItem.innerHTML = `
+
+        <div class="group-icon">
+            📚
+        </div>
+
+        <div class="group-main">
+
+            <div class="group-name">
+                Все карточки
+            </div>
+
+            <div class="group-count">
+                ${cards.length}
+                ${plural(
+                    cards.length,
+                    "карточка",
+                    "карточки",
+                    "карточек"
+                )}
+            </div>
+
+        </div>
+
+    `;
+
+
+    allItem.onclick = () => {
+
+        openGroup(null);
+
+    };
+
+
+    list.appendChild(allItem);
+
+
+    /*
+        ОБЫЧНЫЕ ГРУППЫ
+    */
+
+    groups.forEach(group => {
+
+        const count =
+            cards.filter(
+                card =>
+                    card.groupId === group.id
+            ).length;
+
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "group-item";
+
+
+        item.innerHTML = `
+
+            <div class="group-icon">
+                📁
+            </div>
+
+            <div class="group-main">
+
+                <div class="group-name">
+                    ${escapeHtml(group.name)}
+                </div>
+
+                <div class="group-count">
+                    ${count}
+                    ${plural(
+                        count,
+                        "карточка",
+                        "карточки",
+                        "карточек"
+                    )}
+                </div>
+
+            </div>
+
+            <button
+                class="group-menu"
+                aria-label="Меню группы">
+
+                ⋮
+
+            </button>
+
+        `;
+
+
+        item
+            .querySelector(".group-menu")
+            .onclick = event => {
+
+                event.stopPropagation();
+
+                groupMenu(group.id);
+
+            };
+
+
+        item.onclick = () => {
+
+            openGroup(group.id);
+
+        };
+
+
+        list.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   CREATE GROUP
+========================================================= */
+
+function showCreateGroup() {
+
+    const name =
+        prompt(
+            "Название новой группы:"
+        );
+
+
+    if (name === null) {
+        return;
+    }
+
+
+    const cleanName =
+        name.trim();
+
+
+    if (!cleanName) {
+
+        alert(
+            "Название группы не может быть пустым."
+        );
+
+        return;
+
+    }
+
+
+    const exists =
+        groups.some(
+            group =>
+                group.name.toLowerCase() ===
+                cleanName.toLowerCase()
+        );
+
+
+    if (exists) {
+
+        alert(
+            "Такая группа уже существует."
+        );
+
+        return;
+
+    }
+
+
+    const newGroup = {
+
+        id: makeId(),
+
+        name: cleanName
+
+    };
+
+
+    groups.push(newGroup);
+
+
+    saveAll();
+
+
+    /*
+        После создания сразу открываем
+        добавление карточек.
+    */
+
+    showGroups();
+
+    updateGroupSelects();
+
+    document
+        .getElementById("firstGroupSelect")
+        .value = newGroup.id;
+
+    showAddPanel();
+
+}
+
+
+/* =========================================================
+   GROUP MENU
+========================================================= */
+
+function groupMenu(groupId) {
+
+    const group =
+        groups.find(
+            item =>
+                item.id === groupId
+        );
+
+
+    if (!group) {
+        return;
+    }
+
+
+    const action =
+        prompt(
+            `Группа: ${group.name}\n\n` +
+            `1 — Переименовать\n` +
+            `2 — Удалить\n\n` +
+            `Введи 1 или 2:`
+        );
+
+
+    if (action === "1") {
+
+        renameGroup(groupId);
+
+    }
+
+
+    if (action === "2") {
+
+        deleteGroup(groupId);
+
+    }
+
+}
+
+
+/* =========================================================
+   RENAME GROUP
+========================================================= */
+
+function renameGroup(groupId) {
+
+    const group =
+        groups.find(
+            item =>
+                item.id === groupId
+        );
+
+
+    if (!group) {
+        return;
+    }
+
+
+    const newName =
+        prompt(
+            "Новое название группы:",
+            group.name
+        );
+
+
+    if (newName === null) {
+        return;
+    }
+
+
+    const cleanName =
+        newName.trim();
+
+
+    if (!cleanName) {
+
+        alert(
+            "Название не может быть пустым."
+        );
+
+        return;
+
+    }
+
+
+    const duplicate =
+        groups.some(
+            item =>
+                item.id !== groupId &&
+                item.name.toLowerCase() ===
+                cleanName.toLowerCase()
+        );
+
+
+    if (duplicate) {
+
+        alert(
+            "Такая группа уже существует."
+        );
+
+        return;
+
+    }
+
+
+    group.name = cleanName;
+
+
+    saveAll();
+
+    updateGroupSelects();
+
+
+    if (
+        currentGroupId === groupId
+    ) {
+
+        document
+            .getElementById(
+                "currentGroupName"
+            )
+            .textContent = cleanName;
+
+    }
+
+}
+
+
+/* =========================================================
+   DELETE GROUP
+========================================================= */
+
+function deleteGroup(groupId) {
+
+    const group =
+        groups.find(
+            item =>
+                item.id === groupId
+        );
+
+
+    if (!group) {
+        return;
+    }
+
+
+    const groupCards =
+        cards.filter(
+            card =>
+                card.groupId === groupId
+        );
+
+
+    const confirmed =
+        confirm(
+            `Удалить группу "${group.name}"?\n\n` +
+
+            `Карточек внутри: ${groupCards.length}\n\n` +
+
+            `Все карточки этой группы тоже будут удалены.\n\n` +
+
+            `Это действие нельзя отменить.`
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const deletedIds =
+        new Set(
+            groupCards.map(
+                card => card.id
+            )
+        );
+
+
+    cards =
+        cards.filter(
+            card =>
+                card.groupId !== groupId
+        );
+
+
+    knownCards =
+        knownCards.filter(
+            id =>
+                !deletedIds.has(id)
+        );
+
+
+    unknownCards =
+        unknownCards.filter(
+            id =>
+                !deletedIds.has(id)
+        );
+
+
+    groups =
+        groups.filter(
+            item =>
+                item.id !== groupId
+        );
+
+
+    currentGroupId = null;
+
+    currentIndex = 0;
+
+    isFlipped = false;
+
+
+    saveAll();
+
+    updateGroupSelects();
+
+    showGroups();
+
+}
+
+
+/* =========================================================
+   SHOW GROUPS
+========================================================= */
+
+function showGroups() {
+
+    document
+        .getElementById("studyArea")
+        .style.display = "none";
+
+
+    document
+        .getElementById("emptyState")
+        .style.display = "none";
+
+
+    document
+        .getElementById("addCardsMobile")
+        .style.display = "none";
+
+
+    document
+        .getElementById("groupsView")
+        .style.display = "block";
+
+
+    renderGroups();
+
+}
+
+
+/* =========================================================
+   SHOW EMPTY
+========================================================= */
+
+function showEmpty() {
+
+    document
+        .getElementById("studyArea")
+        .style.display = "none";
+
+
+    document
+        .getElementById("groupsView")
+        .style.display = "none";
+
+
+    document
+        .getElementById("addCardsMobile")
+        .style.display = "none";
+
+
+    document
+        .getElementById("emptyState")
+        .style.display = "block";
+
+}
+
+
+/* =========================================================
+   OPEN GROUP
+========================================================= */
+
+function openGroup(
+    groupId,
+    autoShow = true
+) {
+
+    currentGroupId = groupId;
+
+    currentIndex = 0;
+
+    isFlipped = false;
+
+
+    /*
+        Создаём набор карточек
+        для текущей группы.
+    */
+
+    if (groupId === null) {
+
+        studyCards =
+            cards.slice();
+
+    } else {
+
+        studyCards =
+            cards.filter(
+                card =>
+                    card.groupId === groupId
+            );
+
+    }
+
+
+    /*
+        Если группа пустая —
+        предлагаем добавить карточки.
+    */
+
+    if (studyCards.length === 0) {
+
+        if (autoShow) {
+
+            updateGroupSelects();
+
+
+            document
+                .getElementById(
+                    "firstGroupSelect"
+                )
+                .value =
+                groupId || "";
+
+
+            showGroups();
+
+
+            if (groupId) {
+
+                showAddPanel();
+
+            }
+
+        }
+
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "currentGroupId",
+        groupId || ""
+    );
+
+
+    document
+        .getElementById("groupsView")
+        .style.display = "none";
+
+
+    document
+        .getElementById("emptyState")
+        .style.display = "none";
+
+
+    document
+        .getElementById("addCardsMobile")
+        .style.display = "none";
+
+
+    document
+        .getElementById("studyArea")
+        .style.display = "block";
+
+
+    updateGroupName();
+
+    updateGroupSelects();
+
+    showCard();
+
+    renderList();
+
+    updateCounters();
+
+}
+
+
+/* =========================================================
+   UPDATE CURRENT GROUP NAME
+========================================================= */
+
+function updateGroupName() {
+
+    const element =
+        document.getElementById(
+            "currentGroupName"
+        );
+
+
+    if (currentGroupId === null) {
+
+        element.textContent =
+            "Все карточки";
+
+        return;
+
+    }
+
+
+    const group =
+        groups.find(
+            item =>
+                item.id === currentGroupId
+        );
+
+
+    element.textContent =
+        group
+            ? group.name
+            : "Все карточки";
+
+}
+
+
+/* =========================================================
+   GROUP SELECTS
+========================================================= */
+
+function updateGroupSelects() {
+
+    const first =
+        document.getElementById(
+            "firstGroupSelect"
+        );
+
+
+    const study =
+        document.getElementById(
+            "studyGroupSelect"
+        );
+
+
+    if (!first || !study) {
+        return;
+    }
+
+
+    /*
+        Первый select:
+        только реальные группы.
+    */
+
+    first.innerHTML = "";
+
+
+    groups.forEach(group => {
+
+        const option =
+            document.createElement("option");
+
+
+        option.value =
+            group.id;
+
+
+        option.textContent =
+            group.name;
+
+
+        first.appendChild(option);
+
+    });
+
+
+    /*
+        Второй select:
+        можно выбрать "Все карточки"
+        или конкретную группу.
+    */
+
+    study.innerHTML = "";
+
+
+    const allOption =
+        document.createElement("option");
+
+
+    allOption.value = "";
+
+    allOption.textContent =
+        "Все карточки";
+
+
+    study.appendChild(allOption);
+
+
+    groups.forEach(group => {
+
+        const option =
+            document.createElement("option");
+
+
+        option.value =
+            group.id;
+
+
+        option.textContent =
+            group.name;
+
+
+        study.appendChild(option);
+
+    });
+
+
+    if (
+        currentGroupId &&
+        groups.some(
+            group =>
+                group.id === currentGroupId
+        )
+    ) {
+
+        first.value =
+            currentGroupId;
+
+
+        study.value =
+            currentGroupId;
+
+    } else {
+
+        if (groups.length > 0) {
+
+            first.value =
+                groups[0].id;
+
+        }
+
+
+        study.value = "";
+
+    }
+
+}
+
+
+/* =========================================================
    SHOW ADD PANEL
 ========================================================= */
 
 function showAddPanel() {
+
+    if (groups.length === 0) {
+
+        showCreateGroup();
+
+        return;
+
+    }
+
 
     const panel =
         document.getElementById(
             "addCardsMobile"
         );
 
+
     panel.style.display = "block";
+
+
+    updateGroupSelects();
+
+
+    if (
+        currentGroupId &&
+        groups.some(
+            group =>
+                group.id === currentGroupId
+        )
+    ) {
+
+        document
+            .getElementById(
+                "firstGroupSelect"
+            )
+            .value =
+            currentGroupId;
+
+    }
 
 
     setTimeout(
@@ -1311,16 +2813,20 @@ function showAddPanel() {
 
 
 /* =========================================================
-   PARSE + ADD
+   PARSE CARDS
 ========================================================= */
 
-function parseAndAddCards(text) {
+function parseCards(
+    text,
+    groupId
+) {
 
     const lines =
         text
             .split(/\r?\n/)
             .map(
-                line => line.trim()
+                line =>
+                    line.trim()
             )
             .filter(Boolean);
 
@@ -1337,8 +2843,12 @@ function parseAndAddCards(text) {
                 );
 
 
-            if (parts.length < 2) {
+            if (
+                parts.length < 2
+            ) {
+
                 return;
+
             }
 
 
@@ -1357,19 +2867,21 @@ function parseAndAddCards(text) {
                 !english ||
                 !russian
             ) {
+
                 return;
+
             }
 
 
             cards.push({
 
-                id:
-                    Date.now() +
-                    Math.random(),
+                id: makeId(),
 
                 en: english,
 
-                ru: russian
+                ru: russian,
+
+                groupId: groupId
 
             });
 
@@ -1408,11 +2920,32 @@ function addCards() {
         );
 
         return;
+
+    }
+
+
+    const groupId =
+        document.getElementById(
+            "firstGroupSelect"
+        ).value;
+
+
+    if (!groupId) {
+
+        alert(
+            "Сначала создай группу."
+        );
+
+        return;
+
     }
 
 
     const added =
-        parseAndAddCards(text);
+        parseCards(
+            text,
+            groupId
+        );
 
 
     if (added === 0) {
@@ -1424,43 +2957,51 @@ function addCards() {
         );
 
         return;
+
     }
 
 
     input.value = "";
 
 
-    saveCards();
+    saveAll();
 
 
-    document
-        .getElementById("emptyState")
-        .style.display = "none";
+    /*
+        Сразу открываем группу,
+        куда добавили карточки.
+    */
+
+    openGroup(groupId);
 
 
-    document
-        .getElementById("addCardsMobile")
-        .style.display = "none";
+    /*
+        Начинаем с первой добавленной
+        карточки в этой группе.
+    */
 
-
-    document
-        .getElementById("studyArea")
-        .style.display = "block";
-
-
-    currentIndex =
-        Math.max(
-            0,
-            cards.length - added
+    const firstNewIndex =
+        studyCards.findIndex(
+            card =>
+                cards
+                    .slice(
+                        cards.length - added
+                    )
+                    .some(
+                        newCard =>
+                            newCard.id === card.id
+                    )
         );
 
 
-    isFlipped = false;
+    if (firstNewIndex >= 0) {
 
+        currentIndex =
+            firstNewIndex;
 
-    showCard();
+        showCard();
 
-    renderList();
+    }
 
 }
 
@@ -1488,11 +3029,54 @@ function addCardsFromStudy() {
         );
 
         return;
+
+    }
+
+
+    const selectedGroup =
+        document.getElementById(
+            "studyGroupSelect"
+        ).value;
+
+
+    let groupId =
+        selectedGroup;
+
+
+    /*
+        Если выбрано "Все карточки",
+        добавляем в текущую группу.
+
+        Если мы сейчас в "Все карточки"
+        и группа не выбрана —
+        просим выбрать группу.
+    */
+
+    if (!groupId) {
+
+        if (currentGroupId) {
+
+            groupId =
+                currentGroupId;
+
+        } else {
+
+            alert(
+                "Выбери группу для новых карточек."
+            );
+
+            return;
+
+        }
+
     }
 
 
     const added =
-        parseAndAddCards(text);
+        parseCards(
+            text,
+            groupId
+        );
 
 
     if (added === 0) {
@@ -1504,18 +3088,55 @@ function addCardsFromStudy() {
         );
 
         return;
+
     }
 
 
     input.value = "";
 
 
-    saveCards();
+    saveAll();
 
 
-    showCard();
+    /*
+        Если добавляли в текущую группу —
+        обновляем её.
 
-    renderList();
+        Если добавляли в другую группу —
+        оставляем текущую группу открытой.
+    */
+
+    if (
+        currentGroupId === groupId
+    ) {
+
+        currentIndex =
+            Math.max(
+                0,
+                studyCards.length
+            );
+
+
+        studyCards =
+            cards.filter(
+                card =>
+                    card.groupId ===
+                    currentGroupId
+            );
+
+
+        currentIndex =
+            Math.max(
+                0,
+                studyCards.length - added
+            );
+
+
+        showCard();
+
+        renderList();
+
+    }
 
 
     const details =
@@ -1523,37 +3144,10 @@ function addCardsFromStudy() {
 
 
     if (details) {
+
         details.open = false;
+
     }
-
-}
-
-
-/* =========================================================
-   SAVE
-========================================================= */
-
-function saveCards() {
-
-    localStorage.setItem(
-        "englishCards",
-        JSON.stringify(cards)
-    );
-
-
-    localStorage.setItem(
-        "knownCards",
-        JSON.stringify(knownCards)
-    );
-
-
-    localStorage.setItem(
-        "unknownCards",
-        JSON.stringify(unknownCards)
-    );
-
-
-    updateCounters();
 
 }
 
@@ -1564,22 +3158,29 @@ function saveCards() {
 
 function showCard() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
 
 
     if (currentIndex < 0) {
+
         currentIndex = 0;
+
     }
 
 
     if (
-        currentIndex >= cards.length
+        currentIndex >=
+        studyCards.length
     ) {
 
         currentIndex =
-            cards.length - 1;
+            studyCards.length - 1;
 
     }
 
@@ -1588,13 +3189,15 @@ function showCard() {
 
 
     const card =
-        cards[currentIndex];
+        studyCards[currentIndex];
 
 
     let showEnglish = true;
 
 
-    if (direction === "ru-en") {
+    if (
+        direction === "ru-en"
+    ) {
 
         showEnglish = false;
 
@@ -1661,7 +3264,7 @@ function showCard() {
     document
         .getElementById("pageCounter")
         .textContent =
-        `${currentIndex + 1} / ${cards.length}`;
+        `${currentIndex + 1} / ${studyCards.length}`;
 
 
     updateProgress();
@@ -1675,13 +3278,17 @@ function showCard() {
 
 function flipCard() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
 
 
     const card =
-        cards[currentIndex];
+        studyCards[currentIndex];
 
 
     const cardText =
@@ -1700,7 +3307,9 @@ function flipCard() {
         cardText.dataset.side;
 
 
-    if (currentSide === "en") {
+    if (
+        currentSide === "en"
+    ) {
 
         cardText.textContent =
             card.ru;
@@ -1737,8 +3346,12 @@ function flipCard() {
 
 function nextCard() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
 
 
@@ -1746,7 +3359,8 @@ function nextCard() {
 
 
     if (
-        currentIndex >= cards.length
+        currentIndex >=
+        studyCards.length
     ) {
 
         currentIndex = 0;
@@ -1761,8 +3375,12 @@ function nextCard() {
 
 function previousCard() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
 
 
@@ -1772,7 +3390,7 @@ function previousCard() {
     if (currentIndex < 0) {
 
         currentIndex =
-            cards.length - 1;
+            studyCards.length - 1;
 
     }
 
@@ -1783,18 +3401,22 @@ function previousCard() {
 
 
 /* =========================================================
-   KNOWN / UNKNOWN
+   KNOWN
 ========================================================= */
 
 function markKnown() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
 
 
     const id =
-        cards[currentIndex].id;
+        studyCards[currentIndex].id;
 
 
     if (
@@ -1808,11 +3430,12 @@ function markKnown() {
 
     unknownCards =
         unknownCards.filter(
-            item => item !== id
+            item =>
+                item !== id
         );
 
 
-    saveCards();
+    saveAll();
 
 
     nextCard();
@@ -1820,15 +3443,23 @@ function markKnown() {
 }
 
 
+/* =========================================================
+   UNKNOWN
+========================================================= */
+
 function markUnknown() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
 
 
     const id =
-        cards[currentIndex].id;
+        studyCards[currentIndex].id;
 
 
     if (
@@ -1842,11 +3473,12 @@ function markUnknown() {
 
     knownCards =
         knownCards.filter(
-            item => item !== id
+            item =>
+                item !== id
         );
 
 
-    saveCards();
+    saveAll();
 
 
     nextCard();
@@ -1855,34 +3487,78 @@ function markUnknown() {
 
 
 /* =========================================================
-   DELETE ALL CARDS
+   DELETE CURRENT GROUP CARDS
 ========================================================= */
 
-function deleteAllCards() {
+function deleteCurrentGroupCards() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
+
+
+    const groupName =
+        currentGroupId
+            ? (
+                groups.find(
+                    group =>
+                        group.id ===
+                        currentGroupId
+                )?.name ||
+                "группы"
+            )
+            : "всех карточек";
 
 
     const confirmed =
         confirm(
-            `Удалить все ${cards.length} карточек?\n\n` +
-            `Прогресс обучения также будет сброшен.\n\n` +
+            `Удалить ${studyCards.length} карточек из "${groupName}"?\n\n` +
+            `Прогресс обучения этих карточек тоже будет удалён.\n\n` +
             `Это действие нельзя отменить.`
         );
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
-    cards = [];
+    const deletedIds =
+        new Set(
+            studyCards.map(
+                card =>
+                    card.id
+            )
+        );
 
-    knownCards = [];
 
-    unknownCards = [];
+    cards =
+        cards.filter(
+            card =>
+                !deletedIds.has(
+                    card.id
+                )
+        );
+
+
+    knownCards =
+        knownCards.filter(
+            id =>
+                !deletedIds.has(id)
+        );
+
+
+    unknownCards =
+        unknownCards.filter(
+            id =>
+                !deletedIds.has(id)
+        );
 
 
     currentIndex = 0;
@@ -1890,39 +3566,49 @@ function deleteAllCards() {
     isFlipped = false;
 
 
-    localStorage.removeItem(
-        "englishCards"
-    );
-
-    localStorage.removeItem(
-        "knownCards"
-    );
-
-    localStorage.removeItem(
-        "unknownCards"
-    );
+    saveAll();
 
 
-    document
-        .getElementById("studyArea")
-        .style.display = "none";
+    if (
+        currentGroupId === null
+    ) {
+
+        showGroups();
+
+    } else {
+
+        const remaining =
+            cards.filter(
+                card =>
+                    card.groupId ===
+                    currentGroupId
+            );
 
 
-    document
-        .getElementById("emptyState")
-        .style.display = "block";
+        if (
+            remaining.length === 0
+        ) {
 
+            showGroups();
 
-    document
-        .getElementById("addCardsMobile")
-        .style.display = "none";
+            updateGroupSelects();
 
+            document
+                .getElementById(
+                    "firstGroupSelect"
+                )
+                .value =
+                currentGroupId;
 
-    updateCounters();
+        } else {
 
-    updateProgress();
+            openGroup(
+                currentGroupId
+            );
 
-    renderList();
+        }
+
+    }
 
 }
 
@@ -1933,47 +3619,67 @@ function deleteAllCards() {
 
 function updateProgress() {
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
 
         document
-            .getElementById("progressText")
-            .textContent = "0%";
+            .getElementById(
+                "progressText"
+            )
+            .textContent =
+            "0%";
 
 
         document
-            .getElementById("progressFill")
-            .style.width = "0%";
+            .getElementById(
+                "progressFill"
+            )
+            .style.width =
+            "0%";
 
 
         return;
+
     }
+
+
+    const studyIds =
+        new Set(
+            studyCards.map(
+                card =>
+                    card.id
+            )
+        );
 
 
     const knownCount =
         knownCards.filter(
             id =>
-                cards.some(
-                    card =>
-                        card.id === id
-                )
+                studyIds.has(id)
         ).length;
 
 
     const percent =
         Math.round(
-            (knownCount / cards.length) *
+            (knownCount /
+                studyCards.length) *
             100
         );
 
 
     document
-        .getElementById("progressText")
+        .getElementById(
+            "progressText"
+        )
         .textContent =
         `${percent}%`;
 
 
     document
-        .getElementById("progressFill")
+        .getElementById(
+            "progressFill"
+        )
         .style.width =
         `${percent}%`;
 
@@ -2002,6 +3708,7 @@ function updateCounters() {
             "0 карточек";
 
         return;
+
     }
 
 
@@ -2044,10 +3751,15 @@ function renderList() {
         );
 
 
+    if (!list) {
+        return;
+    }
+
+
     list.innerHTML = "";
 
 
-    cards.forEach(
+    studyCards.forEach(
         (card, index) => {
 
             const item =
@@ -2075,7 +3787,9 @@ function renderList() {
 
             item.onclick = () => {
 
-                currentIndex = index;
+                currentIndex =
+                    index;
+
 
                 showCard();
 
@@ -2096,11 +3810,34 @@ function renderList() {
         }
     );
 
+
+    if (
+        studyCards.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div
+                style="
+                    text-align:center;
+                    color:#777d85;
+                    padding:15px 5px;
+                "
+            >
+
+                В этой группе пока нет карточек.
+
+            </div>
+
+        `;
+
+    }
+
 }
 
 
 /* =========================================================
-   HTML ESCAPE
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHtml(text) {
@@ -2127,17 +3864,23 @@ function escapeHtml(text) {
 function speakCurrent(event) {
 
     if (event) {
+
         event.stopPropagation();
+
     }
 
 
-    if (cards.length === 0) {
+    if (
+        studyCards.length === 0
+    ) {
+
         return;
+
     }
 
 
     const card =
-        cards[currentIndex];
+        studyCards[currentIndex];
 
 
     if (
@@ -2149,6 +3892,7 @@ function speakCurrent(event) {
         );
 
         return;
+
     }
 
 
@@ -2184,8 +3928,12 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if (cards.length === 0) {
+        if (
+            studyCards.length === 0
+        ) {
+
             return;
+
         }
 
 
@@ -2315,6 +4063,8 @@ flashcard.addEventListener(
 ========================================================= */
 
 updateCounters();
+
+renderGroups();
 
 </script>
 
