@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1,
-               maximum-scale=1,
-               user-scalable=no">
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no,
+               viewport-fit=cover">
 
 <title>English Phrases</title>
 
 <style>
+
+/* =========================================================
+   BASIC
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -33,7 +40,7 @@ body {
         Arial,
         sans-serif;
 
-    background: #f5f6f8;
+    background: #f6f7fb;
     color: #202124;
 
     overflow-x: hidden;
@@ -49,49 +56,57 @@ button {
 }
 
 
-/* =========================
-   MAIN
-========================= */
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container {
     width: 100%;
-    max-width: 700px;
+    max-width: 1050px;
 
     margin: 0 auto;
 
     padding:
-        20px
+        max(18px, env(safe-area-inset-top))
         14px
-        40px;
+        max(35px, env(safe-area-inset-bottom));
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .header {
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
+    justify-content: space-between;
 
     gap: 10px;
 
     margin-bottom: 15px;
 }
 
-h1 {
-    margin: 0;
-
-    font-size: 25px;
-    line-height: 1.1;
+.title-block {
+    min-width: 0;
 }
 
-.subtitle {
-    margin-top: 5px;
+.title-block h1 {
+    margin: 0;
 
-    color: #777;
-    font-size: 12px;
+    font-size: 27px;
+    font-weight: 750;
+
+    letter-spacing: -0.4px;
+}
+
+.title-block p {
+    margin: 5px 0 0;
+
+    color: #70757a;
+
+    font-size: 13px;
 }
 
 .counter {
@@ -99,20 +114,21 @@ h1 {
 
     background: white;
 
-    border: 1px solid #ddd;
+    border: 1px solid #e0e2e7;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     padding: 8px 10px;
 
     font-size: 12px;
+
     font-weight: 600;
 }
 
 
-/* =========================
-   DIRECTION
-========================= */
+/* =========================================================
+   DIRECTION BUTTONS
+========================================================= */
 
 .top-controls {
     display: flex;
@@ -123,9 +139,9 @@ h1 {
 
     overflow-x: auto;
 
-    padding-bottom: 4px;
+    margin-bottom: 14px;
 
-    margin-bottom: 12px;
+    padding-bottom: 3px;
 
     scrollbar-width: none;
 }
@@ -139,85 +155,235 @@ h1 {
 
     min-height: 40px;
 
-    padding: 8px 12px;
-
-    border-radius: 10px;
-
-    border: 1px solid #d5d8de;
-
     background: white;
 
-    color: #202124;
+    border: 1px solid #d8dbe2;
+
+    border-radius: 11px;
+
+    padding: 9px 12px;
+
+    cursor: pointer;
 
     font-size: 12px;
+
     font-weight: 600;
 
     white-space: nowrap;
+
+    touch-action: manipulation;
 }
 
 .direction-btn.active {
     background: #202124;
+
     color: white;
+
+    border-color: #202124;
 }
 
 
-/* =========================
-   STUDY
-========================= */
+/* =========================================================
+   EMPTY STATE
+========================================================= */
 
-#studyArea {
-    width: 100%;
-}
-
-#emptyState {
+.empty {
     width: 100%;
 
-    margin-top: 20px;
+    margin-top: 8px;
 
-    padding: 45px 20px;
+    padding: 40px 18px;
 
     background: white;
 
-    border: 1px solid #ddd;
+    border: 1px solid #e0e2e7;
 
     border-radius: 16px;
 
     text-align: center;
 
-    color: #777;
+    color: #70757a;
+
+    font-size: 13px;
 
     line-height: 1.5;
 }
 
-#emptyState strong {
+.empty strong {
     display: block;
+
+    margin-bottom: 8px;
 
     color: #202124;
 
     font-size: 20px;
-
-    margin-bottom: 8px;
 }
 
 
-/* =========================
+/* =========================================================
+   BIG ADD BUTTON
+   ВАЖНО: находится ВНЕ studyArea
+   поэтому всегда видна без карточек
+========================================================= */
+
+.empty-add-button {
+    display: block;
+
+    width: 100%;
+
+    min-height: 52px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #202124;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+.empty-add-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   MOBILE ADD PANEL
+========================================================= */
+
+.add-mobile {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 15px;
+
+    background: white;
+
+    border: 1px solid #e0e2e7;
+
+    border-radius: 14px;
+}
+
+.add-mobile .description {
+    color: #70757a;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    margin-bottom: 10px;
+}
+
+.add-mobile textarea {
+    width: 100%;
+
+    min-height: 130px;
+
+    resize: vertical;
+
+    border:
+        1px solid #d8dbe2;
+
+    border-radius: 10px;
+
+    padding: 13px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    background: white;
+
+    color: #202124;
+}
+
+.add-mobile textarea:focus {
+    border-color: #202124;
+}
+
+
+/* =========================================================
+   COMMON BUTTONS
+========================================================= */
+
+.action {
+    width: 100%;
+
+    min-height: 44px;
+
+    margin-top: 8px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid #d8dbe2;
+
+    background: white;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+.action.primary {
+    background: #202124;
+
+    color: white;
+
+    border-color: #202124;
+}
+
+
+/* =========================================================
+   STUDY AREA
+========================================================= */
+
+.study-area {
+    width: 100%;
+}
+
+
+/* =========================================================
    CARD
-========================= */
+========================================================= */
 
 .card-wrapper {
     width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    perspective: 1400px;
 }
 
 .flashcard {
     width: 100%;
 
-    height: 390px;
+    height: min(62vh, 460px);
 
-    position: relative;
-
-    perspective: 1200px;
+    min-height: 330px;
 
     cursor: pointer;
+
+    position: relative;
 }
 
 .card-inner {
@@ -229,7 +395,8 @@ h1 {
     transform-style: preserve-3d;
 
     transition:
-        transform 0.45s ease;
+        transform 0.52s
+        cubic-bezier(.2,.7,.2,1);
 }
 
 .flashcard.flipped .card-inner {
@@ -239,57 +406,123 @@ h1 {
 .card-face {
     position: absolute;
 
-    inset: 0;
-
     width: 100%;
     height: 100%;
 
-    padding: 55px 25px 45px;
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border: 1px solid #e0e2e7;
+
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.07);
 
     display: flex;
 
+    flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
 
-    background: white;
-
-    border: 1px solid #ddd;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.06);
-
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    padding: 50px 26px;
 }
 
 .card-back {
     transform: rotateY(180deg);
 }
 
+
+/* =========================================================
+   CARD LABEL
+========================================================= */
+
 .card-label {
     position: absolute;
 
-    top: 16px;
-    left: 17px;
+    top: 17px;
+    left: 20px;
 
-    color: #888;
+    font-size: 12px;
 
-    font-size: 11px;
+    color: #8a8d93;
+
     font-weight: 700;
 
     text-transform: uppercase;
+
+    letter-spacing: 0.5px;
 }
+
+
+/* =========================================================
+   SPEAKER
+========================================================= */
+
+.speak-btn {
+    position: absolute;
+
+    top: 13px;
+    right: 13px;
+
+    width: 45px;
+    height: 45px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid #dfe1e6;
+
+    background: white;
+
+    color: #202124;
+
+    font-size: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 50;
+
+    touch-action: manipulation;
+}
+
+.speak-btn:active {
+    transform: scale(0.94);
+}
+
+.speak-btn.speaking {
+    background: #202124;
+
+    color: white;
+}
+
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
 
 .card-main {
     width: 100%;
 
-    font-size: clamp(26px, 7vw, 42px);
+    max-width: 680px;
 
-    line-height: 1.25;
+    font-size:
+        clamp(27px, 7vw, 43px);
+
+    line-height: 1.22;
 
     font-weight: 650;
 
@@ -299,137 +532,130 @@ h1 {
 .card-hint {
     position: absolute;
 
-    bottom: 15px;
+    left: 20px;
+    right: 20px;
 
-    left: 15px;
-    right: 15px;
+    bottom: 18px;
 
-    color: #aaa;
+    color: #9aa0a6;
 
-    font-size: 11px;
+    font-size: 12px;
 }
 
 
-/* =========================
-   SPEAKER
-========================= */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-.speak-btn {
-    position: absolute;
+.navigation {
+    width: 100%;
 
-    top: 10px;
-    right: 10px;
+    margin: 14px auto 0;
 
-    width: 42px;
-    height: 42px;
+    display: grid;
 
-    border-radius: 50%;
+    grid-template-columns: 54px 1fr 54px;
 
-    border: 1px solid #ddd;
+    gap: 12px;
+
+    align-items: center;
+}
+
+.nav-btn {
+    width: 54px;
+    height: 48px;
+
+    padding: 0;
+
+    border:
+        1px solid #d8dbe2;
 
     background: white;
 
-    font-size: 18px;
+    border-radius: 13px;
 
-    z-index: 100;
+    font-size: 25px;
+
+    cursor: pointer;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
+
+    touch-action: manipulation;
 }
 
-.speak-btn.speaking {
-    background: #202124;
-    color: white;
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.navigation {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns: 52px 1fr 52px;
-
-    gap: 10px;
-
-    align-items: center;
-
-    margin-top: 12px;
-}
-
-.nav-btn {
-    width: 52px;
-    height: 46px;
-
-    border-radius: 11px;
-
-    border: 1px solid #d5d8de;
-
-    background: white;
-
-    font-size: 24px;
+.nav-btn:active {
+    transform: scale(0.96);
 }
 
 .page-counter {
     text-align: center;
 
-    font-size: 14px;
+    color: #4d5156;
+
+    font-size: 15px;
+
     font-weight: 650;
 }
 
 
-/* =========================
-   ANSWERS
-========================= */
+/* =========================================================
+   ANSWER BUTTONS
+========================================================= */
 
 .answer-buttons {
+    width: 100%;
+
+    margin-top: 12px;
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 8px;
-
-    width: 100%;
-
-    margin-top: 10px;
+    gap: 10px;
 }
 
 .answer-btn {
-    min-height: 48px;
+    height: 50px;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
-    border: 1px solid #d5d8de;
+    border: 1px solid #d8dbe2;
 
     background: white;
 
-    font-size: 13px;
+    cursor: pointer;
+
+    font-size: 14px;
+
     font-weight: 650;
+
+    touch-action: manipulation;
 }
 
-.answer-btn.unknown {
+.answer-btn:active {
+    transform: scale(0.98);
+}
+
+.answer-btn.unknown:active {
     color: #d93025;
 }
 
-.answer-btn.known {
+.answer-btn.known:active {
     color: #188038;
 }
 
 
-/* =========================
+/* =========================================================
    PROGRESS
-========================= */
+========================================================= */
 
 .progress-section {
     width: 100%;
 
-    margin-top: 14px;
+    margin-top: 17px;
 }
 
 .progress-text {
@@ -437,11 +663,11 @@ h1 {
 
     justify-content: space-between;
 
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 
-    color: #777;
+    color: #70757a;
 
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .progress {
@@ -449,9 +675,9 @@ h1 {
 
     height: 6px;
 
-    border-radius: 99px;
+    border-radius: 999px;
 
-    background: #e1e3e7;
+    background: #e4e6eb;
 
     overflow: hidden;
 }
@@ -463,179 +689,221 @@ h1 {
 
     background: #202124;
 
-    transition: width .25s ease;
+    transition:
+        width 0.3s ease;
 }
 
 
-/* =========================
-   DETAILS
-========================= */
+/* =========================================================
+   COLLAPSIBLE SETTINGS
+========================================================= */
 
-details {
-    width: 100%;
+.mobile-section {
+    margin-top: 14px;
+}
 
-    margin-top: 12px;
+.mobile-section summary {
+    list-style: none;
+
+    cursor: pointer;
 
     background: white;
 
-    border: 1px solid #ddd;
+    border: 1px solid #e0e2e7;
 
     border-radius: 12px;
 
-    overflow: hidden;
-}
-
-summary {
     min-height: 46px;
 
-    padding: 13px;
+    padding: 12px 14px;
+
+    font-size: 14px;
+
+    font-weight: 650;
 
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
-
-    cursor: pointer;
-
-    font-size: 13px;
-    font-weight: 650;
-
-    list-style: none;
 }
 
-summary::-webkit-details-marker {
+.mobile-section summary::-webkit-details-marker {
     display: none;
 }
 
-summary::after {
-    content: "+";
+.mobile-section summary::after {
+    content: "＋";
 
     font-size: 18px;
 
-    color: #777;
+    color: #70757a;
 }
 
-details[open] summary::after {
+.mobile-section[open] summary::after {
     content: "−";
 }
 
-.details-content {
-    padding: 13px;
+.section-content {
+    background: white;
 
-    border-top: 1px solid #eee;
+    border:
+        0 1px 1px 1px;
+
+    border-color: #e0e2e7;
+
+    border-style: solid;
+
+    border-radius:
+        0 0 12px 12px;
+
+    padding: 15px;
 }
 
 
-/* =========================
-   ADD
-========================= */
+/* =========================================================
+   VOICE SETTINGS
+========================================================= */
 
-textarea {
-    width: 100%;
+.voice-settings {
+    display: flex;
 
-    min-height: 120px;
+    flex-wrap: wrap;
 
-    resize: vertical;
+    align-items: center;
 
-    border: 1px solid #d5d8de;
+    justify-content: center;
 
-    border-radius: 10px;
+    gap: 7px;
 
-    padding: 12px;
+    font-size: 12px;
 
-    font-size: 14px;
-
-    line-height: 1.4;
-
-    outline: none;
+    color: #70757a;
 }
 
-textarea:focus {
-    border-color: #202124;
-}
-
-.description {
-    color: #777;
-
-    font-size: 11px;
-
-    margin-bottom: 10px;
-
-    line-height: 1.4;
-}
-
-.action {
-    width: 100%;
-
-    min-height: 44px;
-
-    margin-top: 8px;
-
-    border-radius: 10px;
-
-    border: 1px solid #d5d8de;
+.voice-btn,
+.speed-btn {
+    border:
+        1px solid #d8dbe2;
 
     background: white;
 
-    font-size: 13px;
-    font-weight: 600;
+    border-radius: 8px;
+
+    padding: 7px 9px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    color: #555;
+
+    min-height: 34px;
 }
 
-.action.primary {
+.voice-btn.active,
+.speed-btn.active {
     background: #202124;
+
     color: white;
 
     border-color: #202124;
 }
 
 
-/* =========================
-   LIST
-========================= */
+/* =========================================================
+   EXTRA BUTTONS
+========================================================= */
+
+.extra-controls {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.secondary-btn {
+    background: white;
+
+    border:
+        1px solid #d8dbe2;
+
+    border-radius: 10px;
+
+    min-height: 42px;
+
+    padding: 9px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CARD LIST
+========================================================= */
+
+.card-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
 
 .list-item {
     display: grid;
 
     grid-template-columns: 1fr auto;
 
-    gap: 5px;
+    gap: 6px 10px;
 
-    padding: 10px;
+    padding: 11px;
 
-    border: 1px solid #eee;
+    border:
+        1px solid #eceef2;
 
-    border-radius: 9px;
-
-    margin-bottom: 7px;
+    border-radius: 10px;
 }
 
 .list-en {
-    font-size: 13px;
     font-weight: 650;
+
+    font-size: 14px;
 }
 
 .list-ru {
-    font-size: 12px;
-    color: #777;
+    grid-column: 1;
+
+    color: #70757a;
+
+    font-size: 13px;
 }
 
 .delete-btn {
     grid-column: 2;
+
     grid-row: 1 / span 2;
 
     border: none;
 
     background: transparent;
 
-    color: #999;
+    color: #8a8d93;
 
-    font-size: 22px;
+    font-size: 21px;
+
+    cursor: pointer;
 }
 
 
-/* =========================
-   SMALL ANDROID
-========================= */
+/* =========================================================
+   MOBILE SMALL
+========================================================= */
 
 @media (max-width: 390px) {
 
@@ -644,47 +912,42 @@ textarea:focus {
         padding-right: 10px;
     }
 
-    h1 {
-        font-size: 22px;
-    }
-
-    .counter {
-        font-size: 11px;
-        padding: 7px 8px;
-    }
-
-    .direction-btn {
-        font-size: 11px;
-        padding-left: 10px;
-        padding-right: 10px;
+    .title-block h1 {
+        font-size: 23px;
     }
 
     .flashcard {
-        height: 350px;
+        height: 56vh;
+
+        min-height: 300px;
     }
 
     .card-main {
         font-size: 25px;
     }
 
+    .answer-btn {
+        font-size: 13px;
+    }
+
 }
 
 
-/* =========================
-   LANDSCAPE
-========================= */
+/* =========================================================
+   LANDSCAPE PHONE
+========================================================= */
 
-@media (orientation: landscape) and (max-height: 600px) {
-
-    .container {
-        padding-top: 10px;
-    }
+@media (max-width: 900px)
+       and (orientation: landscape) {
 
     .flashcard {
-        height: 260px;
+        height: 70vh;
+
+        min-height: 250px;
     }
 
 }
+
 </style>
 </head>
 
@@ -694,28 +957,38 @@ textarea:focus {
 <div class="container">
 
 
-    <!-- HEADER -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-    <div class="header">
+    <header class="header">
 
-        <div>
-            <h1>English phrases</h1>
+        <div class="title-block">
 
-            <div class="subtitle">
+            <h1>
+                English phrases
+            </h1>
+
+            <p>
                 Карточки для изучения английского
-            </div>
+            </p>
+
         </div>
 
         <div
             class="counter"
             id="totalCounter">
+
             0 terms
+
         </div>
 
-    </div>
+    </header>
 
 
-    <!-- DIRECTION -->
+    <!-- =====================================================
+         DIRECTION
+    ====================================================== -->
 
     <div class="top-controls">
 
@@ -728,6 +1001,7 @@ textarea:focus {
 
         </button>
 
+
         <button
             class="direction-btn"
             id="ruEnBtn"
@@ -736,6 +1010,7 @@ textarea:focus {
             🇷🇺 Русский → English
 
         </button>
+
 
         <button
             class="direction-btn"
@@ -749,25 +1024,103 @@ textarea:focus {
     </div>
 
 
-    <!-- EMPTY -->
+    <!-- =====================================================
+         EMPTY STATE
+         ВАЖНО: этот блок НЕ находится внутри studyArea
+    ====================================================== -->
 
     <div
-        id="emptyState">
+        id="emptyState"
+        class="empty">
 
         <strong>
             У тебя пока нет карточек
         </strong>
 
-        Добавь фразы ниже,
-        чтобы начать обучение.
+        Добавь фразы, чтобы начать обучение.
 
     </div>
 
 
-    <!-- STUDY -->
+    <!-- =====================================================
+         ADD BUTTON
+         ВСЕГДА ВИДНА, если карточек нет
+    ====================================================== -->
+
+    <button
+        id="emptyAddButton"
+        class="empty-add-button"
+        onclick="openAddCards()">
+
+        ＋ Добавить карточки
+
+    </button>
+
+
+    <!-- =====================================================
+         MOBILE ADD PANEL
+    ====================================================== -->
+
+    <div
+        id="addCardsMobile"
+        class="add-mobile"
+        style="display:none;">
+
+        <div class="description">
+
+            Одна карточка на строку:
+
+            <b>
+                English — Русский
+            </b>
+
+        </div>
+
+
+        <textarea
+            id="cardInput"
+            placeholder="How did you pull that off? — Как тебе это удалось?
+I'm still mortified about everything — Мне до сих пор ужасно неловко из-за всего">
+        </textarea>
+
+
+        <button
+            class="action primary"
+            onclick="addCards()">
+
+            ＋ Добавить карточки
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="loadExample()">
+
+            Пример
+
+        </button>
+
+
+        <button
+            class="action"
+            onclick="closeAddCards()">
+
+            Закрыть
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         STUDY AREA
+         ПОКА НЕТ КАРТОЧЕК — скрыт
+    ====================================================== -->
 
     <div
         id="studyArea"
+        class="study-area"
         style="display:none;">
 
 
@@ -780,32 +1133,49 @@ textarea:focus {
                 id="flashcard"
                 onclick="flipCard()">
 
+
                 <div class="card-inner">
 
 
                     <!-- FRONT -->
 
-                    <div class="card-face">
+                    <div
+                        class="card-face
+                               card-front">
+
 
                         <div
                             class="card-label"
                             id="frontLabel">
+
                             English
+
                         </div>
+
 
                         <button
                             class="speak-btn"
-                            onclick="speakEnglish(event)">
+                            id="speakBtn"
+                            onclick="speakEnglish(event)"
+                            aria-label="Озвучить">
+
                             🔊
+
                         </button>
+
 
                         <div
                             class="card-main"
                             id="frontText">
+
                         </div>
 
+
                         <div class="card-hint">
+
                             Нажми на карточку
+                            для перевода
+
                         </div>
 
                     </div>
@@ -813,30 +1183,47 @@ textarea:focus {
 
                     <!-- BACK -->
 
-                    <div class="card-face card-back">
+                    <div
+                        class="card-face
+                               card-back">
+
 
                         <div
                             class="card-label"
                             id="backLabel">
+
                             Русский
+
                         </div>
+
 
                         <button
                             class="speak-btn"
-                            onclick="speakEnglish(event)">
+                            id="speakBackBtn"
+                            onclick="speakEnglish(event)"
+                            aria-label="Озвучить">
+
                             🔊
+
                         </button>
+
 
                         <div
                             class="card-main"
                             id="backText">
+
                         </div>
 
+
                         <div class="card-hint">
+
                             Нажми на карточку
+                            для возврата
+
                         </div>
 
                     </div>
+
 
                 </div>
 
@@ -851,20 +1238,30 @@ textarea:focus {
 
             <button
                 class="nav-btn"
-                onclick="previousCard()">
+                onclick="previousCard()"
+                aria-label="Предыдущая">
+
                 ←
+
             </button>
+
 
             <div
                 class="page-counter"
                 id="pageCounter">
-                1 / 1
+
+                1 / 0
+
             </div>
+
 
             <button
                 class="nav-btn"
-                onclick="nextCard()">
+                onclick="nextCard()"
+                aria-label="Следующая">
+
                 →
+
             </button>
 
         </div>
@@ -881,6 +1278,7 @@ textarea:focus {
                 ✕ Не знаю
 
             </button>
+
 
             <button
                 class="answer-btn known"
@@ -899,13 +1297,16 @@ textarea:focus {
 
             <div class="progress-text">
 
-                <span>Прогресс</span>
+                <span>
+                    Прогресс
+                </span>
 
                 <span id="progressPercent">
                     0%
                 </span>
 
             </div>
+
 
             <div class="progress">
 
@@ -919,78 +1320,139 @@ textarea:focus {
         </div>
 
 
-        <!-- VOICE -->
+        <!-- =================================================
+             VOICE SETTINGS
+        ================================================= -->
 
-        <details>
+        <details class="mobile-section">
 
             <summary>
                 🔊 Настройки озвучки
             </summary>
 
-            <div class="details-content">
 
-                <button
-                    class="action"
-                    onclick="setVoice('en-US')">
-                    🇺🇸 English US
-                </button>
+            <div class="section-content">
 
-                <button
-                    class="action"
-                    onclick="setVoice('en-GB')">
-                    🇬🇧 English UK
-                </button>
+                <div class="voice-settings">
 
-                <button
-                    class="action"
-                    onclick="setRate(0.75)">
-                    Скорость 0.75×
-                </button>
 
-                <button
-                    class="action"
-                    onclick="setRate(0.9)">
-                    Скорость 0.9×
-                </button>
+                    <span>
+                        Голос:
+                    </span>
 
-                <button
-                    class="action"
-                    onclick="setRate(1)">
-                    Скорость 1×
-                </button>
 
-                <button
-                    class="action"
-                    onclick="setRate(1.25)">
-                    Скорость 1.25×
-                </button>
+                    <button
+                        class="voice-btn active"
+                        id="usVoiceBtn"
+                        onclick="setVoice('en-US')">
 
-                <button
-                    class="action"
-                    onclick="shuffleCards()">
-                    🔀 Перемешать
-                </button>
+                        🇺🇸 English US
 
-                <button
-                    class="action"
-                    onclick="resetStats()">
-                    ↺ Сбросить статистику
-                </button>
+                    </button>
+
+
+                    <button
+                        class="voice-btn"
+                        id="ukVoiceBtn"
+                        onclick="setVoice('en-GB')">
+
+                        🇬🇧 English UK
+
+                    </button>
+
+
+                    <span style="margin:0 3px;">
+                        |
+                    </span>
+
+
+                    <span>
+                        Скорость:
+                    </span>
+
+
+                    <button
+                        class="speed-btn"
+                        data-speed="0.75"
+                        onclick="setSpeechRate(0.75)">
+
+                        0.75×
+
+                    </button>
+
+
+                    <button
+                        class="speed-btn active"
+                        data-speed="0.9"
+                        onclick="setSpeechRate(0.9)">
+
+                        0.9×
+
+                    </button>
+
+
+                    <button
+                        class="speed-btn"
+                        data-speed="1"
+                        onclick="setSpeechRate(1)">
+
+                        1×
+
+                    </button>
+
+
+                    <button
+                        class="speed-btn"
+                        data-speed="1.25"
+                        onclick="setSpeechRate(1.25)">
+
+                        1.25×
+
+                    </button>
+
+                </div>
+
+
+                <div class="extra-controls">
+
+
+                    <button
+                        class="secondary-btn"
+                        onclick="shuffleCards()">
+
+                        🔀 Перемешать
+
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        onclick="resetStats()">
+
+                        ↺ Сбросить
+
+                    </button>
+
+                </div>
 
             </div>
 
         </details>
 
 
-        <!-- ADD CARDS -->
+        <!-- =================================================
+             ADD CARDS AFTER CARDS EXIST
+        ================================================= -->
 
-        <details>
+        <details class="mobile-section">
 
             <summary>
                 ＋ Добавить карточки
             </summary>
 
-            <div class="details-content">
+
+            <div class="section-content">
+
 
                 <div class="description">
 
@@ -1002,52 +1464,70 @@ textarea:focus {
 
                 </div>
 
+
                 <textarea
-                    id="cardInput"
+                    id="cardInputStudy"
                     placeholder="How did you pull that off? — Как тебе это удалось?
-I'm still mortified — Мне до сих пор ужасно неловко">
+I'm still mortified about everything — Мне до сих пор ужасно неловко из-за всего">
                 </textarea>
 
-                <button
-                    class="action primary"
-                    onclick="addCards()">
 
-                    ＋ Добавить карточки
+                <div class="add-actions">
 
-                </button>
 
-                <button
-                    class="action"
-                    onclick="loadExample()">
+                    <button
+                        class="primary-btn"
+                        onclick="addCardsFromStudy()">
 
-                    Пример
+                        ＋ Добавить карточки
 
-                </button>
+                    </button>
 
-                <button
-                    class="action"
-                    onclick="clearAll()">
 
-                    Очистить всё
+                    <button
+                        class="secondary-btn"
+                        onclick="loadExampleStudy()">
 
-                </button>
+                        Пример
+
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        onclick="clearAll()">
+
+                        Очистить всё
+
+                    </button>
+
+                </div>
 
             </div>
 
         </details>
 
 
-        <!-- ALL CARDS -->
+        <!-- =================================================
+             CARD LIST
+        ================================================= -->
 
-        <details>
+        <details class="mobile-section">
+
 
             <summary>
                 📚 Все карточки
             </summary>
 
-            <div
-                class="details-content"
-                id="cardList">
+
+            <div class="section-content">
+
+                <div
+                    class="card-list"
+                    id="cardList">
+
+                </div>
+
             </div>
 
         </details>
@@ -1055,15 +1535,15 @@ I'm still mortified — Мне до сих пор ужасно неловко">
 
     </div>
 
+
 </div>
 
 
 <script>
 
-
-/* =========================
+/* =========================================================
    DATA
-========================= */
+========================================================= */
 
 let cards =
     JSON.parse(
@@ -1074,6 +1554,20 @@ let cards =
 
 let currentIndex = 0;
 
+let known =
+    Number(
+        localStorage.getItem(
+            "knownCards"
+        ) || 0
+    );
+
+let unknown =
+    Number(
+        localStorage.getItem(
+            "unknownCards"
+        ) || 0
+    );
+
 let direction =
     localStorage.getItem(
         "cardDirection"
@@ -1081,6 +1575,11 @@ let direction =
 
 let currentDirection =
     direction;
+
+
+/* =========================================================
+   SPEECH SETTINGS
+========================================================= */
 
 let speechRate =
     Number(
@@ -1095,9 +1594,9 @@ let voiceLanguage =
     ) || "en-US";
 
 
-/* =========================
+/* =========================================================
    ELEMENTS
-========================= */
+========================================================= */
 
 const flashcard =
     document.getElementById(
@@ -1122,21 +1621,6 @@ const frontLabel =
 const backLabel =
     document.getElementById(
         "backLabel"
-    );
-
-const studyArea =
-    document.getElementById(
-        "studyArea"
-    );
-
-const emptyState =
-    document.getElementById(
-        "emptyState"
-    );
-
-const cardInput =
-    document.getElementById(
-        "cardInput"
     );
 
 const pageCounter =
@@ -1164,231 +1648,76 @@ const cardList =
         "cardList"
     );
 
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
 
-/* =========================
+const studyArea =
+    document.getElementById(
+        "studyArea"
+    );
+
+const cardInput =
+    document.getElementById(
+        "cardInput"
+    );
+
+const emptyAddButton =
+    document.getElementById(
+        "emptyAddButton"
+    );
+
+const addCardsMobile =
+    document.getElementById(
+        "addCardsMobile"
+    );
+
+const speakBtn =
+    document.getElementById(
+        "speakBtn"
+    );
+
+const speakBackBtn =
+    document.getElementById(
+        "speakBackBtn"
+    );
+
+
+/* =========================================================
+   EXAMPLES
+========================================================= */
+
+const examples = {
+
+    "en-ru":
+        "How did you pull that off? — Как тебе это удалось?",
+
+    "ru-en":
+        "Как тебе это удалось? — How did you pull that off?"
+
+};
+
+
+/* =========================================================
    DIRECTION
-========================= */
+========================================================= */
 
-function setDirection(value) {
+function setDirection(newDirection) {
 
-    direction = value;
+    direction =
+        newDirection;
+
 
     localStorage.setItem(
         "cardDirection",
         direction
     );
 
-    updateButtons();
 
-    updatePlaceholder();
-
-    showCard();
-}
-
-
-function updateButtons() {
-
-    document
-        .getElementById("enRuBtn")
-        .classList.toggle(
-            "active",
-            direction === "en-ru"
-        );
-
-    document
-        .getElementById("ruEnBtn")
-        .classList.toggle(
-            "active",
-            direction === "ru-en"
-        );
-
-    document
-        .getElementById("mixedBtn")
-        .classList.toggle(
-            "active",
-            direction === "mixed"
-        );
-}
-
-
-/* =========================
-   PLACEHOLDER
-========================= */
-
-function updatePlaceholder() {
-
-    if (direction === "ru-en") {
-
-        cardInput.placeholder =
-            "Как тебе это удалось? — How did you pull that off?";
-
-    } else {
-
-        cardInput.placeholder =
-            "How did you pull that off? — Как тебе это удалось?";
-
-    }
-}
-
-
-/* =========================
-   ADD CARDS
-========================= */
-
-function addCards() {
-
-    const text =
-        cardInput.value.trim();
-
-    if (!text) {
-
-        alert(
-            "Введи хотя бы одну карточку."
-        );
-
-        return;
-    }
-
-    const lines =
-        text.split("\n");
-
-    let added = 0;
-
-    lines.forEach(function(line) {
-
-        line = line.trim();
-
-        if (!line) return;
-
-        let parts;
-
-        if (line.includes("—")) {
-
-            parts =
-                line.split("—");
-
-        } else if (line.includes("–")) {
-
-            parts =
-                line.split("–");
-
-        } else {
-
-            parts =
-                line.split(/\s+-\s+/);
-
-        }
-
-        if (parts.length < 2) return;
-
-        const english =
-            parts[0].trim();
-
-        const russian =
-            parts
-                .slice(1)
-                .join("—")
-                .trim();
-
-        if (!english || !russian) {
-            return;
-        }
-
-        const exists =
-            cards.some(function(card) {
-
-                return (
-                    card.english
-                        .toLowerCase() ===
-                    english.toLowerCase()
-                    &&
-                    card.russian
-                        .toLowerCase() ===
-                    russian.toLowerCase()
-                );
-
-            });
-
-        if (exists) return;
-
-        cards.push({
-            english: english,
-            russian: russian
-        });
-
-        added++;
-
-    });
-
-
-    if (added === 0) {
-
-        alert(
-            "Не удалось добавить карточки.\n\n" +
-            "Используй формат:\n" +
-            "English — Русский"
-        );
-
-        return;
-    }
-
-
-    saveCards();
-
-    cardInput.value = "";
-
-    currentIndex =
-        cards.length - added;
-
-    showCard();
-
-    renderList();
-}
-
-
-/* =========================
-   SHOW CARD
-========================= */
-
-function showCard() {
-
-    if (cards.length === 0) {
-
-        studyArea.style.display =
-            "none";
-
-        emptyState.style.display =
-            "block";
-
-        totalCounter.textContent =
-            "0 terms";
-
-        return;
-    }
-
-
-    emptyState.style.display =
-        "none";
-
-    studyArea.style.display =
-        "block";
-
-
-    if (currentIndex >= cards.length) {
-        currentIndex = 0;
-    }
-
-    if (currentIndex < 0) {
-        currentIndex =
-            cards.length - 1;
-    }
-
-
-    const card =
-        cards[currentIndex];
-
-
-    if (direction === "mixed") {
+    if (
+        direction === "mixed"
+    ) {
 
         currentDirection =
             Math.random() < 0.5
@@ -1399,6 +1728,475 @@ function showCard() {
 
         currentDirection =
             direction;
+
+    }
+
+
+    updateDirectionButtons();
+
+    updatePlaceholder();
+
+    showCard();
+
+}
+
+
+/* =========================================================
+   DIRECTION BUTTONS
+========================================================= */
+
+function updateDirectionButtons() {
+
+    document
+        .getElementById("enRuBtn")
+        .classList.toggle(
+            "active",
+            direction === "en-ru"
+        );
+
+
+    document
+        .getElementById("ruEnBtn")
+        .classList.toggle(
+            "active",
+            direction === "ru-en"
+        );
+
+
+    document
+        .getElementById("mixedBtn")
+        .classList.toggle(
+            "active",
+            direction === "mixed"
+        );
+
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+function updatePlaceholder() {
+
+    const placeholder =
+        direction === "ru-en"
+            ? examples["ru-en"]
+            : examples["en-ru"];
+
+
+    if (cardInput) {
+
+        cardInput.placeholder =
+            placeholder;
+
+    }
+
+
+    const studyInput =
+        document.getElementById(
+            "cardInputStudy"
+        );
+
+
+    if (studyInput) {
+
+        studyInput.placeholder =
+            placeholder;
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN ADD CARDS
+========================================================= */
+
+function openAddCards() {
+
+    emptyAddButton.style.display =
+        "none";
+
+    addCardsMobile.style.display =
+        "block";
+
+
+    setTimeout(
+        function() {
+
+            cardInput.focus();
+
+        },
+        100
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE ADD CARDS
+========================================================= */
+
+function closeAddCards() {
+
+    addCardsMobile.style.display =
+        "none";
+
+    emptyAddButton.style.display =
+        "block";
+
+}
+
+
+/* =========================================================
+   ADD CARDS
+========================================================= */
+
+function addCards() {
+
+    const text =
+        cardInput.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Введи хотя бы одну карточку."
+        );
+
+        return;
+
+    }
+
+
+    const added =
+        parseAndAddCards(text);
+
+
+    if (added === 0) {
+
+        alert(
+            "Не удалось добавить карточки.\n\n" +
+            "Формат:\n" +
+            "English — Русский"
+        );
+
+        return;
+
+    }
+
+
+    cardInput.value = "";
+
+    saveCards();
+
+    currentIndex =
+        Math.max(
+            0,
+            cards.length - added
+        );
+
+
+    addCardsMobile.style.display =
+        "none";
+
+    emptyAddButton.style.display =
+        "none";
+
+
+    showCard();
+
+    renderList();
+
+}
+
+
+/* =========================================================
+   ADD FROM STUDY AREA
+========================================================= */
+
+function addCardsFromStudy() {
+
+    const input =
+        document.getElementById(
+            "cardInputStudy"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Введи хотя бы одну карточку."
+        );
+
+        return;
+
+    }
+
+
+    const added =
+        parseAndAddCards(text);
+
+
+    if (added === 0) {
+
+        alert(
+            "Не удалось добавить карточки.\n\n" +
+            "Формат:\n" +
+            "English — Русский"
+        );
+
+        return;
+
+    }
+
+
+    input.value = "";
+
+    saveCards();
+
+    showCard();
+
+    renderList();
+
+}
+
+
+/* =========================================================
+   PARSE CARDS
+========================================================= */
+
+function parseAndAddCards(text) {
+
+    const lines =
+        text.split("\n");
+
+
+    let added = 0;
+
+
+    lines.forEach(
+        function(line) {
+
+            line =
+                line.trim();
+
+
+            if (!line) {
+                return;
+            }
+
+
+            let parts;
+
+
+            if (
+                line.includes("—")
+            ) {
+
+                parts =
+                    line.split("—");
+
+            } else if (
+                line.includes("–")
+            ) {
+
+                parts =
+                    line.split("–");
+
+            } else {
+
+                parts =
+                    line.split(
+                        /\s+-\s+/
+                    );
+
+            }
+
+
+            if (
+                parts.length < 2
+            ) {
+
+                return;
+
+            }
+
+
+            const english =
+                parts[0].trim();
+
+
+            const russian =
+                parts
+                    .slice(1)
+                    .join("—")
+                    .trim();
+
+
+            if (
+                !english ||
+                !russian
+            ) {
+
+                return;
+
+            }
+
+
+            const exists =
+                cards.some(
+                    function(card) {
+
+                        return (
+
+                            card.english
+                                .toLowerCase() ===
+                            english.toLowerCase()
+
+                            &&
+
+                            card.russian
+                                .toLowerCase() ===
+                            russian.toLowerCase()
+
+                        );
+
+                    }
+                );
+
+
+            if (exists) {
+                return;
+            }
+
+
+            cards.push({
+
+                english:
+                    english,
+
+                russian:
+                    russian
+
+            });
+
+
+            added++;
+
+        }
+    );
+
+
+    return added;
+
+}
+
+
+/* =========================================================
+   SHOW CARD
+========================================================= */
+
+function showCard() {
+
+    /*
+       ВАЖНО:
+
+       Если карточек нет —
+       показываем emptyState
+       И отдельно показываем
+       кнопку добавления.
+    */
+
+    if (
+        cards.length === 0
+    ) {
+
+        studyArea.style.display =
+            "none";
+
+        emptyState.style.display =
+            "block";
+
+        emptyAddButton.style.display =
+            "block";
+
+        addCardsMobile.style.display =
+            "none";
+
+        totalCounter.textContent =
+            "0 terms";
+
+        updateProgress();
+
+        return;
+
+    }
+
+
+    /*
+       Карточки есть —
+       скрываем пустое состояние
+       и кнопку первого добавления.
+    */
+
+    studyArea.style.display =
+        "block";
+
+    emptyState.style.display =
+        "none";
+
+    emptyAddButton.style.display =
+        "none";
+
+    addCardsMobile.style.display =
+        "none";
+
+
+    if (
+        currentIndex >=
+        cards.length
+    ) {
+
+        currentIndex =
+            cards.length - 1;
+
+    }
+
+
+    if (
+        currentIndex < 0
+    ) {
+
+        currentIndex =
+            0;
+
+    }
+
+
+    const card =
+        cards[currentIndex];
+
+
+    if (
+        direction === "mixed"
+    ) {
+
+        currentDirection =
+            Math.random() < 0.5
+                ? "en-ru"
+                : "ru-en";
+
+    } else {
+
+        currentDirection =
+            direction;
+
     }
 
 
@@ -1410,7 +2208,10 @@ function showCard() {
     stopSpeaking();
 
 
-    if (currentDirection === "en-ru") {
+    if (
+        currentDirection ===
+        "en-ru"
+    ) {
 
         frontLabel.textContent =
             "English";
@@ -1437,116 +2238,156 @@ function showCard() {
 
         backText.textContent =
             card.english;
+
     }
 
 
     pageCounter.textContent =
-        (currentIndex + 1) +
-        " / " +
-        cards.length;
+        `${currentIndex + 1} / ${cards.length}`;
 
 
     totalCounter.textContent =
-        cards.length +
-        (
+        `${cards.length} ${
             cards.length === 1
-                ? " term"
-                : " terms"
-        );
+                ? "term"
+                : "terms"
+        }`;
 
 
     updateProgress();
+
 }
 
 
-/* =========================
+/* =========================================================
    FLIP
-========================= */
+========================================================= */
 
 function flipCard() {
 
-    if (cards.length === 0) return;
+    if (
+        cards.length === 0
+    ) {
+
+        return;
+
+    }
+
 
     flashcard.classList.toggle(
         "flipped"
     );
+
 }
 
 
-/* =========================
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
 function nextCard() {
 
-    if (cards.length === 0) return;
+    if (
+        cards.length === 0
+    ) {
+
+        return;
+
+    }
+
 
     currentIndex++;
 
-    if (currentIndex >= cards.length) {
+
+    if (
+        currentIndex >=
+        cards.length
+    ) {
+
         currentIndex = 0;
+
     }
 
+
     showCard();
+
 }
 
 
 function previousCard() {
 
-    if (cards.length === 0) return;
+    if (
+        cards.length === 0
+    ) {
+
+        return;
+
+    }
+
 
     currentIndex--;
 
-    if (currentIndex < 0) {
+
+    if (
+        currentIndex < 0
+    ) {
+
         currentIndex =
             cards.length - 1;
+
     }
 
+
     showCard();
+
 }
 
 
-/* =========================
+/* =========================================================
    ANSWERS
-========================= */
+========================================================= */
 
 function markKnown() {
 
+    known++;
+
+
     localStorage.setItem(
         "knownCards",
-        Number(
-            localStorage.getItem(
-                "knownCards"
-            ) || 0
-        ) + 1
+        known
     );
 
+
     nextCard();
+
 }
 
 
 function markUnknown() {
 
+    unknown++;
+
+
     localStorage.setItem(
         "unknownCards",
-        Number(
-            localStorage.getItem(
-                "unknownCards"
-            ) || 0
-        ) + 1
+        unknown
     );
 
+
     nextCard();
+
 }
 
 
-/* =========================
+/* =========================================================
    PROGRESS
-========================= */
+========================================================= */
 
 function updateProgress() {
 
-    if (cards.length === 0) {
+    if (
+        cards.length === 0
+    ) {
 
         progressBar.style.width =
             "0%";
@@ -1555,6 +2396,7 @@ function updateProgress() {
             "0%";
 
         return;
+
     }
 
 
@@ -1570,18 +2412,27 @@ function updateProgress() {
     progressBar.style.width =
         percent + "%";
 
+
     progressPercent.textContent =
         percent + "%";
+
 }
 
 
-/* =========================
+/* =========================================================
    SHUFFLE
-========================= */
+========================================================= */
 
 function shuffleCards() {
 
-    if (cards.length < 2) return;
+    if (
+        cards.length < 2
+    ) {
+
+        return;
+
+    }
+
 
     for (
         let i = cards.length - 1;
@@ -1595,6 +2446,7 @@ function shuffleCards() {
                 (i + 1)
             );
 
+
         [
             cards[i],
             cards[j]
@@ -1603,7 +2455,9 @@ function shuffleCards() {
             cards[j],
             cards[i]
         ];
+
     }
+
 
     saveCards();
 
@@ -1612,76 +2466,208 @@ function shuffleCards() {
     showCard();
 
     renderList();
+
 }
 
 
-/* =========================
-   RESET
-========================= */
+/* =========================================================
+   RESET STATS
+========================================================= */
 
 function resetStats() {
+
+    known = 0;
+
+    unknown = 0;
+
 
     localStorage.setItem(
         "knownCards",
         "0"
     );
 
+
     localStorage.setItem(
         "unknownCards",
         "0"
     );
 
+
     alert(
         "Статистика сброшена."
     );
+
 }
 
 
-/* =========================
+/* =========================================================
    VOICE
-========================= */
+========================================================= */
 
 function setVoice(language) {
 
-    voiceLanguage = language;
+    voiceLanguage =
+        language;
+
 
     localStorage.setItem(
         "voiceLanguage",
         language
     );
+
+
+    document
+        .getElementById("usVoiceBtn")
+        .classList.toggle(
+            "active",
+            language === "en-US"
+        );
+
+
+    document
+        .getElementById("ukVoiceBtn")
+        .classList.toggle(
+            "active",
+            language === "en-GB"
+        );
+
 }
 
 
-function setRate(rate) {
+/* =========================================================
+   SPEECH RATE
+========================================================= */
+
+function setSpeechRate(rate) {
 
     speechRate =
         Number(rate);
+
 
     localStorage.setItem(
         "speechRate",
         speechRate
     );
+
+
+    document
+        .querySelectorAll(".speed-btn")
+        .forEach(
+            function(button) {
+
+                button.classList.toggle(
+                    "active",
+
+                    Number(
+                        button.dataset.speed
+                    ) === speechRate
+                );
+
+            }
+        );
+
 }
 
 
-/* =========================
+/* =========================================================
+   FIND VOICE
+========================================================= */
+
+function findEnglishVoice(
+    language
+) {
+
+    const voices =
+        window.speechSynthesis
+            .getVoices();
+
+
+    if (
+        !voices ||
+        voices.length === 0
+    ) {
+
+        return null;
+
+    }
+
+
+    let voice =
+        voices.find(
+            function(v) {
+
+                return (
+                    v.lang
+                        .toLowerCase() ===
+                    language.toLowerCase()
+                );
+
+            }
+        );
+
+
+    if (voice) {
+        return voice;
+    }
+
+
+    const shortLang =
+        language
+            .substring(0, 2)
+            .toLowerCase();
+
+
+    voice =
+        voices.find(
+            function(v) {
+
+                return v.lang
+                    .toLowerCase()
+                    .startsWith(
+                        shortLang
+                    );
+
+            }
+        );
+
+
+    return voice || null;
+
+}
+
+
+/* =========================================================
    SPEAK
-========================= */
+========================================================= */
 
 function speakEnglish(event) {
 
     event.stopPropagation();
 
-    if (cards.length === 0) return;
+
+    if (
+        cards.length === 0
+    ) {
+
+        return;
+
+    }
+
 
     const text =
         cards[currentIndex].english;
 
-    if (!text) return;
+
+    if (!text) {
+        return;
+    }
 
 
     if (
-        !("speechSynthesis" in window)
+        !(
+            "speechSynthesis"
+            in window
+        )
     ) {
 
         alert(
@@ -1689,6 +2675,7 @@ function speakEnglish(event) {
         );
 
         return;
+
     }
 
 
@@ -1701,23 +2688,10 @@ function speakEnglish(event) {
         );
 
 
-    const voices =
-        window.speechSynthesis
-            .getVoices();
-
-
     const voice =
-        voices.find(function(v) {
-
-            return v.lang
-                .toLowerCase()
-                .startsWith(
-                    voiceLanguage
-                        .substring(0,2)
-                        .toLowerCase()
-                );
-
-        });
+        findEnglishVoice(
+            voiceLanguage
+        );
 
 
     if (voice) {
@@ -1732,6 +2706,7 @@ function speakEnglish(event) {
 
         utterance.lang =
             voiceLanguage;
+
     }
 
 
@@ -1745,45 +2720,151 @@ function speakEnglish(event) {
         1;
 
 
+    utterance.onstart =
+        function() {
+
+            if (speakBtn) {
+
+                speakBtn
+                    .classList
+                    .add("speaking");
+
+            }
+
+
+            if (speakBackBtn) {
+
+                speakBackBtn
+                    .classList
+                    .add("speaking");
+
+            }
+
+        };
+
+
+    utterance.onend =
+        function() {
+
+            if (speakBtn) {
+
+                speakBtn
+                    .classList
+                    .remove("speaking");
+
+            }
+
+
+            if (speakBackBtn) {
+
+                speakBackBtn
+                    .classList
+                    .remove("speaking");
+
+            }
+
+        };
+
+
+    utterance.onerror =
+        function() {
+
+            if (speakBtn) {
+
+                speakBtn
+                    .classList
+                    .remove("speaking");
+
+            }
+
+
+            if (speakBackBtn) {
+
+                speakBackBtn
+                    .classList
+                    .remove("speaking");
+
+            }
+
+        };
+
+
     window.speechSynthesis.speak(
         utterance
     );
+
 }
 
 
-/* =========================
-   STOP
-========================= */
+/* =========================================================
+   STOP SPEECH
+========================================================= */
 
 function stopSpeaking() {
 
     if (
-        "speechSynthesis" in window
+        "speechSynthesis"
+        in window
     ) {
 
         window.speechSynthesis.cancel();
+
     }
+
+
+    if (speakBtn) {
+
+        speakBtn
+            .classList
+            .remove("speaking");
+
+    }
+
+
+    if (speakBackBtn) {
+
+        speakBackBtn
+            .classList
+            .remove("speaking");
+
+    }
+
 }
 
 
-/* =========================
-   EXAMPLE
-========================= */
+/* =========================================================
+   LOAD EXAMPLE
+========================================================= */
 
 function loadExample() {
 
     cardInput.value =
-        "How did you pull that off? — Как тебе это удалось?\n" +
-        "I'm still mortified about everything — Мне до сих пор ужасно неловко из-за всего";
+        direction === "ru-en"
+            ? examples["ru-en"]
+            : examples["en-ru"];
 
-
-    cardInput.focus();
 }
 
 
-/* =========================
+function loadExampleStudy() {
+
+    const input =
+        document.getElementById(
+            "cardInputStudy"
+        );
+
+
+    input.value =
+        direction === "ru-en"
+            ? examples["ru-en"]
+            : examples["en-ru"];
+
+}
+
+
+/* =========================================================
    SAVE
-========================= */
+========================================================= */
 
 function saveCards() {
 
@@ -1791,12 +2872,13 @@ function saveCards() {
         "englishCards",
         JSON.stringify(cards)
     );
+
 }
 
 
-/* =========================
+/* =========================================================
    DELETE
-========================= */
+========================================================= */
 
 function deleteCard(index) {
 
@@ -1807,7 +2889,8 @@ function deleteCard(index) {
 
 
     if (
-        currentIndex >= cards.length
+        currentIndex >=
+        cards.length
     ) {
 
         currentIndex =
@@ -1815,6 +2898,7 @@ function deleteCard(index) {
                 0,
                 cards.length - 1
             );
+
     }
 
 
@@ -1823,24 +2907,32 @@ function deleteCard(index) {
     showCard();
 
     renderList();
+
 }
 
 
-/* =========================
+/* =========================================================
    CLEAR
-========================= */
+========================================================= */
 
 function clearAll() {
 
-    if (cards.length === 0) return;
-
-
     if (
-        !confirm(
-            "Удалить все карточки?"
-        )
+        cards.length === 0
     ) {
 
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Удалить все карточки?"
+        );
+
+
+    if (!confirmed) {
         return;
     }
 
@@ -1848,6 +2940,10 @@ function clearAll() {
     cards = [];
 
     currentIndex = 0;
+
+    known = 0;
+
+    unknown = 0;
 
 
     localStorage.removeItem(
@@ -1868,24 +2964,28 @@ function clearAll() {
     showCard();
 
     renderList();
+
 }
 
 
-/* =========================
-   LIST
-========================= */
+/* =========================================================
+   RENDER LIST
+========================================================= */
 
 function renderList() {
 
     cardList.innerHTML = "";
 
 
-    if (cards.length === 0) {
+    if (
+        cards.length === 0
+    ) {
 
         cardList.innerHTML =
             '<div style="color:#777;font-size:13px;">Карточек пока нет.</div>';
 
         return;
+
     }
 
 
@@ -1897,42 +2997,50 @@ function renderList() {
                     "div"
                 );
 
+
             item.className =
                 "list-item";
 
 
-            item.innerHTML =
-                '<div class="list-en">' +
-                escapeHtml(
-                    card.english
-                ) +
-                '</div>' +
+            item.innerHTML = `
 
-                '<div class="list-ru">' +
-                escapeHtml(
-                    card.russian
-                ) +
-                '</div>' +
+                <div class="list-en">
+                    ${escapeHtml(
+                        card.english
+                    )}
+                </div>
 
-                '<button class="delete-btn" ' +
-                'onclick="deleteCard(' +
-                index +
-                ')">' +
-                '×' +
-                '</button>';
+                <div class="list-ru">
+                    ${escapeHtml(
+                        card.russian
+                    )}
+                </div>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteCard(${index})"
+                    title="Удалить">
+
+                    ×
+
+                </button>
+
+            `;
 
 
             cardList.appendChild(
                 item
             );
+
         }
     );
+
 }
 
 
-/* =========================
-   ESCAPE
-========================= */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
 function escapeHtml(text) {
 
@@ -1941,15 +3049,19 @@ function escapeHtml(text) {
             "div"
         );
 
-    div.textContent = text;
+
+    div.textContent =
+        text;
+
 
     return div.innerHTML;
+
 }
 
 
-/* =========================
+/* =========================================================
    KEYBOARD
-========================= */
+========================================================= */
 
 document.addEventListener(
     "keydown",
@@ -1958,19 +3070,24 @@ document.addEventListener(
         if (
             event.target.tagName ===
                 "TEXTAREA" ||
+
             event.target.tagName ===
                 "INPUT"
         ) {
 
             return;
+
         }
 
 
-        if (event.code === "Space") {
+        if (
+            event.code === "Space"
+        ) {
 
             event.preventDefault();
 
             flipCard();
+
         }
 
 
@@ -1980,6 +3097,7 @@ document.addEventListener(
         ) {
 
             nextCard();
+
         }
 
 
@@ -1989,31 +3107,79 @@ document.addEventListener(
         ) {
 
             previousCard();
+
         }
 
 
-        if (event.key === "1") {
+        if (
+            event.key === "1"
+        ) {
 
             markUnknown();
+
         }
 
 
-        if (event.key === "2") {
+        if (
+            event.key === "2"
+        ) {
 
             markKnown();
+
         }
 
     }
 );
 
 
-/* =========================
-   INIT
-========================= */
+/* =========================================================
+   SPEECH INIT
+========================================================= */
 
-updateButtons();
+function initializeSpeech() {
+
+    if (
+        "speechSynthesis"
+        in window
+    ) {
+
+        window.speechSynthesis
+            .getVoices();
+
+    }
+
+}
+
+
+if (
+    "speechSynthesis"
+    in window
+) {
+
+    window.speechSynthesis
+        .onvoiceschanged =
+        initializeSpeech;
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+updateDirectionButtons();
 
 updatePlaceholder();
+
+setSpeechRate(
+    speechRate
+);
+
+setVoice(
+    voiceLanguage
+);
+
+initializeSpeech();
 
 showCard();
 
