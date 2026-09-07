@@ -3,17 +3,40 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               viewport-fit=cover">
+
 <title>English Phrases</title>
 
 <style>
+
+/* =========================================================
+   BASIC
+========================================================= */
+
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
   background: #f6f7fb;
   color: #202124;
 }
@@ -23,64 +46,108 @@ textarea {
   font-family: inherit;
 }
 
-.container {
-  max-width: 1050px;
-  margin: 0 auto;
-  padding: 28px 20px 60px;
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* HEADER */
+.container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+
+  padding:
+    max(18px, env(safe-area-inset-top))
+    18px
+    max(35px, env(safe-area-inset-bottom));
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  justify-content: space-between;
+
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .title-block h1 {
   margin: 0;
-  font-size: 28px;
-  font-weight: 700;
+
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -0.4px;
 }
 
 .title-block p {
-  margin: 7px 0 0;
+  margin: 5px 0 0;
+
   color: #70757a;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .counter {
+  flex-shrink: 0;
+
   background: white;
   border: 1px solid #e0e2e7;
+
   border-radius: 12px;
-  padding: 10px 16px;
-  font-size: 14px;
+
+  padding: 9px 12px;
+
+  font-size: 13px;
   font-weight: 600;
 }
 
-/* DIRECTION */
+
+/* =========================================================
+   DIRECTION BUTTONS
+========================================================= */
 
 .top-controls {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+
+  gap: 8px;
+
+  overflow-x: auto;
+
+  margin-bottom: 15px;
+
+  padding-bottom: 3px;
+
+  scrollbar-width: none;
+}
+
+.top-controls::-webkit-scrollbar {
+  display: none;
 }
 
 .direction-btn {
-  background: white;
-  border: 1px solid #d8dbe2;
-  border-radius: 10px;
-  padding: 9px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s;
-}
+  flex-shrink: 0;
 
-.direction-btn:hover {
-  background: #f1f3f8;
+  background: white;
+
+  border: 1px solid #d8dbe2;
+
+  border-radius: 11px;
+
+  padding: 9px 13px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  min-height: 40px;
+
+  transition: 0.2s;
 }
 
 .direction-btn.active {
@@ -89,27 +156,52 @@ textarea {
   border-color: #202124;
 }
 
-/* CARD */
+
+/* =========================================================
+   STUDY AREA
+========================================================= */
+
+.study-area {
+  width: 100%;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
 
 .card-wrapper {
+  width: 100%;
+
   display: flex;
   justify-content: center;
-  perspective: 1200px;
+
+  perspective: 1400px;
 }
 
 .flashcard {
-  width: min(760px, 100%);
-  height: 420px;
+  width: 100%;
+
+  height: min(62vh, 460px);
+
+  min-height: 330px;
+
   cursor: pointer;
+
   position: relative;
 }
 
 .card-inner {
   width: 100%;
   height: 100%;
+
   position: relative;
+
   transform-style: preserve-3d;
-  transition: transform 0.55s;
+
+  transition:
+    transform 0.52s
+    cubic-bezier(.2,.7,.2,1);
 }
 
 .flashcard.flipped .card-inner {
@@ -118,77 +210,105 @@ textarea {
 
 .card-face {
   position: absolute;
+
   width: 100%;
   height: 100%;
+
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 
   border-radius: 20px;
+
   background: white;
+
   border: 1px solid #e0e2e7;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.07);
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 
-  padding: 50px 70px;
   text-align: center;
+
+  padding: 50px 26px;
 }
 
 .card-back {
   transform: rotateY(180deg);
 }
 
+
+/* =========================================================
+   CARD LABEL
+========================================================= */
+
 .card-label {
   position: absolute;
-  top: 20px;
-  left: 24px;
 
-  font-size: 13px;
+  top: 17px;
+  left: 20px;
+
+  font-size: 12px;
+
   color: #8a8d93;
-  font-weight: 600;
+
+  font-weight: 700;
+
   text-transform: uppercase;
+
   letter-spacing: 0.5px;
 }
 
-/* SPEAKER */
+
+/* =========================================================
+   SPEAKER
+========================================================= */
 
 .speak-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
 
-  width: 44px;
-  height: 44px;
+  top: 13px;
+  right: 13px;
 
-  border: 1px solid #dfe1e6;
+  width: 45px;
+  height: 45px;
+
+  padding: 0;
+
   border-radius: 50%;
 
+  border: 1px solid #dfe1e6;
+
   background: white;
+
   color: #202124;
 
-  cursor: pointer;
+  font-size: 20px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  font-size: 19px;
+  cursor: pointer;
 
-  z-index: 30;
+  z-index: 50;
 
-  transition: 0.2s;
-}
+  touch-action: manipulation;
 
-.speak-btn:hover {
-  background: #f1f3f6;
-  transform: scale(1.05);
+  transition:
+    transform 0.15s,
+    background 0.15s;
 }
 
 .speak-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.94);
 }
 
 .speak-btn.speaking {
@@ -196,255 +316,392 @@ textarea {
   color: white;
 }
 
-/* CARD TEXT */
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
 
 .card-main {
-  font-size: clamp(26px, 4vw, 42px);
-  line-height: 1.25;
-  font-weight: 600;
-  max-width: 650px;
-  word-break: break-word;
+  width: 100%;
+
+  max-width: 680px;
+
+  font-size:
+    clamp(27px, 7vw, 43px);
+
+  line-height: 1.22;
+
+  font-weight: 650;
+
+  overflow-wrap: anywhere;
 }
 
 .card-hint {
   position: absolute;
-  bottom: 21px;
+
+  left: 20px;
+  right: 20px;
+
+  bottom: 18px;
+
   color: #9aa0a6;
-  font-size: 13px;
+
+  font-size: 12px;
 }
 
-/* NAVIGATION */
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .navigation {
-  width: min(760px, 100%);
-  margin: 18px auto 0;
+  width: 100%;
+
+  margin: 14px auto 0;
 
   display: grid;
-  grid-template-columns: 52px 1fr 52px;
+
+  grid-template-columns: 54px 1fr 54px;
+
+  gap: 12px;
+
   align-items: center;
-  gap: 14px;
 }
 
 .nav-btn {
-  width: 52px;
-  height: 46px;
+  width: 54px;
+  height: 48px;
 
-  border: 1px solid #d8dbe2;
+  padding: 0;
+
+  border:
+    1px solid #d8dbe2;
+
   background: white;
-  border-radius: 12px;
+
+  border-radius: 13px;
 
   font-size: 25px;
+
   cursor: pointer;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  transition: 0.2s;
+  touch-action: manipulation;
 }
 
-.nav-btn:hover {
-  background: #eef0f4;
+.nav-btn:active {
+  transform: scale(0.96);
 }
 
 .page-counter {
   text-align: center;
-  font-size: 16px;
-  font-weight: 600;
+
   color: #4d5156;
+
+  font-size: 15px;
+
+  font-weight: 650;
 }
 
-/* ANSWERS */
+
+/* =========================================================
+   ANSWER BUTTONS
+========================================================= */
 
 .answer-buttons {
-  width: min(760px, 100%);
-  margin: 18px auto 0;
+  width: 100%;
+
+  margin-top: 12px;
 
   display: grid;
+
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+
+  gap: 10px;
 }
 
 .answer-btn {
   height: 50px;
 
   border-radius: 12px;
+
   border: 1px solid #d8dbe2;
 
   background: white;
 
   cursor: pointer;
 
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
 
-  transition: 0.2s;
+  font-weight: 650;
+
+  touch-action: manipulation;
 }
 
-.answer-btn:hover {
-  background: #f1f3f6;
+.answer-btn:active {
+  transform: scale(0.98);
 }
 
-.answer-btn.unknown:hover {
+.answer-btn.unknown:active {
   color: #d93025;
-  border-color: #d93025;
 }
 
-.answer-btn.known:hover {
+.answer-btn.known:active {
   color: #188038;
-  border-color: #188038;
 }
 
-/* PROGRESS */
+
+/* =========================================================
+   PROGRESS
+========================================================= */
 
 .progress-section {
-  width: min(760px, 100%);
-  margin: 22px auto 0;
+  width: 100%;
+
+  margin-top: 17px;
 }
 
 .progress-text {
   display: flex;
+
   justify-content: space-between;
 
-  font-size: 13px;
+  margin-bottom: 7px;
+
   color: #70757a;
 
-  margin-bottom: 8px;
+  font-size: 12px;
 }
 
 .progress {
-  height: 7px;
-  background: #e6e8ed;
+  width: 100%;
+
+  height: 6px;
+
   border-radius: 999px;
+
+  background: #e4e6eb;
+
   overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
+
   width: 0%;
 
   background: #202124;
 
-  transition: width 0.3s;
+  transition:
+    width 0.3s ease;
 }
 
-/* VOICE SETTINGS */
 
-.voice-settings {
-  width: min(760px, 100%);
-  margin: 16px auto 0;
+/* =========================================================
+   COLLAPSIBLE SETTINGS
+========================================================= */
+
+.mobile-section {
+  margin-top: 14px;
+}
+
+.mobile-section summary {
+  list-style: none;
+
+  cursor: pointer;
+
+  background: white;
+
+  border: 1px solid #e0e2e7;
+
+  border-radius: 12px;
+
+  min-height: 46px;
+
+  padding: 12px 14px;
+
+  font-size: 14px;
+
+  font-weight: 650;
 
   display: flex;
-  justify-content: center;
+
   align-items: center;
 
-  gap: 8px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.mobile-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-section summary::after {
+  content: "＋";
+
+  font-size: 18px;
 
   color: #70757a;
-  font-size: 13px;
+}
+
+.mobile-section[open] summary::after {
+  content: "−";
+}
+
+.section-content {
+  background: white;
+
+  border:
+    0 1px 1px 1px;
+
+  border-color: #e0e2e7;
+
+  border-style: solid;
+
+  border-radius:
+    0 0 12px 12px;
+
+  padding: 15px;
+}
+
+
+/* =========================================================
+   VOICE SETTINGS
+========================================================= */
+
+.voice-settings {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  font-size: 12px;
+
+  color: #70757a;
 }
 
 .voice-btn,
 .speed-btn {
-  border: 1px solid #d8dbe2;
-  background: white;
+  border:
+    1px solid #d8dbe2;
 
-  padding: 7px 11px;
+  background: white;
 
   border-radius: 8px;
 
+  padding: 7px 9px;
+
   cursor: pointer;
-  font-size: 13px;
+
+  font-size: 12px;
 
   color: #555;
 
-  transition: 0.2s;
-}
-
-.voice-btn:hover,
-.speed-btn:hover {
-  background: #f1f3f6;
+  min-height: 34px;
 }
 
 .voice-btn.active,
 .speed-btn.active {
   background: #202124;
+
   color: white;
+
   border-color: #202124;
 }
 
-.voice-divider {
-  margin: 0 4px;
-  color: #c2c4ca;
-}
 
-/* EXTRA */
+/* =========================================================
+   EXTRA BUTTONS
+========================================================= */
 
 .extra-controls {
-  width: min(760px, 100%);
-  margin: 22px auto 0;
+  display: grid;
 
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+
+  margin-top: 12px;
 }
 
 .secondary-btn {
-  border: 1px solid #d8dbe2;
   background: white;
 
-  padding: 10px 15px;
+  border:
+    1px solid #d8dbe2;
 
   border-radius: 10px;
 
+  min-height: 42px;
+
+  padding: 9px;
+
+  font-size: 13px;
+
   cursor: pointer;
-
-  font-size: 14px;
 }
 
-.secondary-btn:hover {
-  background: #f1f3f6;
-}
 
-/* ADD */
+/* =========================================================
+   ADD CARDS
+========================================================= */
 
 .add-panel {
-  margin-top: 45px;
+  margin-top: 15px;
 
   background: white;
-  border: 1px solid #e0e2e7;
-  border-radius: 16px;
 
-  padding: 22px;
+  border:
+    1px solid #e0e2e7;
+
+  border-radius: 14px;
+
+  padding: 16px;
 }
 
 .add-panel h2 {
-  margin: 0 0 7px;
-  font-size: 20px;
+  margin: 0 0 6px;
+
+  font-size: 18px;
 }
 
 .add-description {
   color: #70757a;
-  font-size: 14px;
-  margin-bottom: 16px;
+
+  font-size: 12px;
+
+  margin-bottom: 12px;
+
+  line-height: 1.4;
 }
 
 textarea {
   width: 100%;
-  min-height: 150px;
+
+  min-height: 130px;
 
   resize: vertical;
 
-  border: 1px solid #d8dbe2;
-  border-radius: 12px;
+  border:
+    1px solid #d8dbe2;
 
-  padding: 15px;
+  border-radius: 10px;
 
-  font-size: 15px;
+  padding: 13px;
 
   outline: none;
+
+  font-size: 14px;
+
+  line-height: 1.4;
 }
 
 textarea:focus {
@@ -452,97 +709,119 @@ textarea:focus {
 }
 
 .add-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-  flex-wrap: wrap;
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 8px;
+
+  margin-top: 10px;
 }
 
 .primary-btn {
   background: #202124;
+
   color: white;
 
   border: none;
 
-  padding: 11px 17px;
-
   border-radius: 10px;
+
+  min-height: 44px;
 
   cursor: pointer;
 
   font-size: 14px;
-  font-weight: 600;
+
+  font-weight: 650;
 }
 
-.primary-btn:hover {
-  background: #000;
-}
 
-/* LIST */
+/* =========================================================
+   LIST
+========================================================= */
 
 .list-panel {
-  margin-top: 25px;
+  margin-top: 15px;
 
   background: white;
-  border: 1px solid #e0e2e7;
-  border-radius: 16px;
 
-  padding: 22px;
+  border:
+    1px solid #e0e2e7;
+
+  border-radius: 14px;
+
+  padding: 16px;
 }
 
 .list-panel h2 {
-  margin: 0 0 15px;
-  font-size: 20px;
+  margin: 0 0 12px;
+
+  font-size: 18px;
 }
 
 .card-list {
   display: flex;
+
   flex-direction: column;
-  gap: 8px;
+
+  gap: 7px;
 }
 
 .list-item {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
 
-  gap: 15px;
+  grid-template-columns: 1fr auto;
 
-  align-items: center;
+  gap: 6px 10px;
 
-  padding: 12px;
+  padding: 11px;
 
-  border: 1px solid #eceef2;
+  border:
+    1px solid #eceef2;
+
   border-radius: 10px;
 }
 
 .list-en {
-  font-weight: 600;
+  font-weight: 650;
+
+  font-size: 14px;
 }
 
 .list-ru {
+  grid-column: 1;
+
   color: #70757a;
+
+  font-size: 13px;
 }
 
 .delete-btn {
-  border: none;
-  background: transparent;
+  grid-column: 2;
 
-  cursor: pointer;
+  grid-row: 1 / span 2;
+
+  border: none;
+
+  background: transparent;
 
   color: #8a8d93;
 
-  font-size: 20px;
+  font-size: 21px;
+
+  cursor: pointer;
 }
 
-.delete-btn:hover {
-  color: #d93025;
-}
 
-/* EMPTY */
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .empty {
   text-align: center;
-  padding: 80px 20px;
+
+  padding: 70px 20px;
 
   color: #70757a;
 }
@@ -550,65 +829,89 @@ textarea:focus {
 .empty strong {
   display: block;
 
+  margin-bottom: 8px;
+
   color: #202124;
 
-  font-size: 22px;
-
-  margin-bottom: 8px;
+  font-size: 21px;
 }
 
-/* MOBILE */
 
-@media (max-width: 700px) {
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 701px) {
 
   .container {
-    padding: 20px 14px 40px;
+    padding-top: 28px;
   }
 
-  .header {
-    align-items: flex-start;
+  .mobile-section {
+    display: block;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE SMALL
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .title-block h1 {
     font-size: 23px;
   }
 
-  .counter {
-    padding: 8px 11px;
-    font-size: 12px;
-  }
-
   .flashcard {
-    height: 360px;
-  }
-
-  .card-face {
-    padding: 45px 25px;
+    height: 56vh;
+    min-height: 300px;
   }
 
   .card-main {
-    font-size: 27px;
+    font-size: 25px;
   }
 
-  .list-item {
-    grid-template-columns: 1fr;
-    gap: 5px;
+  .answer-btn {
+    font-size: 13px;
   }
 
-  .delete-btn {
-    text-align: right;
-  }
 }
+
+
+/* =========================================================
+   LANDSCAPE PHONE
+========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+  .flashcard {
+    height: 70vh;
+    min-height: 250px;
+  }
+
+}
+
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
-  <!-- HEADER -->
 
-  <div class="header">
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="header">
 
     <div class="title-block">
 
@@ -623,13 +926,17 @@ textarea:focus {
     <div
       class="counter"
       id="totalCounter">
+
       0 terms
+
     </div>
 
-  </div>
+  </header>
 
 
-  <!-- DIRECTION -->
+  <!-- =====================================================
+       DIRECTION
+  ====================================================== -->
 
   <div class="top-controls">
 
@@ -637,27 +944,37 @@ textarea:focus {
       class="direction-btn active"
       id="enRuBtn"
       onclick="setDirection('en-ru')">
+
       🇬🇧 English → Русский
+
     </button>
+
 
     <button
       class="direction-btn"
       id="ruEnBtn"
       onclick="setDirection('ru-en')">
+
       🇷🇺 Русский → English
+
     </button>
+
 
     <button
       class="direction-btn"
       id="mixedBtn"
       onclick="setDirection('mixed')">
+
       🔀 Mixed
+
     </button>
 
   </div>
 
 
-  <!-- EMPTY -->
+  <!-- =====================================================
+       EMPTY
+  ====================================================== -->
 
   <div
     id="emptyState"
@@ -668,15 +985,20 @@ textarea:focus {
       У тебя пока нет карточек
     </strong>
 
-    Добавь несколько фраз ниже,
+    Добавь фразы ниже,
     чтобы начать обучение.
 
   </div>
 
 
-  <!-- STUDY -->
+  <!-- =====================================================
+       STUDY
+  ====================================================== -->
 
-  <div id="studyArea">
+  <div
+    id="studyArea"
+    class="study-area">
+
 
     <!-- CARD -->
 
@@ -687,17 +1009,23 @@ textarea:focus {
         id="flashcard"
         onclick="flipCard()">
 
+
         <div class="card-inner">
 
 
           <!-- FRONT -->
 
-          <div class="card-face card-front">
+          <div
+            class="card-face
+                   card-front">
+
 
             <div
               class="card-label"
               id="frontLabel">
+
               English
+
             </div>
 
 
@@ -705,7 +1033,7 @@ textarea:focus {
               class="speak-btn"
               id="speakBtn"
               onclick="speakEnglish(event)"
-              title="Озвучить английскую фразу">
+              aria-label="Озвучить">
 
               🔊
 
@@ -715,13 +1043,14 @@ textarea:focus {
             <div
               class="card-main"
               id="frontText">
+
             </div>
 
 
             <div class="card-hint">
 
-              Нажми на карточку,
-              чтобы увидеть перевод
+              Нажми на карточку
+              для перевода
 
             </div>
 
@@ -731,12 +1060,16 @@ textarea:focus {
           <!-- BACK -->
 
           <div
-            class="card-face card-back">
+            class="card-face
+                   card-back">
+
 
             <div
               class="card-label"
               id="backLabel">
+
               Русский
+
             </div>
 
 
@@ -744,7 +1077,7 @@ textarea:focus {
               class="speak-btn"
               id="speakBackBtn"
               onclick="speakEnglish(event)"
-              title="Озвучить английскую фразу">
+              aria-label="Озвучить">
 
               🔊
 
@@ -754,17 +1087,19 @@ textarea:focus {
             <div
               class="card-main"
               id="backText">
+
             </div>
 
 
             <div class="card-hint">
 
-              Нажми на карточку,
-              чтобы вернуться
+              Нажми на карточку
+              для возврата
 
             </div>
 
           </div>
+
 
         </div>
 
@@ -779,7 +1114,8 @@ textarea:focus {
 
       <button
         class="nav-btn"
-        onclick="previousCard()">
+        onclick="previousCard()"
+        aria-label="Предыдущая">
 
         ←
 
@@ -797,7 +1133,8 @@ textarea:focus {
 
       <button
         class="nav-btn"
-        onclick="nextCard()">
+        onclick="nextCard()"
+        aria-label="Следующая">
 
         →
 
@@ -859,186 +1196,222 @@ textarea:focus {
     </div>
 
 
-    <!-- VOICE -->
+    <!-- =================================================
+         VOICE SETTINGS
+    ================================================= -->
 
-    <div class="voice-settings">
+    <details class="mobile-section">
 
-      <span>
-        Голос:
-      </span>
-
-
-      <button
-        class="voice-btn active"
-        id="usVoiceBtn"
-        onclick="setVoice('en-US')">
-
-        🇺🇸 English US
-
-      </button>
+      <summary>
+        🔊 Настройки озвучки
+      </summary>
 
 
-      <button
-        class="voice-btn"
-        id="ukVoiceBtn"
-        onclick="setVoice('en-GB')">
+      <div class="section-content">
 
-        🇬🇧 English UK
-
-      </button>
+        <div class="voice-settings">
 
 
-      <span class="voice-divider">
-        |
-      </span>
+          <span>
+            Голос:
+          </span>
 
 
-      <span>
-        Скорость:
-      </span>
+          <button
+            class="voice-btn active"
+            id="usVoiceBtn"
+            onclick="setVoice('en-US')">
+
+            🇺🇸 English US
+
+          </button>
 
 
-      <button
-        class="speed-btn"
-        data-speed="0.75"
-        onclick="setSpeechRate(0.75)">
+          <button
+            class="voice-btn"
+            id="ukVoiceBtn"
+            onclick="setVoice('en-GB')">
 
-        0.75×
+            🇬🇧 English UK
 
-      </button>
-
-
-      <button
-        class="speed-btn active"
-        data-speed="0.9"
-        onclick="setSpeechRate(0.9)">
-
-        0.9×
-
-      </button>
+          </button>
 
 
-      <button
-        class="speed-btn"
-        data-speed="1"
-        onclick="setSpeechRate(1)">
-
-        1×
-
-      </button>
+          <span style="margin:0 3px;">
+            |
+          </span>
 
 
-      <button
-        class="speed-btn"
-        data-speed="1.25"
-        onclick="setSpeechRate(1.25)">
-
-        1.25×
-
-      </button>
-
-    </div>
+          <span>
+            Скорость:
+          </span>
 
 
-    <!-- EXTRA -->
+          <button
+            class="speed-btn"
+            data-speed="0.75"
+            onclick="setSpeechRate(0.75)">
 
-    <div class="extra-controls">
+            0.75×
 
-      <button
-        class="secondary-btn"
-        onclick="shuffleCards()">
-
-        🔀 Перемешать
-
-      </button>
+          </button>
 
 
-      <button
-        class="secondary-btn"
-        onclick="resetStats()">
+          <button
+            class="speed-btn active"
+            data-speed="0.9"
+            onclick="setSpeechRate(0.9)">
 
-        ↺ Сбросить статистику
+            0.9×
 
-      </button>
-
-    </div>
-
-  </div>
+          </button>
 
 
-  <!-- ADD CARDS -->
+          <button
+            class="speed-btn"
+            data-speed="1"
+            onclick="setSpeechRate(1)">
 
-  <div class="add-panel">
+            1×
 
-    <h2>
-      Добавить карточки
-    </h2>
-
-
-    <div class="add-description">
-
-      По одной карточке на строку:
-
-      <b>
-        English — Русский
-      </b>
-
-    </div>
+          </button>
 
 
-    <textarea
-      id="cardInput"
-      placeholder="How did you pull that off? — Как тебе это удалось?
-I'm still mortified about everything — Мне до сих пор ужасно неловко из-за всего">
-    </textarea>
+          <button
+            class="speed-btn"
+            data-speed="1.25"
+            onclick="setSpeechRate(1.25)">
+
+            1.25×
+
+          </button>
 
 
-    <div class="add-actions">
+        </div>
 
-      <button
-        class="primary-btn"
-        onclick="addCards()">
 
+        <div class="extra-controls">
+
+
+          <button
+            class="secondary-btn"
+            onclick="shuffleCards()">
+
+            🔀 Перемешать
+
+          </button>
+
+
+          <button
+            class="secondary-btn"
+            onclick="resetStats()">
+
+            ↺ Сбросить
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <!-- =================================================
+         ADD CARDS
+    ================================================= -->
+
+    <details class="mobile-section">
+
+
+      <summary>
         ＋ Добавить карточки
-
-      </button>
-
-
-      <button
-        class="secondary-btn"
-        onclick="loadExample()">
-
-        Пример
-
-      </button>
+      </summary>
 
 
-      <button
-        class="secondary-btn"
-        onclick="clearAll()">
-
-        Очистить всё
-
-      </button>
-
-    </div>
-
-  </div>
+      <div class="section-content">
 
 
-  <!-- LIST -->
+        <div class="add-description">
 
-  <div class="list-panel">
+          Одна карточка на строку:
 
-    <h2>
-      Все карточки
-    </h2>
+          <b>
+            English — Русский
+          </b>
+
+        </div>
 
 
-    <div
-      class="card-list"
-      id="cardList">
-    </div>
+        <textarea
+          id="cardInput"
+          placeholder="How did you pull that off? — Как тебе это удалось?
+I'm still mortified about everything — Мне до сих пор ужасно неловко из-за всего">
+        </textarea>
+
+
+        <div class="add-actions">
+
+
+          <button
+            class="primary-btn"
+            onclick="addCards()">
+
+            ＋ Добавить карточки
+
+          </button>
+
+
+          <button
+            class="secondary-btn"
+            onclick="loadExample()">
+
+            Пример
+
+          </button>
+
+
+          <button
+            class="secondary-btn"
+            onclick="clearAll()">
+
+            Очистить всё
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <!-- =================================================
+         CARD LIST
+    ================================================= -->
+
+    <details class="mobile-section">
+
+
+      <summary>
+        📚 Все карточки
+      </summary>
+
+
+      <div class="section-content">
+
+        <div
+          class="card-list"
+          id="cardList">
+
+        </div>
+
+      </div>
+
+    </details>
+
 
   </div>
 
@@ -1047,9 +1420,9 @@ I'm still mortified about everything — Мне до сих пор ужасно 
 
 <script>
 
-/* =========================
+/* =========================================================
    DATA
-========================= */
+========================================================= */
 
 let cards = JSON.parse(
   localStorage.getItem("englishCards") || "[]"
@@ -1073,9 +1446,9 @@ let currentDirection =
   direction;
 
 
-/* =========================
+/* =========================================================
    SPEECH SETTINGS
-========================= */
+========================================================= */
 
 let speechRate = Number(
   localStorage.getItem("speechRate") ||
@@ -1087,59 +1460,89 @@ let voiceLanguage =
   "en-US";
 
 
-/* =========================
+/* =========================================================
    ELEMENTS
-========================= */
+========================================================= */
 
 const flashcard =
-  document.getElementById("flashcard");
+  document.getElementById(
+    "flashcard"
+  );
 
 const frontText =
-  document.getElementById("frontText");
+  document.getElementById(
+    "frontText"
+  );
 
 const backText =
-  document.getElementById("backText");
+  document.getElementById(
+    "backText"
+  );
 
 const frontLabel =
-  document.getElementById("frontLabel");
+  document.getElementById(
+    "frontLabel"
+  );
 
 const backLabel =
-  document.getElementById("backLabel");
+  document.getElementById(
+    "backLabel"
+  );
 
 const pageCounter =
-  document.getElementById("pageCounter");
+  document.getElementById(
+    "pageCounter"
+  );
 
 const totalCounter =
-  document.getElementById("totalCounter");
+  document.getElementById(
+    "totalCounter"
+  );
 
 const progressBar =
-  document.getElementById("progressBar");
+  document.getElementById(
+    "progressBar"
+  );
 
 const progressPercent =
-  document.getElementById("progressPercent");
+  document.getElementById(
+    "progressPercent"
+  );
 
 const cardList =
-  document.getElementById("cardList");
+  document.getElementById(
+    "cardList"
+  );
 
 const emptyState =
-  document.getElementById("emptyState");
+  document.getElementById(
+    "emptyState"
+  );
 
 const studyArea =
-  document.getElementById("studyArea");
+  document.getElementById(
+    "studyArea"
+  );
 
 const cardInput =
-  document.getElementById("cardInput");
+  document.getElementById(
+    "cardInput"
+  );
 
 const speakBtn =
-  document.getElementById("speakBtn");
+  document.getElementById(
+    "speakBtn"
+  );
 
 const speakBackBtn =
-  document.getElementById("speakBackBtn");
+  document.getElementById(
+    "speakBackBtn"
+  );
 
 
-/* =========================
+/* =========================================================
    EXAMPLES
-========================= */
+========================================================= */
 
 const examples = {
 
@@ -1152,18 +1555,21 @@ const examples = {
 };
 
 
-/* =========================
+/* =========================================================
    DIRECTION
-========================= */
+========================================================= */
 
 function setDirection(newDirection) {
 
-  direction = newDirection;
+  direction =
+    newDirection;
+
 
   localStorage.setItem(
     "cardDirection",
     direction
   );
+
 
   if (
     direction === "mixed"
@@ -1180,6 +1586,7 @@ function setDirection(newDirection) {
       direction;
 
   }
+
 
   updateDirectionButtons();
 
@@ -1199,12 +1606,14 @@ function updateDirectionButtons() {
       direction === "en-ru"
     );
 
+
   document
     .getElementById("ruEnBtn")
     .classList.toggle(
       "active",
       direction === "ru-en"
     );
+
 
   document
     .getElementById("mixedBtn")
@@ -1216,9 +1625,9 @@ function updateDirectionButtons() {
 }
 
 
-/* =========================
+/* =========================================================
    PLACEHOLDER
-========================= */
+========================================================= */
 
 function updatePlaceholder() {
 
@@ -1230,14 +1639,15 @@ function updatePlaceholder() {
 }
 
 
-/* =========================
+/* =========================================================
    ADD CARDS
-========================= */
+========================================================= */
 
 function addCards() {
 
   const text =
     cardInput.value.trim();
+
 
   if (!text) {
     return;
@@ -1247,12 +1657,15 @@ function addCards() {
   const lines =
     text.split("\n");
 
+
   let added = 0;
 
 
   lines.forEach(line => {
 
-    line = line.trim();
+    line =
+      line.trim();
+
 
     if (!line) {
       return;
@@ -1262,13 +1675,19 @@ function addCards() {
     let parts;
 
 
-    if (line.includes("—")) {
+    if (
+      line.includes("—")
+    ) {
 
-      parts = line.split("—");
+      parts =
+        line.split("—");
 
-    } else if (line.includes("–")) {
+    } else if (
+      line.includes("–")
+    ) {
 
-      parts = line.split("–");
+      parts =
+        line.split("–");
 
     } else {
 
@@ -1278,13 +1697,18 @@ function addCards() {
     }
 
 
-    if (parts.length < 2) {
+    if (
+      parts.length < 2
+    ) {
+
       return;
+
     }
 
 
     const english =
       parts[0].trim();
+
 
     const russian =
       parts
@@ -1297,17 +1721,23 @@ function addCards() {
       !english ||
       !russian
     ) {
+
       return;
+
     }
 
 
     const exists =
       cards.some(card =>
 
-        card.english.toLowerCase() ===
-          english.toLowerCase() &&
+        card.english
+          .toLowerCase() ===
+          english.toLowerCase()
 
-        card.russian.toLowerCase() ===
+        &&
+
+        card.russian
+          .toLowerCase() ===
           russian.toLowerCase()
 
       );
@@ -1334,15 +1764,18 @@ function addCards() {
   });
 
 
-  if (added === 0) {
+  if (
+    added === 0
+  ) {
 
     alert(
       "Не удалось добавить карточки.\n\n" +
-      "Проверь формат:\n" +
+      "Формат:\n" +
       "English — Русский"
     );
 
     return;
+
   }
 
 
@@ -1359,13 +1792,15 @@ function addCards() {
 }
 
 
-/* =========================
+/* =========================================================
    SHOW CARD
-========================= */
+========================================================= */
 
 function showCard() {
 
-  if (cards.length === 0) {
+  if (
+    cards.length === 0
+  ) {
 
     studyArea.style.display =
       "none";
@@ -1379,6 +1814,7 @@ function showCard() {
     renderList();
 
     return;
+
   }
 
 
@@ -1404,7 +1840,8 @@ function showCard() {
     currentIndex < 0
   ) {
 
-    currentIndex = 0;
+    currentIndex =
+      0;
 
   }
 
@@ -1433,6 +1870,7 @@ function showCard() {
   flashcard.classList.remove(
     "flipped"
   );
+
 
   stopSpeaking();
 
@@ -1488,9 +1926,9 @@ function showCard() {
 }
 
 
-/* =========================
+/* =========================================================
    FLIP
-========================= */
+========================================================= */
 
 function flipCard() {
 
@@ -1500,6 +1938,7 @@ function flipCard() {
     return;
   }
 
+
   flashcard.classList.toggle(
     "flipped"
   );
@@ -1507,9 +1946,9 @@ function flipCard() {
 }
 
 
-/* =========================
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
 function nextCard() {
 
@@ -1519,7 +1958,9 @@ function nextCard() {
     return;
   }
 
+
   currentIndex++;
+
 
   if (
     currentIndex >=
@@ -1529,6 +1970,7 @@ function nextCard() {
     currentIndex = 0;
 
   }
+
 
   showCard();
 
@@ -1543,7 +1985,9 @@ function previousCard() {
     return;
   }
 
+
   currentIndex--;
+
 
   if (
     currentIndex < 0
@@ -1554,23 +1998,26 @@ function previousCard() {
 
   }
 
+
   showCard();
 
 }
 
 
-/* =========================
-   KNOWN / UNKNOWN
-========================= */
+/* =========================================================
+   ANSWERS
+========================================================= */
 
 function markKnown() {
 
   known++;
 
+
   localStorage.setItem(
     "knownCards",
     known
   );
+
 
   nextCard();
 
@@ -1581,19 +2028,21 @@ function markUnknown() {
 
   unknown++;
 
+
   localStorage.setItem(
     "unknownCards",
     unknown
   );
+
 
   nextCard();
 
 }
 
 
-/* =========================
+/* =========================================================
    PROGRESS
-========================= */
+========================================================= */
 
 function updateProgress() {
 
@@ -1624,22 +2073,25 @@ function updateProgress() {
   progressBar.style.width =
     percent + "%";
 
+
   progressPercent.textContent =
     percent + "%";
 
 }
 
 
-/* =========================
+/* =========================================================
    SHUFFLE
-========================= */
+========================================================= */
 
 function shuffleCards() {
 
   if (
     cards.length < 2
   ) {
+
     return;
+
   }
 
 
@@ -1659,7 +2111,8 @@ function shuffleCards() {
     [
       cards[i],
       cards[j]
-    ] = [
+    ] =
+    [
       cards[j],
       cards[i]
     ];
@@ -1678,15 +2131,16 @@ function shuffleCards() {
 }
 
 
-/* =========================
+/* =========================================================
    RESET STATS
-========================= */
+========================================================= */
 
 function resetStats() {
 
   known = 0;
 
   unknown = 0;
+
 
   localStorage.setItem(
     "knownCards",
@@ -1701,14 +2155,15 @@ function resetStats() {
 }
 
 
-/* =========================
-   VOICE TYPE
-========================= */
+/* =========================================================
+   VOICE
+========================================================= */
 
 function setVoice(language) {
 
   voiceLanguage =
     language;
+
 
   localStorage.setItem(
     "voiceLanguage",
@@ -1731,19 +2186,8 @@ function setVoice(language) {
       language === "en-GB"
     );
 
-
-  /*
-    Если голос уже был выбран,
-    следующая озвучка использует
-    новый вариант.
-  */
-
 }
 
-
-/* =========================
-   SPEECH RATE
-========================= */
 
 function setSpeechRate(rate) {
 
@@ -1773,9 +2217,9 @@ function setSpeechRate(rate) {
 }
 
 
-/* =========================
+/* =========================================================
    FIND VOICE
-========================= */
+========================================================= */
 
 function findEnglishVoice(language) {
 
@@ -1784,15 +2228,15 @@ function findEnglishVoice(language) {
       .getVoices();
 
 
-  if (!voices.length) {
+  if (
+    !voices ||
+    voices.length === 0
+  ) {
+
     return null;
+
   }
 
-
-  /*
-    Сначала ищем точное совпадение:
-    en-US или en-GB
-  */
 
   let voice =
     voices.find(
@@ -1807,20 +2251,19 @@ function findEnglishVoice(language) {
   }
 
 
-  /*
-    Некоторые Windows-голоса
-    имеют дополнительные варианты,
-    поэтому ищем начало языка.
-  */
+  const shortLang =
+    language
+      .substring(0, 2)
+      .toLowerCase();
+
 
   voice =
     voices.find(
       v =>
-        v.lang.toLowerCase()
+        v.lang
+          .toLowerCase()
           .startsWith(
-            language
-              .substring(0, 2)
-              .toLowerCase()
+            shortLang
           )
     );
 
@@ -1830,15 +2273,14 @@ function findEnglishVoice(language) {
 }
 
 
-/* =========================
-   SPEAK ENGLISH
-========================= */
+/* =========================================================
+   SPEAK
+========================================================= */
 
 function speakEnglish(event) {
 
   /*
-    Не переворачиваем карточку
-    при клике на динамик.
+    Не переворачиваем карточку.
   */
 
   event.stopPropagation();
@@ -1847,7 +2289,9 @@ function speakEnglish(event) {
   if (
     cards.length === 0
   ) {
+
     return;
+
   }
 
 
@@ -1860,26 +2304,14 @@ function speakEnglish(event) {
   }
 
 
-  /*
-    Останавливаем предыдущую фразу.
-  */
-
   window.speechSynthesis.cancel();
 
-
-  /*
-    Создаём новый объект речи.
-  */
 
   const utterance =
     new SpeechSynthesisUtterance(
       text
     );
 
-
-  /*
-    Ищем выбранный голос.
-  */
 
   const voice =
     findEnglishVoice(
@@ -1896,12 +2328,6 @@ function speakEnglish(event) {
       voice.lang;
 
   } else {
-
-    /*
-      Даже если конкретного
-      голоса нет, говорим браузеру,
-      что текст английский.
-    */
 
     utterance.lang =
       voiceLanguage;
@@ -1968,15 +2394,16 @@ function speakEnglish(event) {
 }
 
 
-/* =========================
-   STOP SPEAKING
-========================= */
+/* =========================================================
+   STOP SPEECH
+========================================================= */
 
 function stopSpeaking() {
 
   if (
-    "speechSynthesis" in window
-  ) {
+    "speechSynthesis" in
+    window
+      ) {
 
     window.speechSynthesis.cancel();
 
@@ -2003,9 +2430,129 @@ function stopSpeaking() {
 }
 
 
-/* =========================
-   LIST
-========================= */
+/* =========================================================
+   LOAD EXAMPLE
+========================================================= */
+
+function loadExample() {
+
+  cardInput.value =
+    direction === "ru-en"
+      ? examples["ru-en"]
+      : examples["en-ru"];
+
+}
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+function saveCards() {
+
+  localStorage.setItem(
+    "englishCards",
+    JSON.stringify(cards)
+  );
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function deleteCard(index) {
+
+  cards.splice(
+    index,
+    1
+  );
+
+
+  if (
+    currentIndex >=
+    cards.length
+  ) {
+
+    currentIndex =
+      Math.max(
+        0,
+        cards.length - 1
+      );
+
+  }
+
+
+  saveCards();
+
+  showCard();
+
+  renderList();
+
+}
+
+
+/* =========================================================
+   CLEAR
+========================================================= */
+
+function clearAll() {
+
+  if (
+    cards.length === 0
+  ) {
+
+    return;
+
+  }
+
+
+  const confirmed =
+    confirm(
+      "Удалить все карточки?"
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  cards = [];
+
+  currentIndex = 0;
+
+  known = 0;
+
+  unknown = 0;
+
+
+  localStorage.removeItem(
+    "englishCards"
+  );
+
+  localStorage.removeItem(
+    "knownCards"
+  );
+
+  localStorage.removeItem(
+    "unknownCards"
+  );
+
+
+  stopSpeaking();
+
+  showCard();
+
+  renderList();
+
+}
+
+
+/* =========================================================
+   RENDER LIST
+========================================================= */
 
 function renderList() {
 
@@ -2061,127 +2608,9 @@ function renderList() {
 }
 
 
-/* =========================
-   DELETE
-========================= */
-
-function deleteCard(index) {
-
-  cards.splice(
-    index,
-    1
-  );
-
-
-  if (
-    currentIndex >=
-    cards.length
-  ) {
-
-    currentIndex =
-      Math.max(
-        0,
-        cards.length - 1
-      );
-
-  }
-
-
-  saveCards();
-
-  showCard();
-
-  renderList();
-
-}
-
-
-/* =========================
-   CLEAR
-========================= */
-
-function clearAll() {
-
-  if (
-    cards.length === 0
-  ) {
-    return;
-  }
-
-
-  const confirmed =
-    confirm(
-      "Удалить все карточки?"
-    );
-
-
-  if (!confirmed) {
-    return;
-  }
-
-
-  cards = [];
-
-  currentIndex = 0;
-
-  known = 0;
-
-  unknown = 0;
-
-
-  localStorage.removeItem(
-    "englishCards"
-  );
-
-  localStorage.removeItem(
-    "knownCards"
-  );
-
-  localStorage.removeItem(
-    "unknownCards"
-  );
-
-
-  stopSpeaking();
-
-  showCard();
-
-  renderList();
-
-}
-
-
-/* =========================
-   EXAMPLE
-========================= */
-
-function loadExample() {
-
-  cardInput.value =
-    direction === "ru-en"
-      ? examples["ru-en"]
-      : examples["en-ru"];
-
-}
-
-
-/* =========================
-   SAVE
-========================= */
-
-function saveCards() {
-
-  localStorage.setItem(
-    "englishCards",
-    JSON.stringify(cards)
-  );
-
-}
-
-
-/* =========================
+/* =========================================================
    ESCAPE HTML
-========================= */
+========================================================= */
 
 function escapeHtml(text) {
 
@@ -2190,17 +2619,19 @@ function escapeHtml(text) {
       "div"
     );
 
+
   div.textContent =
     text;
+
 
   return div.innerHTML;
 
 }
 
 
-/* =========================
+/* =========================================================
    KEYBOARD
-========================= */
+========================================================= */
 
 document.addEventListener(
   "keydown",
@@ -2213,7 +2644,9 @@ document.addEventListener(
       event.target.tagName ===
         "INPUT"
     ) {
+
       return;
+
     }
 
 
@@ -2229,8 +2662,7 @@ document.addEventListener(
 
 
     if (
-      event.key ===
-      "ArrowRight"
+      event.key === "ArrowRight"
     ) {
 
       nextCard();
@@ -2239,8 +2671,7 @@ document.addEventListener(
 
 
     if (
-      event.key ===
-      "ArrowLeft"
+      event.key === "ArrowLeft"
     ) {
 
       previousCard();
@@ -2269,29 +2700,40 @@ document.addEventListener(
 );
 
 
-/* =========================
-   VOICES LOADING
-========================= */
+/* =========================================================
+   SPEECH INIT
+========================================================= */
 
 function initializeSpeech() {
 
-  /*
-    В некоторых браузерах
-    голоса появляются не сразу.
-  */
+  if (
+    "speechSynthesis" in
+    window
+  ) {
 
-  window.speechSynthesis.getVoices();
+    window.speechSynthesis
+      .getVoices();
+
+  }
 
 }
 
 
-window.speechSynthesis.onvoiceschanged =
-  initializeSpeech;
+if (
+  "speechSynthesis" in
+  window
+) {
+
+  window.speechSynthesis
+    .onvoiceschanged =
+    initializeSpeech;
+
+}
 
 
-/* =========================
+/* =========================================================
    INIT
-========================= */
+========================================================= */
 
 updateDirectionButtons();
 
