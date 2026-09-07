@@ -27,6 +27,7 @@ body {
                  Arial, sans-serif;
     background: #f6f7f9;
     color: #202124;
+
     padding:
         max(18px, env(safe-area-inset-top))
         max(14px, env(safe-area-inset-right))
@@ -154,20 +155,30 @@ body {
     height: 130px;
     min-height: 130px;
     max-height: 300px;
+
     resize: none;
+
     -webkit-appearance: none;
     appearance: none;
+
     border: 1px solid #d8dbe2;
     border-radius: 10px;
+
     padding: 13px;
+
     outline: none;
+
     font-family: inherit;
     font-size: 16px;
     line-height: 1.4;
+
     background: #fff;
     color: #202124;
+
     box-shadow: none;
+
     overflow-y: auto;
+
     -webkit-user-select: text;
     user-select: text;
 }
@@ -186,17 +197,24 @@ body {
 .flashcard {
     width: 100%;
     min-height: 310px;
+
     background: white;
+
     border: 1px solid #e0e2e6;
     border-radius: 20px;
+
     padding: 28px 22px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     cursor: pointer;
+
     user-select: none;
     -webkit-user-select: none;
+
     box-shadow: 0 3px 12px rgba(0,0,0,0.04);
 }
 
@@ -205,16 +223,21 @@ body {
     font-size: 13px;
     margin-bottom: 18px;
     font-weight: 650;
+
     text-transform: uppercase;
     letter-spacing: .04em;
 }
 
 .card-text {
     text-align: center;
+
     font-size: clamp(25px, 4vw, 40px);
     line-height: 1.25;
+
     font-weight: 700;
+
     max-width: 900px;
+
     word-break: break-word;
 }
 
@@ -226,16 +249,23 @@ body {
 
 .speak-btn {
     margin-top: 22px;
+
     width: 44px;
     height: 44px;
+
     border: 1px solid #d8dbe2;
     background: white;
+
     border-radius: 50%;
+
     cursor: pointer;
+
     font-size: 19px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     touch-action: manipulation;
 }
 
@@ -247,26 +277,37 @@ body {
 
 .navigation {
     width: 100%;
+
     margin: 14px auto 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 0;
 }
 
 .nav-btn {
     width: 54px;
     height: 48px;
+
     padding: 0;
+
     border: 1px solid #d8dbe2;
     background: white;
+
     border-radius: 13px;
+
     font-size: 25px;
+
     cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     touch-action: manipulation;
+
     flex-shrink: 0;
 }
 
@@ -276,10 +317,15 @@ body {
 
 .page-counter {
     width: 54px;
+
     text-align: center;
+
     color: #4d5156;
+
     font-size: 15px;
     font-weight: 650;
+
+    flex-shrink: 0;
 }
 
 /* ================= ANSWERS ================= */
@@ -287,18 +333,25 @@ body {
 .answer-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
     gap: 10px;
+
     margin-top: 14px;
 }
 
 .answer-btn {
     min-height: 52px;
+
     border-radius: 13px;
+
     border: 1px solid #d8dbe2;
     background: white;
+
     font-size: 15px;
     font-weight: 650;
+
     cursor: pointer;
+
     touch-action: manipulation;
 }
 
@@ -323,24 +376,33 @@ body {
 .progress-info {
     display: flex;
     justify-content: space-between;
+
     color: #777d85;
+
     font-size: 13px;
+
     margin-bottom: 7px;
 }
 
 .progress-bar {
     width: 100%;
     height: 7px;
+
     background: #e2e4e8;
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
     width: 0%;
+
     background: #202124;
+
     border-radius: inherit;
+
     transition: width .2s ease;
 }
 
@@ -348,17 +410,24 @@ body {
 
 details {
     margin-top: 14px;
+
     background: white;
+
     border: 1px solid #e0e2e6;
+
     border-radius: 14px;
+
     overflow: hidden;
 }
 
 summary {
     cursor: pointer;
+
     padding: 15px 16px;
+
     font-size: 15px;
     font-weight: 650;
+
     user-select: none;
     -webkit-user-select: none;
 }
@@ -373,14 +442,49 @@ summary {
 
 .section-btn {
     width: 100%;
+
     min-height: 46px;
+
     border: 1px solid #d8dbe2;
     background: #f8f9fa;
+
     border-radius: 10px;
+
     font-size: 15px;
     font-weight: 600;
+
     cursor: pointer;
+
     touch-action: manipulation;
+}
+
+/* ================= DELETE ================= */
+
+.delete-all-btn {
+    width: 100%;
+
+    min-height: 46px;
+
+    margin-top: 14px;
+
+    border: 1px solid #e5bcbc;
+
+    background: #fff5f5;
+
+    color: #b3261e;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+.delete-all-btn:active {
+    transform: scale(.98);
 }
 
 /* ================= VOICE ================= */
@@ -389,7 +493,9 @@ summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 12px;
+
     margin-bottom: 12px;
 }
 
@@ -403,9 +509,13 @@ summary {
 
 .voice-row select {
     border: 1px solid #d8dbe2;
+
     background: white;
+
     border-radius: 9px;
+
     padding: 8px 10px;
+
     font-size: 14px;
 }
 
@@ -414,14 +524,24 @@ summary {
 .card-list {
     display: flex;
     flex-direction: column;
+
     gap: 8px;
 }
 
 .card-list-item {
     border: 1px solid #e0e2e6;
+
     border-radius: 10px;
+
     padding: 11px 12px;
+
     background: #fafbfc;
+
+    cursor: pointer;
+}
+
+.card-list-item:active {
+    transform: scale(.99);
 }
 
 .card-list-en {
@@ -437,30 +557,35 @@ summary {
 /* ================= DESKTOP ================= */
 
 @media (min-width: 700px) {
+
     .flashcard {
         min-height: 350px;
     }
 
     .answer-buttons {
         max-width: 650px;
+
         margin-left: auto;
         margin-right: auto;
     }
 
     .progress-wrap {
         max-width: 650px;
+
         margin-left: auto;
         margin-right: auto;
     }
 
     details {
         max-width: 850px;
+
         margin-left: auto;
         margin-right: auto;
     }
 
     .add-mobile {
         max-width: 850px;
+
         margin-left: auto;
         margin-right: auto;
     }
@@ -492,17 +617,21 @@ summary {
 
     .direction-buttons {
         gap: 6px;
+
         margin-bottom: 13px;
     }
 
     .direction-btn {
         padding: 8px 11px;
+
         font-size: 13px;
     }
 
     .flashcard {
         min-height: 290px;
+
         padding: 24px 16px;
+
         border-radius: 17px;
     }
 
@@ -512,27 +641,34 @@ summary {
 
     .navigation {
         margin-top: 12px;
+
+        gap: 0;
     }
 
     .nav-btn {
         width: 50px;
         height: 46px;
+
         border-radius: 12px;
+
         font-size: 23px;
     }
 
     .page-counter {
         width: 50px;
+
         font-size: 14px;
     }
 
     .answer-buttons {
         margin-top: 12px;
+
         gap: 8px;
     }
 
     .answer-btn {
         min-height: 50px;
+
         font-size: 14px;
     }
 }
@@ -556,12 +692,14 @@ summary {
 
     .page-counter {
         width: 46px;
+
         font-size: 13px;
     }
 
     .add-mobile textarea,
     .section-content textarea {
         font-size: 16px;
+
         height: 130px;
         min-height: 130px;
         max-height: 300px;
@@ -587,55 +725,82 @@ summary {
 
     details {
         max-height: 320px;
+
         overflow: hidden;
     }
 }
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
 
-    <!-- HEADER -->
+    <!-- ================= HEADER ================= -->
+
     <div class="header">
-        <h1>English phrases</h1>
-        <p>Карточки для изучения английского</p>
-        <div class="total-counter" id="totalCounter">
+
+        <h1>
+            English phrases
+        </h1>
+
+        <p>
+            Карточки для изучения английского
+        </p>
+
+        <div
+            class="total-counter"
+            id="totalCounter">
             0 карточек
         </div>
+
     </div>
 
-    <!-- DIRECTION -->
+
+    <!-- ================= DIRECTION ================= -->
+
     <div class="direction-buttons">
 
         <button
             class="direction-btn active"
             id="directionEnRu"
             onclick="setDirection('en-ru')">
+
             English → Русский
+
         </button>
 
         <button
             class="direction-btn"
             id="directionRuEn"
             onclick="setDirection('ru-en')">
+
             Русский → English
+
         </button>
 
         <button
             class="direction-btn"
             id="directionMixed"
             onclick="setDirection('mixed')">
+
             Mixed
+
         </button>
 
     </div>
 
-    <!-- EMPTY STATE -->
-    <div class="empty-state" id="emptyState">
 
-        <h2>Пока нет карточек</h2>
+    <!-- ================= EMPTY STATE ================= -->
+
+    <div
+        class="empty-state"
+        id="emptyState">
+
+        <h2>
+            Пока нет карточек
+        </h2>
 
         <p>
             Добавь английские фразы и их перевод,
@@ -645,15 +810,24 @@ summary {
         <button
             class="add-main-btn"
             onclick="showAddPanel()">
+
             ＋ Добавить карточки
+
         </button>
 
     </div>
 
-    <!-- ADD CARDS BEFORE STUDY -->
-    <div class="add-mobile" id="addCardsMobile" style="display:none;">
 
-        <h3>Добавить карточки</h3>
+    <!-- ================= FIRST ADD PANEL ================= -->
+
+    <div
+        class="add-mobile"
+        id="addCardsMobile"
+        style="display:none;">
+
+        <h3>
+            Добавить карточки
+        </h3>
 
         <textarea
             id="cardInput"
@@ -664,88 +838,122 @@ I can't believe it. — Я не могу в это поверить."></textarea
             class="add-main-btn"
             style="margin-top:10px;"
             onclick="addCards()">
+
             Добавить
+
         </button>
 
     </div>
 
-    <!-- STUDY -->
-    <div class="study-area" id="studyArea">
 
-        <!-- FLASHCARD -->
+    <!-- ================= STUDY AREA ================= -->
+
+    <div
+        class="study-area"
+        id="studyArea">
+
+
+        <!-- ================= FLASHCARD ================= -->
+
         <div
             class="flashcard"
             id="flashcard"
             onclick="flipCard()">
 
-            <div class="card-label" id="cardLabel">
+            <div
+                class="card-label"
+                id="cardLabel">
+
                 English
+
             </div>
 
             <div
                 class="card-text"
                 id="cardText">
+
                 —
+
             </div>
 
             <div
                 class="card-hint"
                 id="cardHint">
+
                 Нажми на карточку, чтобы перевернуть
+
             </div>
 
             <button
                 class="speak-btn"
                 onclick="speakCurrent(event)"
                 aria-label="Озвучить">
+
                 🔊
+
             </button>
 
         </div>
 
-        <!-- NAVIGATION -->
+
+        <!-- ================= NAVIGATION ================= -->
+
         <div class="navigation">
 
             <button
                 class="nav-btn"
                 onclick="previousCard()"
                 aria-label="Предыдущая">
+
                 ←
+
             </button>
 
             <div
                 class="page-counter"
                 id="pageCounter">
+
                 1 / 0
+
             </div>
 
             <button
                 class="nav-btn"
                 onclick="nextCard()"
                 aria-label="Следующая">
+
                 →
+
             </button>
 
         </div>
 
-        <!-- ANSWER BUTTONS -->
+
+        <!-- ================= ANSWER BUTTONS ================= -->
+
         <div class="answer-buttons">
 
             <button
                 class="answer-btn unknown"
                 onclick="markUnknown()">
+
                 ✕ Не знаю
+
             </button>
 
             <button
                 class="answer-btn known"
                 onclick="markKnown()">
+
                 ✓ Знаю
+
             </button>
 
         </div>
 
-        <!-- PROGRESS -->
+
+        <!-- ================= PROGRESS ================= -->
+
         <div class="progress-wrap">
 
             <div class="progress-info">
@@ -771,7 +979,9 @@ I can't believe it. — Я не могу в это поверить."></textarea
 
         </div>
 
-        <!-- VOICE SETTINGS -->
+
+        <!-- ================= VOICE SETTINGS ================= -->
+
         <details>
 
             <summary>
@@ -787,6 +997,7 @@ I can't believe it. — Я не могу в это поверить."></textarea
                     </label>
 
                     <select id="voiceLanguage">
+
                         <option value="en-US">
                             English US
                         </option>
@@ -794,9 +1005,11 @@ I can't believe it. — Я не могу в это поверить."></textarea
                         <option value="en-GB">
                             English UK
                         </option>
+
                     </select>
 
                 </div>
+
 
                 <div class="voice-row">
 
@@ -830,7 +1043,9 @@ I can't believe it. — Я не могу в это поверить."></textarea
 
         </details>
 
-        <!-- ADD MORE -->
+
+        <!-- ================= ADD MORE ================= -->
+
         <details>
 
             <summary>
@@ -846,14 +1061,18 @@ I can't believe it. — Я не могу в это поверить."></textarea
                 <button
                     class="section-btn"
                     onclick="addCardsFromStudy()">
+
                     Добавить карточки
+
                 </button>
 
             </div>
 
         </details>
 
-        <!-- ALL CARDS -->
+
+        <!-- ================= ALL CARDS ================= -->
+
         <details>
 
             <summary>
@@ -866,6 +1085,17 @@ I can't believe it. — Я не могу в это поверить."></textarea
                     class="card-list"
                     id="cardList">
                 </div>
+
+
+                <!-- DELETE ALL -->
+
+                <button
+                    class="delete-all-btn"
+                    onclick="deleteAllCards()">
+
+                    🗑️ Удалить все карточки
+
+                </button>
 
             </div>
 
@@ -898,12 +1128,15 @@ let direction =
     localStorage.getItem("cardDirection") || "en-ru";
 
 let speechRate =
-    Number(localStorage.getItem("speechRate") || "1");
+    Number(
+        localStorage.getItem("speechRate") || "1"
+    );
 
 let voiceLanguage =
     localStorage.getItem("voiceLanguage") || "en-US";
 
 let currentIndex = 0;
+
 let isFlipped = false;
 
 
@@ -911,64 +1144,88 @@ let isFlipped = false;
    INIT
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    document.getElementById("speechRate").value =
-        speechRate;
+        document.getElementById(
+            "speechRate"
+        ).value = speechRate;
 
-    document.getElementById("voiceLanguage").value =
-        voiceLanguage;
 
-    document
-        .getElementById("speechRate")
-        .addEventListener("change", function () {
+        document.getElementById(
+            "voiceLanguage"
+        ).value = voiceLanguage;
 
-            speechRate = Number(this.value);
 
-            localStorage.setItem(
-                "speechRate",
-                speechRate
+        document
+            .getElementById("speechRate")
+            .addEventListener(
+                "change",
+                function () {
+
+                    speechRate =
+                        Number(this.value);
+
+                    localStorage.setItem(
+                        "speechRate",
+                        speechRate
+                    );
+
+                }
             );
 
-        });
 
-    document
-        .getElementById("voiceLanguage")
-        .addEventListener("change", function () {
+        document
+            .getElementById("voiceLanguage")
+            .addEventListener(
+                "change",
+                function () {
 
-            voiceLanguage = this.value;
+                    voiceLanguage =
+                        this.value;
 
-            localStorage.setItem(
-                "voiceLanguage",
-                voiceLanguage
+                    localStorage.setItem(
+                        "voiceLanguage",
+                        voiceLanguage
+                    );
+
+                }
             );
 
-        });
 
-    updateDirectionButtons();
+        updateDirectionButtons();
 
-    if (cards.length > 0) {
 
-        document.getElementById("emptyState")
-            .style.display = "none";
+        if (cards.length > 0) {
 
-        document.getElementById("addCardsMobile")
-            .style.display = "none";
+            document
+                .getElementById("emptyState")
+                .style.display = "none";
 
-        document.getElementById("studyArea")
-            .style.display = "block";
 
-        showCard();
+            document
+                .getElementById("addCardsMobile")
+                .style.display = "none";
 
-        renderList();
 
-    } else {
+            document
+                .getElementById("studyArea")
+                .style.display = "block";
 
-        updateCounters();
+
+            showCard();
+
+            renderList();
+
+        } else {
+
+            updateCounters();
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================================================
@@ -985,6 +1242,7 @@ function setDirection(value) {
     );
 
     currentIndex = 0;
+
     isFlipped = false;
 
     updateDirectionButtons();
@@ -1005,12 +1263,14 @@ function updateDirectionButtons() {
             direction === "en-ru"
         );
 
+
     document
         .getElementById("directionRuEn")
         .classList.toggle(
             "active",
             direction === "ru-en"
         );
+
 
     document
         .getElementById("directionMixed")
@@ -1023,23 +1283,29 @@ function updateDirectionButtons() {
 
 
 /* =========================================================
-   ADD PANEL
+   SHOW ADD PANEL
 ========================================================= */
 
 function showAddPanel() {
 
     const panel =
-        document.getElementById("addCardsMobile");
+        document.getElementById(
+            "addCardsMobile"
+        );
 
     panel.style.display = "block";
 
-    setTimeout(() => {
 
-        document
-            .getElementById("cardInput")
-            .focus();
+    setTimeout(
+        () => {
 
-    }, 100);
+            document
+                .getElementById("cardInput")
+                .focus();
+
+        },
+        100
+    );
 
 }
 
@@ -1053,40 +1319,66 @@ function parseAndAddCards(text) {
     const lines =
         text
             .split(/\r?\n/)
-            .map(line => line.trim())
+            .map(
+                line => line.trim()
+            )
             .filter(Boolean);
+
 
     let added = 0;
 
-    lines.forEach(line => {
 
-        let parts = line.split(/\s*[—–-]\s*/);
+    lines.forEach(
+        line => {
 
-        if (parts.length < 2) {
-            return;
+            const parts =
+                line.split(
+                    /\s*[—–-]\s*/
+                );
+
+
+            if (parts.length < 2) {
+                return;
+            }
+
+
+            const english =
+                parts[0].trim();
+
+
+            const russian =
+                parts
+                    .slice(1)
+                    .join(" - ")
+                    .trim();
+
+
+            if (
+                !english ||
+                !russian
+            ) {
+                return;
+            }
+
+
+            cards.push({
+
+                id:
+                    Date.now() +
+                    Math.random(),
+
+                en: english,
+
+                ru: russian
+
+            });
+
+
+            added++;
+
         }
+    );
 
-        const english =
-            parts[0].trim();
-
-        const russian =
-            parts.slice(1)
-                .join(" - ")
-                .trim();
-
-        if (!english || !russian) {
-            return;
-        }
-
-        cards.push({
-            id: Date.now() + Math.random(),
-            en: english,
-            ru: russian
-        });
-
-        added++;
-
-    });
 
     return added;
 
@@ -1100,20 +1392,28 @@ function parseAndAddCards(text) {
 function addCards() {
 
     const input =
-        document.getElementById("cardInput");
+        document.getElementById(
+            "cardInput"
+        );
+
 
     const text =
         input.value.trim();
 
+
     if (!text) {
 
-        alert("Введи хотя бы одну карточку.");
+        alert(
+            "Введи хотя бы одну карточку."
+        );
 
         return;
     }
 
+
     const added =
         parseAndAddCards(text);
+
 
     if (added === 0) {
 
@@ -1126,23 +1426,37 @@ function addCards() {
         return;
     }
 
+
     input.value = "";
+
 
     saveCards();
 
-    document.getElementById("emptyState")
+
+    document
+        .getElementById("emptyState")
         .style.display = "none";
 
-    document.getElementById("addCardsMobile")
+
+    document
+        .getElementById("addCardsMobile")
         .style.display = "none";
 
-    document.getElementById("studyArea")
+
+    document
+        .getElementById("studyArea")
         .style.display = "block";
 
+
     currentIndex =
-        Math.max(0, cards.length - added);
+        Math.max(
+            0,
+            cards.length - added
+        );
+
 
     isFlipped = false;
+
 
     showCard();
 
@@ -1158,20 +1472,28 @@ function addCards() {
 function addCardsFromStudy() {
 
     const input =
-        document.getElementById("cardInputStudy");
+        document.getElementById(
+            "cardInputStudy"
+        );
+
 
     const text =
         input.value.trim();
 
+
     if (!text) {
 
-        alert("Введи хотя бы одну карточку.");
+        alert(
+            "Введи хотя бы одну карточку."
+        );
 
         return;
     }
 
+
     const added =
         parseAndAddCards(text);
+
 
     if (added === 0) {
 
@@ -1184,16 +1506,21 @@ function addCardsFromStudy() {
         return;
     }
 
+
     input.value = "";
 
+
     saveCards();
+
 
     showCard();
 
     renderList();
 
+
     const details =
         input.closest("details");
+
 
     if (details) {
         details.open = false;
@@ -1213,15 +1540,18 @@ function saveCards() {
         JSON.stringify(cards)
     );
 
+
     localStorage.setItem(
         "knownCards",
         JSON.stringify(knownCards)
     );
 
+
     localStorage.setItem(
         "unknownCards",
         JSON.stringify(unknownCards)
     );
+
 
     updateCounters();
 
@@ -1238,64 +1568,101 @@ function showCard() {
         return;
     }
 
+
     if (currentIndex < 0) {
         currentIndex = 0;
     }
 
-    if (currentIndex >= cards.length) {
-        currentIndex = cards.length - 1;
+
+    if (
+        currentIndex >= cards.length
+    ) {
+
+        currentIndex =
+            cards.length - 1;
+
     }
 
+
     isFlipped = false;
+
 
     const card =
         cards[currentIndex];
 
+
     let showEnglish = true;
+
 
     if (direction === "ru-en") {
 
         showEnglish = false;
 
-    } else if (direction === "mixed") {
+    }
+
+
+    else if (
+        direction === "mixed"
+    ) {
 
         showEnglish =
             Math.random() > 0.5;
 
     }
 
+
     const cardText =
-        document.getElementById("cardText");
+        document.getElementById(
+            "cardText"
+        );
+
 
     const cardLabel =
-        document.getElementById("cardLabel");
+        document.getElementById(
+            "cardLabel"
+        );
+
 
     const cardHint =
-        document.getElementById("cardHint");
+        document.getElementById(
+            "cardHint"
+        );
+
 
     if (showEnglish) {
 
-        cardText.textContent = card.en;
+        cardText.textContent =
+            card.en;
 
-        cardLabel.textContent = "English";
+        cardLabel.textContent =
+            "English";
 
     } else {
 
-        cardText.textContent = card.ru;
+        cardText.textContent =
+            card.ru;
 
-        cardLabel.textContent = "Русский";
+        cardLabel.textContent =
+            "Русский";
 
     }
+
 
     cardHint.textContent =
         "Нажми на карточку, чтобы перевернуть";
 
-    cardText.dataset.side =
-        showEnglish ? "en" : "ru";
 
-    document.getElementById("pageCounter")
+    cardText.dataset.side =
+        showEnglish
+            ? "en"
+            : "ru";
+
+
+    document
+        .getElementById("pageCounter")
         .textContent =
         `${currentIndex + 1} / ${cards.length}`;
+
 
     updateProgress();
 
@@ -1312,37 +1679,54 @@ function flipCard() {
         return;
     }
 
+
     const card =
         cards[currentIndex];
 
+
     const cardText =
-        document.getElementById("cardText");
+        document.getElementById(
+            "cardText"
+        );
+
 
     const cardLabel =
-        document.getElementById("cardLabel");
+        document.getElementById(
+            "cardLabel"
+        );
+
 
     const currentSide =
         cardText.dataset.side;
 
+
     if (currentSide === "en") {
 
-        cardText.textContent = card.ru;
+        cardText.textContent =
+            card.ru;
 
-        cardLabel.textContent = "Русский";
+        cardLabel.textContent =
+            "Русский";
 
-        cardText.dataset.side = "ru";
+        cardText.dataset.side =
+            "ru";
 
     } else {
 
-        cardText.textContent = card.en;
+        cardText.textContent =
+            card.en;
 
-        cardLabel.textContent = "English";
+        cardLabel.textContent =
+            "English";
 
-        cardText.dataset.side = "en";
+        cardText.dataset.side =
+            "en";
 
     }
 
-    isFlipped = !isFlipped;
+
+    isFlipped =
+        !isFlipped;
 
 }
 
@@ -1357,11 +1741,18 @@ function nextCard() {
         return;
     }
 
+
     currentIndex++;
 
-    if (currentIndex >= cards.length) {
+
+    if (
+        currentIndex >= cards.length
+    ) {
+
         currentIndex = 0;
+
     }
+
 
     showCard();
 
@@ -1374,11 +1765,17 @@ function previousCard() {
         return;
     }
 
+
     currentIndex--;
 
+
     if (currentIndex < 0) {
-        currentIndex = cards.length - 1;
+
+        currentIndex =
+            cards.length - 1;
+
     }
+
 
     showCard();
 
@@ -1395,19 +1792,28 @@ function markKnown() {
         return;
     }
 
+
     const id =
         cards[currentIndex].id;
 
-    if (!knownCards.includes(id)) {
+
+    if (
+        !knownCards.includes(id)
+    ) {
+
         knownCards.push(id);
+
     }
+
 
     unknownCards =
         unknownCards.filter(
             item => item !== id
         );
 
+
     saveCards();
+
 
     nextCard();
 
@@ -1420,21 +1826,103 @@ function markUnknown() {
         return;
     }
 
+
     const id =
         cards[currentIndex].id;
 
-    if (!unknownCards.includes(id)) {
+
+    if (
+        !unknownCards.includes(id)
+    ) {
+
         unknownCards.push(id);
+
     }
+
 
     knownCards =
         knownCards.filter(
             item => item !== id
         );
 
+
     saveCards();
 
+
     nextCard();
+
+}
+
+
+/* =========================================================
+   DELETE ALL CARDS
+========================================================= */
+
+function deleteAllCards() {
+
+    if (cards.length === 0) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `Удалить все ${cards.length} карточек?\n\n` +
+            `Прогресс обучения также будет сброшен.\n\n` +
+            `Это действие нельзя отменить.`
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    cards = [];
+
+    knownCards = [];
+
+    unknownCards = [];
+
+
+    currentIndex = 0;
+
+    isFlipped = false;
+
+
+    localStorage.removeItem(
+        "englishCards"
+    );
+
+    localStorage.removeItem(
+        "knownCards"
+    );
+
+    localStorage.removeItem(
+        "unknownCards"
+    );
+
+
+    document
+        .getElementById("studyArea")
+        .style.display = "none";
+
+
+    document
+        .getElementById("emptyState")
+        .style.display = "block";
+
+
+    document
+        .getElementById("addCardsMobile")
+        .style.display = "none";
+
+
+    updateCounters();
+
+    updateProgress();
+
+    renderList();
 
 }
 
@@ -1447,30 +1935,45 @@ function updateProgress() {
 
     if (cards.length === 0) {
 
-        document.getElementById("progressText")
+        document
+            .getElementById("progressText")
             .textContent = "0%";
 
-        document.getElementById("progressFill")
+
+        document
+            .getElementById("progressFill")
             .style.width = "0%";
+
 
         return;
     }
 
+
     const knownCount =
-        knownCards.filter(id =>
-            cards.some(card => card.id === id)
+        knownCards.filter(
+            id =>
+                cards.some(
+                    card =>
+                        card.id === id
+                )
         ).length;
+
 
     const percent =
         Math.round(
-            (knownCount / cards.length) * 100
+            (knownCount / cards.length) *
+            100
         );
 
-    document.getElementById("progressText")
+
+    document
+        .getElementById("progressText")
         .textContent =
         `${percent}%`;
 
-    document.getElementById("progressFill")
+
+    document
+        .getElementById("progressFill")
         .style.width =
         `${percent}%`;
 
@@ -1486,8 +1989,12 @@ function updateCounters() {
     const total =
         cards.length;
 
+
     const counter =
-        document.getElementById("totalCounter");
+        document.getElementById(
+            "totalCounter"
+        );
+
 
     if (total === 0) {
 
@@ -1497,12 +2004,15 @@ function updateCounters() {
         return;
     }
 
+
     if (total === 1) {
 
         counter.textContent =
             "1 карточка";
 
-    } else if (
+    }
+
+    else if (
         total >= 2 &&
         total <= 4
     ) {
@@ -1510,7 +2020,9 @@ function updateCounters() {
         counter.textContent =
             `${total} карточки`;
 
-    } else {
+    }
+
+    else {
 
         counter.textContent =
             `${total} карточек`;
@@ -1521,50 +2033,68 @@ function updateCounters() {
 
 
 /* =========================================================
-   LIST
+   CARD LIST
 ========================================================= */
 
 function renderList() {
 
     const list =
-        document.getElementById("cardList");
+        document.getElementById(
+            "cardList"
+        );
+
 
     list.innerHTML = "";
 
-    cards.forEach((card, index) => {
 
-        const item =
-            document.createElement("div");
+    cards.forEach(
+        (card, index) => {
 
-        item.className =
-            "card-list-item";
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-        item.innerHTML = `
-            <div class="card-list-en">
-                ${escapeHtml(card.en)}
-            </div>
 
-            <div class="card-list-ru">
-                ${escapeHtml(card.ru)}
-            </div>
-        `;
+            item.className =
+                "card-list-item";
 
-        item.onclick = () => {
 
-            currentIndex = index;
+            item.innerHTML = `
 
-            showCard();
+                <div class="card-list-en">
+                    ${escapeHtml(card.en)}
+                </div>
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+                <div class="card-list-ru">
+                    ${escapeHtml(card.ru)}
+                </div>
 
-        };
+            `;
 
-        list.appendChild(item);
 
-    });
+            item.onclick = () => {
+
+                currentIndex = index;
+
+                showCard();
+
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            };
+
+
+            list.appendChild(item);
+
+        }
+    );
 
 }
 
@@ -1576,9 +2106,14 @@ function renderList() {
 function escapeHtml(text) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    div.textContent = text;
+
+    div.textContent =
+        text;
+
 
     return div.innerHTML;
 
@@ -1595,32 +2130,19 @@ function speakCurrent(event) {
         event.stopPropagation();
     }
 
+
     if (cards.length === 0) {
         return;
     }
 
+
     const card =
         cards[currentIndex];
 
-    const cardText =
-        document.getElementById("cardText");
 
-    const side =
-        cardText.dataset.side;
-
-    let text = "";
-
-    if (side === "ru") {
-
-        text = card.en;
-
-    } else {
-
-        text = card.en;
-
-    }
-
-    if (!("speechSynthesis" in window)) {
+    if (
+        !("speechSynthesis" in window)
+    ) {
 
         alert(
             "Озвучка не поддерживается этим браузером."
@@ -1629,16 +2151,23 @@ function speakCurrent(event) {
         return;
     }
 
+
     speechSynthesis.cancel();
 
+
     const utterance =
-        new SpeechSynthesisUtterance(text);
+        new SpeechSynthesisUtterance(
+            card.en
+        );
+
 
     utterance.lang =
         voiceLanguage;
 
+
     utterance.rate =
         speechRate;
+
 
     speechSynthesis.speak(
         utterance
@@ -1651,44 +2180,64 @@ function speakCurrent(event) {
    KEYBOARD
 ========================================================= */
 
-document.addEventListener("keydown", event => {
+document.addEventListener(
+    "keydown",
+    event => {
 
-    if (cards.length === 0) {
-        return;
+        if (cards.length === 0) {
+            return;
+        }
+
+
+        if (
+            event.target.tagName ===
+                "TEXTAREA" ||
+
+            event.target.tagName ===
+                "INPUT" ||
+
+            event.target.tagName ===
+                "SELECT"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key ===
+            "ArrowRight"
+        ) {
+
+            nextCard();
+
+        }
+
+
+        if (
+            event.key ===
+            "ArrowLeft"
+        ) {
+
+            previousCard();
+
+        }
+
+
+        if (
+            event.key === " " ||
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            flipCard();
+
+        }
+
     }
-
-    if (
-        event.target.tagName === "TEXTAREA" ||
-        event.target.tagName === "INPUT" ||
-        event.target.tagName === "SELECT"
-    ) {
-        return;
-    }
-
-    if (event.key === "ArrowRight") {
-
-        nextCard();
-
-    }
-
-    if (event.key === "ArrowLeft") {
-
-        previousCard();
-
-    }
-
-    if (
-        event.key === " " ||
-        event.key === "Enter"
-    ) {
-
-        event.preventDefault();
-
-        flipCard();
-
-    }
-
-});
+);
 
 
 /* =========================================================
@@ -1696,35 +2245,53 @@ document.addEventListener("keydown", event => {
 ========================================================= */
 
 let touchStartX = 0;
+
 let touchEndX = 0;
 
+
 const flashcard =
-    document.getElementById("flashcard");
+    document.getElementById(
+        "flashcard"
+    );
+
 
 flashcard.addEventListener(
     "touchstart",
     event => {
 
         touchStartX =
-            event.changedTouches[0].screenX;
+            event.changedTouches[0]
+                .screenX;
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
+
 
 flashcard.addEventListener(
     "touchend",
     event => {
 
         touchEndX =
-            event.changedTouches[0].screenX;
+            event.changedTouches[0]
+                .screenX;
+
 
         const diff =
-            touchEndX - touchStartX;
+            touchEndX -
+            touchStartX;
 
-        if (Math.abs(diff) < 50) {
+
+        if (
+            Math.abs(diff) < 50
+        ) {
+
             return;
+
         }
+
 
         if (diff < 0) {
 
@@ -1737,7 +2304,9 @@ flashcard.addEventListener(
         }
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
