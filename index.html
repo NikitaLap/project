@@ -1,34 +1,40 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               viewport-fit=cover">
+
+<meta
+  name="viewport"
+  content="width=device-width,
+           initial-scale=1,
+           maximum-scale=1,
+           viewport-fit=cover">
+
+<meta name="theme-color" content="#f6f7fb">
 
 <title>English Phrases</title>
 
 <style>
-
 /* =========================================================
-   BASIC
+   RESET
 ========================================================= */
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-html,
+html {
+  width: 100%;
+  min-height: 100%;
+  background: #f6f7fb;
+}
+
 body {
   margin: 0;
-  padding: 0;
-  min-height: 100%;
-}
+  width: 100%;
+  min-height: 100dvh;
 
-body {
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -39,6 +45,8 @@ body {
 
   background: #f6f7fb;
   color: #202124;
+
+  overflow-x: hidden;
 }
 
 button,
@@ -47,18 +55,24 @@ textarea {
 }
 
 button {
-  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
+
+
+/* =========================================================
+   APP
+========================================================= */
 
 .container {
   width: 100%;
-  max-width: 1050px;
+  max-width: 900px;
+
   margin: 0 auto;
 
   padding:
-    max(18px, env(safe-area-inset-top))
-    18px
-    max(35px, env(safe-area-inset-bottom));
+    max(14px, env(safe-area-inset-top))
+    14px
+    max(24px, env(safe-area-inset-bottom));
 }
 
 
@@ -71,15 +85,23 @@ button {
   align-items: center;
   justify-content: space-between;
 
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+
+  margin-bottom: 14px;
+}
+
+.title-block {
+  min-width: 0;
 }
 
 .title-block h1 {
   margin: 0;
 
-  font-size: 27px;
+  font-size: 25px;
+  line-height: 1.15;
+
   font-weight: 750;
+
   letter-spacing: -0.4px;
 }
 
@@ -87,40 +109,49 @@ button {
   margin: 5px 0 0;
 
   color: #70757a;
-  font-size: 13px;
+
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 .counter {
   flex-shrink: 0;
 
-  background: white;
+  padding: 8px 10px;
+
+  background: #fff;
+
   border: 1px solid #e0e2e7;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
-  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 650;
 
-  font-size: 13px;
-  font-weight: 600;
+  white-space: nowrap;
 }
 
 
 /* =========================================================
-   DIRECTION BUTTONS
+   DIRECTION
 ========================================================= */
 
 .top-controls {
+  width: 100%;
+
   display: flex;
 
-  gap: 8px;
+  gap: 7px;
 
   overflow-x: auto;
 
-  margin-bottom: 15px;
+  padding: 1px 1px 5px;
 
-  padding-bottom: 3px;
+  margin-bottom: 10px;
 
   scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
 }
 
 .top-controls::-webkit-scrollbar {
@@ -128,31 +159,29 @@ button {
 }
 
 .direction-btn {
-  flex-shrink: 0;
+  flex: 0 0 auto;
 
-  background: white;
+  min-height: 38px;
+
+  padding: 8px 11px;
+
+  border-radius: 10px;
 
   border: 1px solid #d8dbe2;
 
-  border-radius: 11px;
+  background: #fff;
 
-  padding: 9px 13px;
+  color: #202124;
 
-  cursor: pointer;
-
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 650;
 
   white-space: nowrap;
-
-  min-height: 40px;
-
-  transition: 0.2s;
 }
 
 .direction-btn.active {
   background: #202124;
-  color: white;
+  color: #fff;
   border-color: #202124;
 }
 
@@ -173,22 +202,26 @@ button {
 .card-wrapper {
   width: 100%;
 
-  display: flex;
-  justify-content: center;
-
-  perspective: 1400px;
+  perspective: 1200px;
 }
 
 .flashcard {
   width: 100%;
 
-  height: min(62vh, 460px);
+  /*
+    Используем dvh, чтобы Safari/Chrome
+    корректно учитывали адресную строку.
+  */
+  height: min(55dvh, 430px);
 
-  min-height: 330px;
+  min-height: 280px;
+
+  position: relative;
 
   cursor: pointer;
 
-  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .card-inner {
@@ -200,7 +233,7 @@ button {
   transform-style: preserve-3d;
 
   transition:
-    transform 0.52s
+    transform .48s
     cubic-bezier(.2,.7,.2,1);
 }
 
@@ -211,32 +244,37 @@ button {
 .card-face {
   position: absolute;
 
+  inset: 0;
+
   width: 100%;
   height: 100%;
 
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-
-  border-radius: 20px;
-
-  background: white;
-
-  border: 1px solid #e0e2e7;
-
-  box-shadow:
-    0 8px 28px rgba(0, 0, 0, 0.07);
+  padding:
+    55px
+    22px
+    48px;
 
   display: flex;
 
-  flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
 
   text-align: center;
 
-  padding: 50px 26px;
+  background: #fff;
+
+  border:
+    1px solid #e0e2e7;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,.06);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  overflow: hidden;
 }
 
 .card-back {
@@ -251,18 +289,17 @@ button {
 .card-label {
   position: absolute;
 
-  top: 17px;
-  left: 20px;
-
-  font-size: 12px;
+  top: 14px;
+  left: 16px;
 
   color: #8a8d93;
 
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 750;
+
+  letter-spacing: .5px;
 
   text-transform: uppercase;
-
-  letter-spacing: 0.5px;
 }
 
 
@@ -273,47 +310,47 @@ button {
 .speak-btn {
   position: absolute;
 
-  top: 13px;
-  right: 13px;
+  top: 9px;
+  right: 9px;
 
-  width: 45px;
-  height: 45px;
+  z-index: 100;
+
+  width: 42px;
+  height: 42px;
 
   padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border-radius: 50%;
 
   border: 1px solid #dfe1e6;
 
-  background: white;
+  background: #fff;
 
   color: #202124;
 
-  font-size: 20px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
+  font-size: 18px;
 
   cursor: pointer;
 
-  z-index: 50;
-
-  touch-action: manipulation;
-
-  transition:
-    transform 0.15s,
-    background 0.15s;
+  /*
+    Очень важно:
+    кнопка является отдельной зоной
+    и не должна вызывать flip.
+  */
+  pointer-events: auto;
 }
 
 .speak-btn:active {
-  transform: scale(0.94);
+  transform: scale(.92);
 }
 
 .speak-btn.speaking {
   background: #202124;
-  color: white;
+  color: #fff;
 }
 
 
@@ -323,30 +360,30 @@ button {
 
 .card-main {
   width: 100%;
-
-  max-width: 680px;
+  max-width: 700px;
 
   font-size:
-    clamp(27px, 7vw, 43px);
+    clamp(25px, 7vw, 42px);
 
   line-height: 1.22;
 
-  font-weight: 650;
+  font-weight: 680;
 
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .card-hint {
   position: absolute;
 
-  left: 20px;
-  right: 20px;
+  left: 15px;
+  right: 15px;
 
-  bottom: 18px;
+  bottom: 14px;
 
-  color: #9aa0a6;
+  color: #a0a3a8;
 
-  font-size: 12px;
+  font-size: 10px;
 }
 
 
@@ -357,44 +394,43 @@ button {
 .navigation {
   width: 100%;
 
-  margin: 14px auto 0;
-
   display: grid;
 
-  grid-template-columns: 54px 1fr 54px;
+  grid-template-columns: 48px minmax(0,1fr) 48px;
 
-  gap: 12px;
+  gap: 8px;
 
   align-items: center;
+
+  margin-top: 10px;
 }
 
 .nav-btn {
-  width: 54px;
-  height: 48px;
+  width: 48px;
+  height: 44px;
 
   padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border:
     1px solid #d8dbe2;
 
-  background: white;
+  border-radius: 11px;
 
-  border-radius: 13px;
+  background: #fff;
 
-  font-size: 25px;
+  color: #202124;
+
+  font-size: 23px;
 
   cursor: pointer;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  touch-action: manipulation;
 }
 
 .nav-btn:active {
-  transform: scale(0.96);
+  transform: scale(.95);
 }
 
 .page-counter {
@@ -402,48 +438,47 @@ button {
 
   color: #4d5156;
 
-  font-size: 15px;
-
+  font-size: 13px;
   font-weight: 650;
 }
 
 
 /* =========================================================
-   ANSWER BUTTONS
+   ANSWERS
 ========================================================= */
 
 .answer-buttons {
   width: 100%;
 
-  margin-top: 12px;
-
   display: grid;
 
   grid-template-columns: 1fr 1fr;
 
-  gap: 10px;
+  gap: 8px;
+
+  margin-top: 8px;
 }
 
 .answer-btn {
-  height: 50px;
+  min-width: 0;
 
-  border-radius: 12px;
+  height: 46px;
 
-  border: 1px solid #d8dbe2;
+  border-radius: 11px;
 
-  background: white;
+  border:
+    1px solid #d8dbe2;
+
+  background: #fff;
+
+  font-size: 13px;
+  font-weight: 680;
 
   cursor: pointer;
-
-  font-size: 14px;
-
-  font-weight: 650;
-
-  touch-action: manipulation;
 }
 
 .answer-btn:active {
-  transform: scale(0.98);
+  transform: scale(.98);
 }
 
 .answer-btn.unknown:active {
@@ -462,7 +497,7 @@ button {
 .progress-section {
   width: 100%;
 
-  margin-top: 17px;
+  margin-top: 12px;
 }
 
 .progress-text {
@@ -470,69 +505,71 @@ button {
 
   justify-content: space-between;
 
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 
   color: #70757a;
 
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .progress {
   width: 100%;
 
-  height: 6px;
+  height: 5px;
+
+  overflow: hidden;
 
   border-radius: 999px;
 
   background: #e4e6eb;
-
-  overflow: hidden;
 }
 
 .progress-bar {
-  height: 100%;
-
   width: 0%;
+  height: 100%;
 
   background: #202124;
 
-  transition:
-    width 0.3s ease;
+  border-radius: inherit;
+
+  transition: width .25s ease;
 }
 
 
 /* =========================================================
-   COLLAPSIBLE SETTINGS
+   DETAILS
 ========================================================= */
 
 .mobile-section {
-  margin-top: 14px;
+  width: 100%;
+
+  margin-top: 10px;
 }
 
 .mobile-section summary {
-  list-style: none;
+  width: 100%;
+
+  min-height: 44px;
+
+  padding: 11px 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   cursor: pointer;
 
-  background: white;
+  list-style: none;
 
-  border: 1px solid #e0e2e7;
+  background: #fff;
 
-  border-radius: 12px;
+  border:
+    1px solid #e0e2e7;
 
-  min-height: 46px;
+  border-radius: 11px;
 
-  padding: 12px 14px;
-
-  font-size: 14px;
-
+  font-size: 13px;
   font-weight: 650;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
 }
 
 .mobile-section summary::-webkit-details-marker {
@@ -540,11 +577,16 @@ button {
 }
 
 .mobile-section summary::after {
-  content: "＋";
-
-  font-size: 18px;
+  content: "+";
 
   color: #70757a;
+
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mobile-section[open] summary {
+  border-radius: 11px 11px 0 0;
 }
 
 .mobile-section[open] summary::after {
@@ -552,24 +594,29 @@ button {
 }
 
 .section-content {
-  background: white;
+  width: 100%;
+
+  padding: 13px;
+
+  background: #fff;
 
   border:
-    0 1px 1px 1px;
-
-  border-color: #e0e2e7;
-
-  border-style: solid;
+    0
+    1px
+    1px
+    1px
+    solid #e0e2e7;
 
   border-radius:
-    0 0 12px 12px;
-
-  padding: 15px;
+    0
+    0
+    11px
+    11px;
 }
 
 
 /* =========================================================
-   VOICE SETTINGS
+   VOICE
 ========================================================= */
 
 .voice-settings {
@@ -578,128 +625,131 @@ button {
   flex-wrap: wrap;
 
   align-items: center;
-
   justify-content: center;
 
-  gap: 7px;
-
-  font-size: 12px;
+  gap: 6px;
 
   color: #70757a;
+
+  font-size: 11px;
 }
 
 .voice-btn,
 .speed-btn {
-  border:
-    1px solid #d8dbe2;
-
-  background: white;
-
-  border-radius: 8px;
+  min-height: 33px;
 
   padding: 7px 9px;
 
-  cursor: pointer;
+  border-radius: 8px;
 
-  font-size: 12px;
+  border:
+    1px solid #d8dbe2;
+
+  background: #fff;
 
   color: #555;
 
-  min-height: 34px;
+  font-size: 11px;
+
+  cursor: pointer;
 }
 
 .voice-btn.active,
 .speed-btn.active {
   background: #202124;
 
-  color: white;
+  color: #fff;
 
   border-color: #202124;
 }
-
-
-/* =========================================================
-   EXTRA BUTTONS
-========================================================= */
 
 .extra-controls {
   display: grid;
 
   grid-template-columns: 1fr 1fr;
 
-  gap: 8px;
+  gap: 7px;
 
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
+
+/* =========================================================
+   GENERIC BUTTONS
+========================================================= */
+
 .secondary-btn {
-  background: white;
+  min-height: 40px;
+
+  padding: 8px;
+
+  border-radius: 9px;
 
   border:
     1px solid #d8dbe2;
 
-  border-radius: 10px;
+  background: #fff;
 
-  min-height: 42px;
+  font-size: 12px;
+  font-weight: 600;
 
-  padding: 9px;
+  cursor: pointer;
+}
+
+.primary-btn {
+  min-height: 43px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #202124;
+  color: #fff;
 
   font-size: 13px;
+  font-weight: 650;
 
   cursor: pointer;
 }
 
 
 /* =========================================================
-   ADD CARDS
+   ADD PANEL
 ========================================================= */
 
-.add-panel {
-  margin-top: 15px;
-
-  background: white;
-
-  border:
-    1px solid #e0e2e7;
-
-  border-radius: 14px;
-
-  padding: 16px;
-}
-
-.add-panel h2 {
-  margin: 0 0 6px;
-
-  font-size: 18px;
-}
-
 .add-description {
+  margin-bottom: 9px;
+
   color: #70757a;
 
-  font-size: 12px;
-
-  margin-bottom: 12px;
+  font-size: 11px;
 
   line-height: 1.4;
 }
 
 textarea {
+  display: block;
+
   width: 100%;
 
-  min-height: 130px;
+  min-height: 110px;
+
+  padding: 11px;
 
   resize: vertical;
 
   border:
     1px solid #d8dbe2;
 
-  border-radius: 10px;
-
-  padding: 13px;
+  border-radius: 9px;
 
   outline: none;
 
-  font-size: 14px;
+  background: #fff;
+
+  color: #202124;
+
+  font-size: 13px;
 
   line-height: 1.4;
 }
@@ -713,27 +763,9 @@ textarea:focus {
 
   grid-template-columns: 1fr;
 
-  gap: 8px;
+  gap: 7px;
 
-  margin-top: 10px;
-}
-
-.primary-btn {
-  background: #202124;
-
-  color: white;
-
-  border: none;
-
-  border-radius: 10px;
-
-  min-height: 44px;
-
-  cursor: pointer;
-
-  font-size: 14px;
-
-  font-weight: 650;
+  margin-top: 8px;
 }
 
 
@@ -741,66 +773,64 @@ textarea:focus {
    LIST
 ========================================================= */
 
-.list-panel {
-  margin-top: 15px;
-
-  background: white;
-
-  border:
-    1px solid #e0e2e7;
-
-  border-radius: 14px;
-
-  padding: 16px;
-}
-
-.list-panel h2 {
-  margin: 0 0 12px;
-
-  font-size: 18px;
-}
-
 .card-list {
   display: flex;
 
   flex-direction: column;
 
-  gap: 7px;
+  gap: 6px;
+
+  max-height: 420px;
+
+  overflow-y: auto;
 }
 
 .list-item {
+  min-width: 0;
+
   display: grid;
 
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0,1fr) 32px;
 
-  gap: 6px 10px;
+  gap: 3px 7px;
 
-  padding: 11px;
+  padding: 10px;
 
   border:
     1px solid #eceef2;
 
-  border-radius: 10px;
+  border-radius: 9px;
 }
 
 .list-en {
+  min-width: 0;
+
+  font-size: 13px;
   font-weight: 650;
 
-  font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .list-ru {
-  grid-column: 1;
+  min-width: 0;
 
   color: #70757a;
 
-  font-size: 13px;
+  font-size: 12px;
+
+  overflow-wrap: anywhere;
 }
 
 .delete-btn {
   grid-column: 2;
-
   grid-row: 1 / span 2;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  align-self: center;
 
   border: none;
 
@@ -819,21 +849,111 @@ textarea:focus {
 ========================================================= */
 
 .empty {
-  text-align: center;
-
   padding: 70px 20px;
 
+  text-align: center;
+
   color: #70757a;
+
+  font-size: 13px;
 }
 
 .empty strong {
   display: block;
 
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 
   color: #202124;
 
-  font-size: 21px;
+  font-size: 19px;
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .title-block h1 {
+    font-size: 22px;
+  }
+
+  .counter {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+
+  .flashcard {
+    height: min(53dvh, 370px);
+    min-height: 270px;
+  }
+
+  .card-face {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .card-main {
+    font-size: clamp(23px, 7vw, 31px);
+  }
+
+  .nav-btn {
+    width: 44px;
+    height: 42px;
+  }
+
+  .navigation {
+    grid-template-columns: 44px minmax(0,1fr) 44px;
+  }
+
+  .answer-btn {
+    height: 44px;
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   LANDSCAPE PHONE
+========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+  .container {
+    padding-top: 10px;
+  }
+
+  .header {
+    margin-bottom: 8px;
+  }
+
+  .top-controls {
+    margin-bottom: 7px;
+  }
+
+  .flashcard {
+    height: 62dvh;
+    min-height: 230px;
+  }
+
+  .card-face {
+    padding-top: 42px;
+    padding-bottom: 35px;
+  }
+
+  .card-main {
+    font-size: clamp(22px, 5vw, 34px);
+  }
+
+  .mobile-section {
+    margin-top: 7px;
+  }
 }
 
 
@@ -844,60 +964,23 @@ textarea:focus {
 @media (min-width: 701px) {
 
   .container {
-    padding-top: 28px;
-  }
-
-  .mobile-section {
-    display: block;
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE SMALL
-========================================================= */
-
-@media (max-width: 390px) {
-
-  .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .title-block h1 {
-    font-size: 23px;
+    padding-top: 25px;
   }
 
   .flashcard {
-    height: 56vh;
-    min-height: 300px;
+    height: 430px;
+  }
+
+  .card-face {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .card-main {
-    font-size: 25px;
-  }
-
-  .answer-btn {
-    font-size: 13px;
+    font-size: clamp(30px, 4vw, 43px);
   }
 
 }
-
-
-/* =========================================================
-   LANDSCAPE PHONE
-========================================================= */
-
-@media (max-width: 900px) and (orientation: landscape) {
-
-  .flashcard {
-    height: 70vh;
-    min-height: 250px;
-  }
-
-}
-
 </style>
 </head>
 
@@ -906,10 +989,7 @@ textarea:focus {
 
 <div class="container">
 
-
-  <!-- =====================================================
-       HEADER
-  ====================================================== -->
+  <!-- HEADER -->
 
   <header class="header">
 
@@ -934,36 +1014,32 @@ textarea:focus {
   </header>
 
 
-  <!-- =====================================================
-       DIRECTION
-  ====================================================== -->
+  <!-- DIRECTION -->
 
   <div class="top-controls">
 
     <button
+      type="button"
       class="direction-btn active"
-      id="enRuBtn"
-      onclick="setDirection('en-ru')">
+      id="enRuBtn">
 
       🇬🇧 English → Русский
 
     </button>
 
-
     <button
+      type="button"
       class="direction-btn"
-      id="ruEnBtn"
-      onclick="setDirection('ru-en')">
+      id="ruEnBtn">
 
       🇷🇺 Русский → English
 
     </button>
 
-
     <button
+      type="button"
       class="direction-btn"
-      id="mixedBtn"
-      onclick="setDirection('mixed')">
+      id="mixedBtn">
 
       🔀 Mixed
 
@@ -972,9 +1048,7 @@ textarea:focus {
   </div>
 
 
-  <!-- =====================================================
-       EMPTY
-  ====================================================== -->
+  <!-- EMPTY -->
 
   <div
     id="emptyState"
@@ -991,11 +1065,9 @@ textarea:focus {
   </div>
 
 
-  <!-- =====================================================
-       STUDY
-  ====================================================== -->
+  <!-- STUDY -->
 
-  <div
+  <main
     id="studyArea"
     class="study-area">
 
@@ -1006,19 +1078,13 @@ textarea:focus {
 
       <div
         class="flashcard"
-        id="flashcard"
-        onclick="flipCard()">
-
+        id="flashcard">
 
         <div class="card-inner">
 
-
           <!-- FRONT -->
 
-          <div
-            class="card-face
-                   card-front">
-
+          <div class="card-face card-front">
 
             <div
               class="card-label"
@@ -1028,24 +1094,20 @@ textarea:focus {
 
             </div>
 
-
             <button
+              type="button"
               class="speak-btn"
               id="speakBtn"
-              onclick="speakEnglish(event)"
               aria-label="Озвучить">
 
               🔊
 
             </button>
 
-
             <div
               class="card-main"
               id="frontText">
-
             </div>
-
 
             <div class="card-hint">
 
@@ -1059,10 +1121,7 @@ textarea:focus {
 
           <!-- BACK -->
 
-          <div
-            class="card-face
-                   card-back">
-
+          <div class="card-face card-back">
 
             <div
               class="card-label"
@@ -1072,24 +1131,20 @@ textarea:focus {
 
             </div>
 
-
             <button
+              type="button"
               class="speak-btn"
               id="speakBackBtn"
-              onclick="speakEnglish(event)"
               aria-label="Озвучить">
 
               🔊
 
             </button>
 
-
             <div
               class="card-main"
               id="backText">
-
             </div>
-
 
             <div class="card-hint">
 
@@ -1099,7 +1154,6 @@ textarea:focus {
             </div>
 
           </div>
-
 
         </div>
 
@@ -1113,14 +1167,14 @@ textarea:focus {
     <div class="navigation">
 
       <button
+        type="button"
         class="nav-btn"
-        onclick="previousCard()"
+        id="prevBtn"
         aria-label="Предыдущая">
 
         ←
 
       </button>
-
 
       <div
         class="page-counter"
@@ -1130,10 +1184,10 @@ textarea:focus {
 
       </div>
 
-
       <button
+        type="button"
         class="nav-btn"
-        onclick="nextCard()"
+        id="nextBtn"
         aria-label="Следующая">
 
         →
@@ -1148,17 +1202,18 @@ textarea:focus {
     <div class="answer-buttons">
 
       <button
+        type="button"
         class="answer-btn unknown"
-        onclick="markUnknown()">
+        id="unknownBtn">
 
         ✕ Не знаю
 
       </button>
 
-
       <button
+        type="button"
         class="answer-btn known"
-        onclick="markKnown()">
+        id="knownBtn">
 
         ✓ Знаю
 
@@ -1183,7 +1238,6 @@ textarea:focus {
 
       </div>
 
-
       <div class="progress">
 
         <div
@@ -1196,9 +1250,7 @@ textarea:focus {
     </div>
 
 
-    <!-- =================================================
-         VOICE SETTINGS
-    ================================================= -->
+    <!-- VOICE SETTINGS -->
 
     <details class="mobile-section">
 
@@ -1206,110 +1258,95 @@ textarea:focus {
         🔊 Настройки озвучки
       </summary>
 
-
       <div class="section-content">
 
         <div class="voice-settings">
-
 
           <span>
             Голос:
           </span>
 
-
           <button
+            type="button"
             class="voice-btn active"
-            id="usVoiceBtn"
-            onclick="setVoice('en-US')">
+            id="usVoiceBtn">
 
             🇺🇸 English US
 
           </button>
 
-
           <button
+            type="button"
             class="voice-btn"
-            id="ukVoiceBtn"
-            onclick="setVoice('en-GB')">
+            id="ukVoiceBtn">
 
             🇬🇧 English UK
 
           </button>
 
-
-          <span style="margin:0 3px;">
-            |
-          </span>
-
+          <span>|</span>
 
           <span>
             Скорость:
           </span>
 
-
           <button
+            type="button"
             class="speed-btn"
-            data-speed="0.75"
-            onclick="setSpeechRate(0.75)">
+            data-speed="0.75">
 
             0.75×
 
           </button>
 
-
           <button
+            type="button"
             class="speed-btn active"
-            data-speed="0.9"
-            onclick="setSpeechRate(0.9)">
+            data-speed="0.9">
 
             0.9×
 
           </button>
 
-
           <button
+            type="button"
             class="speed-btn"
-            data-speed="1"
-            onclick="setSpeechRate(1)">
+            data-speed="1">
 
             1×
 
           </button>
 
-
           <button
+            type="button"
             class="speed-btn"
-            data-speed="1.25"
-            onclick="setSpeechRate(1.25)">
+            data-speed="1.25">
 
             1.25×
 
           </button>
 
-
         </div>
-
 
         <div class="extra-controls">
 
-
           <button
+            type="button"
             class="secondary-btn"
-            onclick="shuffleCards()">
+            id="shuffleBtn">
 
             🔀 Перемешать
 
           </button>
 
-
           <button
+            type="button"
             class="secondary-btn"
-            onclick="resetStats()">
+            id="resetBtn">
 
             ↺ Сбросить
 
           </button>
-
 
         </div>
 
@@ -1318,31 +1355,22 @@ textarea:focus {
     </details>
 
 
-    <!-- =================================================
-         ADD CARDS
-    ================================================= -->
+    <!-- ADD CARDS -->
 
     <details class="mobile-section">
-
 
       <summary>
         ＋ Добавить карточки
       </summary>
 
-
       <div class="section-content">
-
 
         <div class="add-description">
 
           Одна карточка на строку:
-
-          <b>
-            English — Русский
-          </b>
+          <b>English — Русский</b>
 
         </div>
-
 
         <textarea
           id="cardInput"
@@ -1350,36 +1378,34 @@ textarea:focus {
 I'm still mortified about everything — Мне до сих пор ужасно неловко из-за всего">
         </textarea>
 
-
         <div class="add-actions">
 
-
           <button
+            type="button"
             class="primary-btn"
-            onclick="addCards()">
+            id="addBtn">
 
             ＋ Добавить карточки
 
           </button>
 
-
           <button
+            type="button"
             class="secondary-btn"
-            onclick="loadExample()">
+            id="exampleBtn">
 
             Пример
 
           </button>
 
-
           <button
+            type="button"
             class="secondary-btn"
-            onclick="clearAll()">
+            id="clearBtn">
 
             Очистить всё
 
           </button>
-
 
         </div>
 
@@ -1388,76 +1414,58 @@ I'm still mortified about everything — Мне до сих пор ужасно 
     </details>
 
 
-    <!-- =================================================
-         CARD LIST
-    ================================================= -->
+    <!-- CARD LIST -->
 
     <details class="mobile-section">
-
 
       <summary>
         📚 Все карточки
       </summary>
-
 
       <div class="section-content">
 
         <div
           class="card-list"
           id="cardList">
-
         </div>
 
       </div>
 
     </details>
 
-
-  </div>
+  </main>
 
 </div>
 
 
 <script>
-
 /* =========================================================
-   DATA
+   STORAGE
 ========================================================= */
 
-let cards = JSON.parse(
-  localStorage.getItem("englishCards") || "[]"
-);
+let cards = loadCards();
 
 let currentIndex = 0;
 
 let known = Number(
-  localStorage.getItem("knownCards") || 0
+  localStorage.getItem("knownCards") || "0"
 );
 
 let unknown = Number(
-  localStorage.getItem("unknownCards") || 0
+  localStorage.getItem("unknownCards") || "0"
 );
 
 let direction =
-  localStorage.getItem("cardDirection") ||
-  "en-ru";
+  localStorage.getItem("cardDirection") || "en-ru";
 
-let currentDirection =
-  direction;
-
-
-/* =========================================================
-   SPEECH SETTINGS
-========================================================= */
+let currentDirection = direction;
 
 let speechRate = Number(
-  localStorage.getItem("speechRate") ||
-  "0.9"
+  localStorage.getItem("speechRate") || "0.9"
 );
 
 let voiceLanguage =
-  localStorage.getItem("voiceLanguage") ||
-  "en-US";
+  localStorage.getItem("voiceLanguage") || "en-US";
 
 
 /* =========================================================
@@ -1465,79 +1473,49 @@ let voiceLanguage =
 ========================================================= */
 
 const flashcard =
-  document.getElementById(
-    "flashcard"
-  );
+  document.getElementById("flashcard");
 
 const frontText =
-  document.getElementById(
-    "frontText"
-  );
+  document.getElementById("frontText");
 
 const backText =
-  document.getElementById(
-    "backText"
-  );
+  document.getElementById("backText");
 
 const frontLabel =
-  document.getElementById(
-    "frontLabel"
-  );
+  document.getElementById("frontLabel");
 
 const backLabel =
-  document.getElementById(
-    "backLabel"
-  );
+  document.getElementById("backLabel");
 
 const pageCounter =
-  document.getElementById(
-    "pageCounter"
-  );
+  document.getElementById("pageCounter");
 
 const totalCounter =
-  document.getElementById(
-    "totalCounter"
-  );
+  document.getElementById("totalCounter");
 
 const progressBar =
-  document.getElementById(
-    "progressBar"
-  );
+  document.getElementById("progressBar");
 
 const progressPercent =
-  document.getElementById(
-    "progressPercent"
-  );
+  document.getElementById("progressPercent");
 
 const cardList =
-  document.getElementById(
-    "cardList"
-  );
+  document.getElementById("cardList");
 
 const emptyState =
-  document.getElementById(
-    "emptyState"
-  );
+  document.getElementById("emptyState");
 
 const studyArea =
-  document.getElementById(
-    "studyArea"
-  );
+  document.getElementById("studyArea");
 
 const cardInput =
-  document.getElementById(
-    "cardInput"
-  );
+  document.getElementById("cardInput");
 
 const speakBtn =
-  document.getElementById(
-    "speakBtn"
-  );
+  document.getElementById("speakBtn");
 
 const speakBackBtn =
-  document.getElementById(
-    "speakBackBtn"
-  );
+  document.getElementById("speakBackBtn");
 
 
 /* =========================================================
@@ -1545,14 +1523,48 @@ const speakBackBtn =
 ========================================================= */
 
 const examples = {
-
   "en-ru":
     "How did you pull that off? — Как тебе это удалось?",
 
   "ru-en":
     "Как тебе это удалось? — How did you pull that off?"
-
 };
+
+
+/* =========================================================
+   STORAGE HELPERS
+========================================================= */
+
+function loadCards() {
+
+  try {
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem("englishCards") || "[]"
+      );
+
+    return Array.isArray(saved)
+      ? saved
+      : [];
+
+  } catch {
+
+    return [];
+
+  }
+
+}
+
+
+function saveCards() {
+
+  localStorage.setItem(
+    "englishCards",
+    JSON.stringify(cards)
+  );
+
+}
 
 
 /* =========================================================
@@ -1561,32 +1573,12 @@ const examples = {
 
 function setDirection(newDirection) {
 
-  direction =
-    newDirection;
-
+  direction = newDirection;
 
   localStorage.setItem(
     "cardDirection",
     direction
   );
-
-
-  if (
-    direction === "mixed"
-  ) {
-
-    currentDirection =
-      Math.random() < 0.5
-        ? "en-ru"
-        : "ru-en";
-
-  } else {
-
-    currentDirection =
-      direction;
-
-  }
-
 
   updateDirectionButtons();
 
@@ -1606,14 +1598,12 @@ function updateDirectionButtons() {
       direction === "en-ru"
     );
 
-
   document
     .getElementById("ruEnBtn")
     .classList.toggle(
       "active",
       direction === "ru-en"
     );
-
 
   document
     .getElementById("mixedBtn")
@@ -1624,10 +1614,6 @@ function updateDirectionButtons() {
 
 }
 
-
-/* =========================================================
-   PLACEHOLDER
-========================================================= */
 
 function updatePlaceholder() {
 
@@ -1648,142 +1634,92 @@ function addCards() {
   const text =
     cardInput.value.trim();
 
-
   if (!text) {
     return;
   }
 
-
   const lines =
-    text.split("\n");
-
+    text.split(/\r?\n/);
 
   let added = 0;
 
-
   lines.forEach(line => {
 
-    line =
-      line.trim();
-
+    line = line.trim();
 
     if (!line) {
       return;
     }
 
+    let parts = null;
 
-    let parts;
+    if (line.includes("—")) {
 
+      parts = line.split("—");
 
-    if (
-      line.includes("—")
-    ) {
+    } else if (line.includes("–")) {
 
-      parts =
-        line.split("—");
-
-    } else if (
-      line.includes("–")
-    ) {
-
-      parts =
-        line.split("–");
+      parts = line.split("–");
 
     } else {
 
-      parts =
-        line.split(/\s+-\s+/);
+      parts = line.split(/\s+-\s+/);
 
     }
 
-
-    if (
-      parts.length < 2
-    ) {
-
+    if (!parts || parts.length < 2) {
       return;
-
     }
-
 
     const english =
-      parts[0].trim();
-
+      parts.shift().trim();
 
     const russian =
-      parts
-        .slice(1)
-        .join("—")
-        .trim();
+      parts.join("—").trim();
 
-
-    if (
-      !english ||
-      !russian
-    ) {
-
+    if (!english || !russian) {
       return;
-
     }
-
 
     const exists =
       cards.some(card =>
-
-        card.english
-          .toLowerCase() ===
+        card.english.toLowerCase() ===
           english.toLowerCase()
-
         &&
-
-        card.russian
-          .toLowerCase() ===
+        card.russian.toLowerCase() ===
           russian.toLowerCase()
-
       );
-
 
     if (exists) {
       return;
     }
 
-
     cards.push({
-
-      english:
-        english,
-
-      russian:
-        russian
-
+      english,
+      russian
     });
-
 
     added++;
 
   });
 
-
-  if (
-    added === 0
-  ) {
+  if (!added) {
 
     alert(
       "Не удалось добавить карточки.\n\n" +
-      "Формат:\n" +
+      "Используй формат:\n" +
       "English — Русский"
     );
 
     return;
-
   }
-
 
   saveCards();
 
   cardInput.value = "";
 
-  currentIndex = 0;
+  currentIndex =
+    cards.length - added;
 
   showCard();
 
@@ -1798,93 +1734,55 @@ function addCards() {
 
 function showCard() {
 
-  if (
-    cards.length === 0
-  ) {
+  if (!cards.length) {
 
-    studyArea.style.display =
-      "none";
+    studyArea.style.display = "none";
 
-    emptyState.style.display =
-      "block";
+    emptyState.style.display = "block";
 
-    totalCounter.textContent =
-      "0 terms";
+    totalCounter.textContent = "0 terms";
 
     renderList();
 
     return;
-
   }
 
+  studyArea.style.display = "block";
 
-  studyArea.style.display =
-    "block";
+  emptyState.style.display = "none";
 
-  emptyState.style.display =
-    "none";
-
-
-  if (
-    currentIndex >=
-    cards.length
-  ) {
-
-    currentIndex =
-      cards.length - 1;
-
+  if (currentIndex >= cards.length) {
+    currentIndex = 0;
   }
 
-
-  if (
-    currentIndex < 0
-  ) {
-
-    currentIndex =
-      0;
-
+  if (currentIndex < 0) {
+    currentIndex = cards.length - 1;
   }
-
 
   const card =
     cards[currentIndex];
 
-
-  if (
-    direction === "mixed"
-  ) {
+  if (direction === "mixed") {
 
     currentDirection =
-      Math.random() < 0.5
+      Math.random() < .5
         ? "en-ru"
         : "ru-en";
 
   } else {
 
-    currentDirection =
-      direction;
+    currentDirection = direction;
 
   }
 
-
-  flashcard.classList.remove(
-    "flipped"
-  );
-
+  flashcard.classList.remove("flipped");
 
   stopSpeaking();
 
+  if (currentDirection === "en-ru") {
 
-  if (
-    currentDirection ===
-    "en-ru"
-  ) {
-
-    frontLabel.textContent =
-      "English";
-
-    backLabel.textContent =
-      "Русский";
+    frontLabel.textContent = "English";
+    backLabel.textContent = "Русский";
 
     frontText.textContent =
       card.english;
@@ -1894,11 +1792,8 @@ function showCard() {
 
   } else {
 
-    frontLabel.textContent =
-      "Русский";
-
-    backLabel.textContent =
-      "English";
+    frontLabel.textContent = "Русский";
+    backLabel.textContent = "English";
 
     frontText.textContent =
       card.russian;
@@ -1908,10 +1803,8 @@ function showCard() {
 
   }
 
-
   pageCounter.textContent =
     `${currentIndex + 1} / ${cards.length}`;
-
 
   totalCounter.textContent =
     `${cards.length} ${
@@ -1919,7 +1812,6 @@ function showCard() {
         ? "term"
         : "terms"
     }`;
-
 
   updateProgress();
 
@@ -1932,16 +1824,11 @@ function showCard() {
 
 function flipCard() {
 
-  if (
-    cards.length === 0
-  ) {
+  if (!cards.length) {
     return;
   }
 
-
-  flashcard.classList.toggle(
-    "flipped"
-  );
+  flashcard.classList.toggle("flipped");
 
 }
 
@@ -1952,25 +1839,15 @@ function flipCard() {
 
 function nextCard() {
 
-  if (
-    cards.length === 0
-  ) {
+  if (!cards.length) {
     return;
   }
 
-
   currentIndex++;
 
-
-  if (
-    currentIndex >=
-    cards.length
-  ) {
-
+  if (currentIndex >= cards.length) {
     currentIndex = 0;
-
   }
-
 
   showCard();
 
@@ -1979,25 +1856,15 @@ function nextCard() {
 
 function previousCard() {
 
-  if (
-    cards.length === 0
-  ) {
+  if (!cards.length) {
     return;
   }
 
-
   currentIndex--;
 
-
-  if (
-    currentIndex < 0
-  ) {
-
-    currentIndex =
-      cards.length - 1;
-
+  if (currentIndex < 0) {
+    currentIndex = cards.length - 1;
   }
-
 
   showCard();
 
@@ -2010,14 +1877,16 @@ function previousCard() {
 
 function markKnown() {
 
-  known++;
+  if (!cards.length) {
+    return;
+  }
 
+  known++;
 
   localStorage.setItem(
     "knownCards",
-    known
+    String(known)
   );
-
 
   nextCard();
 
@@ -2026,14 +1895,16 @@ function markKnown() {
 
 function markUnknown() {
 
-  unknown++;
+  if (!cards.length) {
+    return;
+  }
 
+  unknown++;
 
   localStorage.setItem(
     "unknownCards",
-    unknown
+    String(unknown)
   );
-
 
   nextCard();
 
@@ -2046,36 +1917,27 @@ function markUnknown() {
 
 function updateProgress() {
 
-  if (
-    cards.length === 0
-  ) {
+  if (!cards.length) {
 
-    progressBar.style.width =
-      "0%";
+    progressBar.style.width = "0%";
 
-    progressPercent.textContent =
-      "0%";
+    progressPercent.textContent = "0%";
 
     return;
-
   }
-
 
   const percent =
     Math.round(
-      (
-        (currentIndex + 1) /
-        cards.length
-      ) * 100
+      ((currentIndex + 1) /
+        cards.length) *
+      100
     );
 
-
   progressBar.style.width =
-    percent + "%";
-
+    `${percent}%`;
 
   progressPercent.textContent =
-    percent + "%";
+    `${percent}%`;
 
 }
 
@@ -2086,14 +1948,9 @@ function updateProgress() {
 
 function shuffleCards() {
 
-  if (
-    cards.length < 2
-  ) {
-
+  if (cards.length < 2) {
     return;
-
   }
-
 
   for (
     let i = cards.length - 1;
@@ -2103,10 +1960,8 @@ function shuffleCards() {
 
     const j =
       Math.floor(
-        Math.random() *
-        (i + 1)
+        Math.random() * (i + 1)
       );
-
 
     [
       cards[i],
@@ -2118,7 +1973,6 @@ function shuffleCards() {
     ];
 
   }
-
 
   saveCards();
 
@@ -2132,15 +1986,13 @@ function shuffleCards() {
 
 
 /* =========================================================
-   RESET STATS
+   RESET
 ========================================================= */
 
 function resetStats() {
 
   known = 0;
-
   unknown = 0;
-
 
   localStorage.setItem(
     "knownCards",
@@ -2156,20 +2008,17 @@ function resetStats() {
 
 
 /* =========================================================
-   VOICE
+   VOICE SETTINGS
 ========================================================= */
 
 function setVoice(language) {
 
-  voiceLanguage =
-    language;
-
+  voiceLanguage = language;
 
   localStorage.setItem(
     "voiceLanguage",
     language
   );
-
 
   document
     .getElementById("usVoiceBtn")
@@ -2177,7 +2026,6 @@ function setVoice(language) {
       "active",
       language === "en-US"
     );
-
 
   document
     .getElementById("ukVoiceBtn")
@@ -2191,15 +2039,12 @@ function setVoice(language) {
 
 function setSpeechRate(rate) {
 
-  speechRate =
-    Number(rate);
-
+  speechRate = Number(rate);
 
   localStorage.setItem(
     "speechRate",
-    speechRate
+    String(speechRate)
   );
-
 
   document
     .querySelectorAll(".speed-btn")
@@ -2207,9 +2052,8 @@ function setSpeechRate(rate) {
 
       button.classList.toggle(
         "active",
-        Number(
-          button.dataset.speed
-        ) === speechRate
+        Number(button.dataset.speed) ===
+          speechRate
       );
 
     });
@@ -2223,169 +2067,113 @@ function setSpeechRate(rate) {
 
 function findEnglishVoice(language) {
 
-  const voices =
-    window.speechSynthesis
-      .getVoices();
-
-
-  if (
-    !voices ||
-    voices.length === 0
-  ) {
-
+  if (!("speechSynthesis" in window)) {
     return null;
-
   }
 
+  const voices =
+    window.speechSynthesis.getVoices();
 
-  let voice =
+  if (!voices.length) {
+    return null;
+  }
+
+  const exact =
     voices.find(
-      v =>
-        v.lang.toLowerCase() ===
+      voice =>
+        voice.lang.toLowerCase() ===
         language.toLowerCase()
     );
 
-
-  if (voice) {
-    return voice;
+  if (exact) {
+    return exact;
   }
 
+  const short =
+    language.substring(0, 2).toLowerCase();
 
-  const shortLang =
-    language
-      .substring(0, 2)
-      .toLowerCase();
-
-
-  voice =
+  return (
     voices.find(
-      v =>
-        v.lang
+      voice =>
+        voice.lang
           .toLowerCase()
-          .startsWith(
-            shortLang
-          )
-    );
-
-
-  return voice || null;
+          .startsWith(short)
+    ) || null
+  );
 
 }
 
 
 /* =========================================================
-   SPEAK
+   SPEECH
 ========================================================= */
 
 function speakEnglish(event) {
 
   /*
-    Не переворачиваем карточку.
+    Главное исправление:
+    stopPropagation() не позволяет
+    карточке одновременно перевернуться.
   */
 
-  event.stopPropagation();
-
-
-  if (
-    cards.length === 0
-  ) {
-
-    return;
-
+  if (event) {
+    event.stopPropagation();
   }
 
+  if (!cards.length) {
+    return;
+  }
+
+  if (!("speechSynthesis" in window)) {
+
+    alert(
+      "Озвучка не поддерживается этим браузером."
+    );
+
+    return;
+  }
 
   const text =
     cards[currentIndex].english;
-
 
   if (!text) {
     return;
   }
 
-
   window.speechSynthesis.cancel();
 
-
   const utterance =
-    new SpeechSynthesisUtterance(
-      text
-    );
-
+    new SpeechSynthesisUtterance(text);
 
   const voice =
-    findEnglishVoice(
-      voiceLanguage
-    );
-
+    findEnglishVoice(voiceLanguage);
 
   if (voice) {
 
-    utterance.voice =
-      voice;
-
-    utterance.lang =
-      voice.lang;
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
 
   } else {
 
-    utterance.lang =
-      voiceLanguage;
+    utterance.lang = voiceLanguage;
 
   }
 
+  utterance.rate = speechRate;
+  utterance.pitch = 1;
+  utterance.volume = 1;
 
-  utterance.rate =
-    speechRate;
+  utterance.onstart = () => {
 
-  utterance.pitch =
-    1;
+    speakBtn.classList.add("speaking");
 
-  utterance.volume =
-    1;
+    speakBackBtn.classList.add("speaking");
 
+  };
 
-  utterance.onstart =
-    function() {
+  utterance.onend = clearSpeaking;
 
-      speakBtn
-        .classList
-        .add("speaking");
-
-      speakBackBtn
-        .classList
-        .add("speaking");
-
-    };
-
-
-  utterance.onend =
-    function() {
-
-      speakBtn
-        .classList
-        .remove("speaking");
-
-      speakBackBtn
-        .classList
-        .remove("speaking");
-
-    };
-
-
-  utterance.onerror =
-    function() {
-
-      speakBtn
-        .classList
-        .remove("speaking");
-
-      speakBackBtn
-        .classList
-        .remove("speaking");
-
-    };
-
+  utterance.onerror = clearSpeaking;
 
   window.speechSynthesis.speak(
     utterance
@@ -2394,44 +2182,28 @@ function speakEnglish(event) {
 }
 
 
-/* =========================================================
-   STOP SPEECH
-========================================================= */
+function clearSpeaking() {
+
+  speakBtn.classList.remove("speaking");
+
+  speakBackBtn.classList.remove("speaking");
+
+}
+
 
 function stopSpeaking() {
 
-  if (
-    "speechSynthesis" in
-    window
-      ) {
-
+  if ("speechSynthesis" in window) {
     window.speechSynthesis.cancel();
-
   }
 
-
-  if (speakBtn) {
-
-    speakBtn
-      .classList
-      .remove("speaking");
-
-  }
-
-
-  if (speakBackBtn) {
-
-    speakBackBtn
-      .classList
-      .remove("speaking");
-
-  }
+  clearSpeaking();
 
 }
 
 
 /* =========================================================
-   LOAD EXAMPLE
+   EXAMPLE
 ========================================================= */
 
 function loadExample() {
@@ -2445,44 +2217,28 @@ function loadExample() {
 
 
 /* =========================================================
-   SAVE
-========================================================= */
-
-function saveCards() {
-
-  localStorage.setItem(
-    "englishCards",
-    JSON.stringify(cards)
-  );
-
-}
-
-
-/* =========================================================
    DELETE
 ========================================================= */
 
 function deleteCard(index) {
 
-  cards.splice(
-    index,
-    1
-  );
+  if (
+    index < 0 ||
+    index >= cards.length
+  ) {
+    return;
+  }
 
+  cards.splice(index, 1);
 
   if (
-    currentIndex >=
-    cards.length
+    currentIndex >= cards.length
   ) {
 
     currentIndex =
-      Math.max(
-        0,
-        cards.length - 1
-      );
+      Math.max(0, cards.length - 1);
 
   }
-
 
   saveCards();
 
@@ -2499,34 +2255,25 @@ function deleteCard(index) {
 
 function clearAll() {
 
-  if (
-    cards.length === 0
-  ) {
-
+  if (!cards.length) {
     return;
-
   }
-
 
   const confirmed =
     confirm(
       "Удалить все карточки?"
     );
 
-
   if (!confirmed) {
     return;
   }
-
 
   cards = [];
 
   currentIndex = 0;
 
   known = 0;
-
   unknown = 0;
-
 
   localStorage.removeItem(
     "englishCards"
@@ -2539,7 +2286,6 @@ function clearAll() {
   localStorage.removeItem(
     "unknownCards"
   );
-
 
   stopSpeaking();
 
@@ -2558,75 +2304,226 @@ function renderList() {
 
   cardList.innerHTML = "";
 
+  cards.forEach((card, index) => {
 
-  cards.forEach(
-    (card, index) => {
+    const item =
+      document.createElement("div");
 
-      const item =
-        document.createElement(
-          "div"
-        );
+    item.className = "list-item";
 
+    const english =
+      document.createElement("div");
 
-      item.className =
-        "list-item";
+    english.className = "list-en";
 
+    english.textContent =
+      card.english;
 
-      item.innerHTML = `
+    const russian =
+      document.createElement("div");
 
-        <div class="list-en">
-          ${escapeHtml(
-            card.english
-          )}
-        </div>
+    russian.className = "list-ru";
 
-        <div class="list-ru">
-          ${escapeHtml(
-            card.russian
-          )}
-        </div>
+    russian.textContent =
+      card.russian;
 
-        <button
-          class="delete-btn"
-          onclick="deleteCard(${index})"
-          title="Удалить">
+    const deleteButton =
+      document.createElement("button");
 
-          ×
+    deleteButton.type = "button";
 
-        </button>
+    deleteButton.className =
+      "delete-btn";
 
-      `;
+    deleteButton.textContent = "×";
 
+    deleteButton.title = "Удалить";
 
-      cardList.appendChild(
-        item
-      );
+    deleteButton.setAttribute(
+      "aria-label",
+      "Удалить карточку"
+    );
 
-    }
-  );
+    deleteButton.addEventListener(
+      "click",
+      event => {
+
+        event.stopPropagation();
+
+        deleteCard(index);
+
+      }
+    );
+
+    item.appendChild(english);
+
+    item.appendChild(russian);
+
+    item.appendChild(deleteButton);
+
+    cardList.appendChild(item);
+
+  });
 
 }
 
 
 /* =========================================================
-   ESCAPE HTML
+   EVENTS
 ========================================================= */
 
-function escapeHtml(text) {
+/* Direction */
 
-  const div =
-    document.createElement(
-      "div"
+document
+  .getElementById("enRuBtn")
+  .addEventListener(
+    "click",
+    () => setDirection("en-ru")
+  );
+
+document
+  .getElementById("ruEnBtn")
+  .addEventListener(
+    "click",
+    () => setDirection("ru-en")
+  );
+
+document
+  .getElementById("mixedBtn")
+  .addEventListener(
+    "click",
+    () => setDirection("mixed")
+  );
+
+
+/* Card */
+
+flashcard.addEventListener(
+  "click",
+  flipCard
+);
+
+
+/* Navigation */
+
+document
+  .getElementById("prevBtn")
+  .addEventListener(
+    "click",
+    previousCard
+  );
+
+document
+  .getElementById("nextBtn")
+  .addEventListener(
+    "click",
+    nextCard
+  );
+
+
+/* Answers */
+
+document
+  .getElementById("unknownBtn")
+  .addEventListener(
+    "click",
+    markUnknown
+  );
+
+document
+  .getElementById("knownBtn")
+  .addEventListener(
+    "click",
+    markKnown
+  );
+
+
+/* Speech */
+
+speakBtn.addEventListener(
+  "click",
+  speakEnglish
+);
+
+speakBackBtn.addEventListener(
+  "click",
+  speakEnglish
+);
+
+
+/* Voice */
+
+document
+  .getElementById("usVoiceBtn")
+  .addEventListener(
+    "click",
+    () => setVoice("en-US")
+  );
+
+document
+  .getElementById("ukVoiceBtn")
+  .addEventListener(
+    "click",
+    () => setVoice("en-GB")
+  );
+
+
+/* Speed */
+
+document
+  .querySelectorAll(".speed-btn")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () =>
+        setSpeechRate(
+          button.dataset.speed
+        )
     );
 
-
-  div.textContent =
-    text;
+  });
 
 
-  return div.innerHTML;
+/* Extra */
 
-}
+document
+  .getElementById("shuffleBtn")
+  .addEventListener(
+    "click",
+    shuffleCards
+  );
+
+document
+  .getElementById("resetBtn")
+  .addEventListener(
+    "click",
+    resetStats
+  );
+
+
+/* Add */
+
+document
+  .getElementById("addBtn")
+  .addEventListener(
+    "click",
+    addCards
+  );
+
+document
+  .getElementById("exampleBtn")
+  .addEventListener(
+    "click",
+    loadExample
+  );
+
+document
+  .getElementById("clearBtn")
+  .addEventListener(
+    "click",
+    clearAll
+  );
 
 
 /* =========================================================
@@ -2635,24 +2532,20 @@ function escapeHtml(text) {
 
 document.addEventListener(
   "keydown",
-  function(event) {
+  event => {
+
+    const tag =
+      event.target.tagName;
 
     if (
-      event.target.tagName ===
-        "TEXTAREA" ||
-
-      event.target.tagName ===
-        "INPUT"
+      tag === "TEXTAREA" ||
+      tag === "INPUT" ||
+      tag === "BUTTON"
     ) {
-
       return;
-
     }
 
-
-    if (
-      event.code === "Space"
-    ) {
+    if (event.code === "Space") {
 
       event.preventDefault();
 
@@ -2660,40 +2553,20 @@ document.addEventListener(
 
     }
 
-
-    if (
-      event.key === "ArrowRight"
-    ) {
-
+    if (event.key === "ArrowRight") {
       nextCard();
-
     }
 
-
-    if (
-      event.key === "ArrowLeft"
-    ) {
-
+    if (event.key === "ArrowLeft") {
       previousCard();
-
     }
 
-
-    if (
-      event.key === "1"
-    ) {
-
+    if (event.key === "1") {
       markUnknown();
-
     }
 
-
-    if (
-      event.key === "2"
-    ) {
-
+    if (event.key === "2") {
       markKnown();
-
     }
 
   }
@@ -2706,26 +2579,15 @@ document.addEventListener(
 
 function initializeSpeech() {
 
-  if (
-    "speechSynthesis" in
-    window
-  ) {
-
-    window.speechSynthesis
-      .getVoices();
-
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.getVoices();
   }
 
 }
 
+if ("speechSynthesis" in window) {
 
-if (
-  "speechSynthesis" in
-  window
-) {
-
-  window.speechSynthesis
-    .onvoiceschanged =
+  window.speechSynthesis.onvoiceschanged =
     initializeSpeech;
 
 }
@@ -2739,13 +2601,9 @@ updateDirectionButtons();
 
 updatePlaceholder();
 
-setSpeechRate(
-  speechRate
-);
+setSpeechRate(speechRate);
 
-setVoice(
-  voiceLanguage
-);
+setVoice(voiceLanguage);
 
 initializeSpeech();
 
@@ -2757,4 +2615,3 @@ renderList();
 
 </body>
 </html>
-```
