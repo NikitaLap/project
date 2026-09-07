@@ -1968,10 +1968,8 @@ function addCardsFromStudy() {
             "cardInputStudy"
         );
 
-
     const text =
         input.value.trim();
-
 
     if (!text) {
 
@@ -1983,10 +1981,8 @@ function addCardsFromStudy() {
 
     }
 
-
     const added =
         parseAndAddCards(text);
-
 
     if (added === 0) {
 
@@ -2000,7 +1996,6 @@ function addCardsFromStudy() {
 
     }
 
-
     input.value = "";
 
     saveCards();
@@ -2009,8 +2004,15 @@ function addCardsFromStudy() {
 
     renderList();
 
-}
+    // Закрываем блок добавления
+    const details =
+        input.closest("details");
 
+    if (details) {
+        details.open = false;
+    }
+
+}
 
 /* =========================================================
    PARSE CARDS
