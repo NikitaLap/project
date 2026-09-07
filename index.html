@@ -1,1543 +1,708 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-      maximum-scale=1.0, user-scalable=no,
-      viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>English phrases</title>
 
 <style>
 * {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                 Arial, sans-serif;
-    background: #f6f7f9;
-    color: #202124;
-
-    padding:
-        max(18px, env(safe-area-inset-top))
-        max(14px, env(safe-area-inset-right))
-        max(18px, env(safe-area-inset-bottom))
-        max(14px, env(safe-area-inset-left));
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f6f8;
+  color: #202124;
 }
 
-.app {
-    width: 100%;
-    max-width: 1050px;
-    margin: 0 auto;
+button,
+textarea,
+select {
+  font: inherit;
 }
 
-/* ================= HEADER ================= */
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1000px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 25px 0 50px;
+}
+
+/* HEADER */
 
 .header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 .header h1 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 750;
+  margin: 0 0 6px;
+  font-size: 30px;
 }
 
 .header p {
-    margin: 6px 0 0;
-    color: #6b7078;
-    font-size: 15px;
+  margin: 0;
+  color: #777;
 }
 
-.total-counter {
-    margin-top: 8px;
-    color: #6b7078;
-    font-size: 14px;
-}
-
-/* ================= DIRECTION ================= */
+/* DIRECTIONS */
 
 .direction-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
-.direction-btn {
-    border: 1px solid #d8dbe2;
-    background: white;
-    color: #30343a;
-    padding: 9px 14px;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    touch-action: manipulation;
+.direction-buttons button {
+  border: 1px solid #ddd;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 10px;
 }
 
-.direction-btn.active {
-    background: #202124;
-    color: white;
-    border-color: #202124;
+.direction-buttons button.active {
+  background: #222;
+  color: white;
 }
 
-/* ================= GROUPS ================= */
+/* GROUPS */
 
 .groups-view {
-    display: none;
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
 }
 
 .groups-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-
-    margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
 .groups-header h2 {
-    margin: 0;
-    font-size: 20px;
+  margin: 0;
+  font-size: 21px;
 }
 
 .create-group-btn {
-    border: none;
-    background: #202124;
-    color: white;
-
-    min-height: 44px;
-    padding: 9px 14px;
-
-    border-radius: 11px;
-
-    font-size: 14px;
-    font-weight: 650;
-
-    cursor: pointer;
-    touch-action: manipulation;
-
-    white-space: nowrap;
-}
-
-.create-group-btn:active {
-    transform: scale(.97);
+  border: 0;
+  background: #222;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  white-space: nowrap;
 }
 
 .group-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .group-item {
-    width: 100%;
-
-    min-height: 68px;
-
-    display: flex;
-    align-items: center;
-
-    background: white;
-
-    border: 1px solid #e0e2e6;
-
-    border-radius: 15px;
-
-    padding: 11px 12px;
-
-    cursor: pointer;
-
-    touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  transition: .15s;
 }
 
-.group-item:active {
-    transform: scale(.99);
+.group-item:hover {
+  background: #f8f8f8;
 }
 
 .group-icon {
-    width: 42px;
-    height: 42px;
-
-    border-radius: 11px;
-
-    background: #f1f3f4;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 21px;
-
-    flex-shrink: 0;
+  font-size: 23px;
 }
 
 .group-main {
-    min-width: 0;
-    flex: 1;
-
-    margin-left: 11px;
+  flex: 1;
+  min-width: 0;
 }
 
 .group-name {
-    font-size: 16px;
-    font-weight: 650;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  font-weight: 600;
+  word-break: break-word;
 }
 
 .group-count {
-    margin-top: 4px;
-
-    color: #777d85;
-
-    font-size: 13px;
+  color: #888;
+  font-size: 13px;
+  margin-top: 3px;
 }
 
 .group-menu {
-    width: 40px;
-    height: 42px;
-
-    border: none;
-
-    background: transparent;
-
-    color: #70757d;
-
-    font-size: 24px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    flex-shrink: 0;
-
-    touch-action: manipulation;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  padding: 5px 9px;
+  color: #666;
 }
 
-.group-menu:active {
-    background: #f1f3f4;
+/* ADD */
+
+.add-box {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
 }
 
-/* ================= EMPTY ================= */
-
-.empty-state {
-    background: white;
-    border: 1px solid #e0e2e6;
-    border-radius: 18px;
-    padding: 42px 20px;
-    text-align: center;
+.add-box h3 {
+  margin-top: 0;
 }
 
-.empty-state h2 {
-    margin: 0 0 8px;
-    font-size: 22px;
+textarea {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  outline: none;
 }
 
-.empty-state p {
-    margin: 0 0 22px;
-    color: #70757d;
-}
-
-/* ================= BUTTON ================= */
-
-.add-main-btn {
-    width: 100%;
-
-    border: none;
-
-    background: #202124;
-    color: white;
-
-    border-radius: 13px;
-
-    min-height: 52px;
-
-    padding: 12px 18px;
-
-    font-size: 16px;
-    font-weight: 650;
-
-    cursor: pointer;
-
-    touch-action: manipulation;
-}
-
-.add-main-btn:active {
-    transform: scale(0.98);
-}
-
-/* ================= ADD ================= */
-
-.add-mobile {
-    margin-top: 16px;
-
-    background: white;
-
-    border: 1px solid #e0e2e6;
-
-    border-radius: 16px;
-
-    padding: 16px;
-}
-
-.add-mobile h3 {
-    margin: 0 0 10px;
-
-    font-size: 17px;
-}
-
-.add-mobile textarea,
-.section-content textarea {
-    display: block;
-
-    width: 100%;
-
-    height: 130px;
-    min-height: 130px;
-    max-height: 300px;
-
-    resize: none;
-
-    -webkit-appearance: none;
-    appearance: none;
-
-    border: 1px solid #d8dbe2;
-
-    border-radius: 10px;
-
-    padding: 13px;
-
-    outline: none;
-
-    font-family: inherit;
-
-    font-size: 16px;
-    line-height: 1.4;
-
-    background: #fff;
-
-    color: #202124;
-
-    box-shadow: none;
-
-    overflow-y: auto;
-
-    -webkit-user-select: text;
-    user-select: text;
-}
-
-.add-mobile textarea:focus,
-.section-content textarea:focus {
-    border-color: #9aa0a6;
-}
-
-/* ================= GROUP SELECT ================= */
-
-.group-select-wrap {
-    margin-top: 12px;
-}
-
-.group-select-wrap label {
-    display: block;
-
-    margin-bottom: 6px;
-
-    color: #5f6368;
-
-    font-size: 13px;
-
-    font-weight: 600;
+textarea:focus {
+  border-color: #777;
 }
 
 .group-select {
-    width: 100%;
-
-    min-height: 45px;
-
-    border: 1px solid #d8dbe2;
-
-    background: white;
-
-    border-radius: 10px;
-
-    padding: 9px 11px;
-
-    font-family: inherit;
-
-    font-size: 15px;
-
-    color: #202124;
-
-    outline: none;
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 10px 0;
+  background: white;
 }
 
-.group-select:focus {
-    border-color: #9aa0a6;
+.primary-btn {
+  border: 0;
+  background: #222;
+  color: white;
+  border-radius: 10px;
+  padding: 11px 17px;
 }
 
-/* ================= STUDY ================= */
+.secondary-btn {
+  border: 1px solid #ddd;
+  background: white;
+  color: #222;
+  border-radius: 10px;
+  padding: 11px 17px;
+}
+
+/* EMPTY */
+
+.empty-state {
+  text-align: center;
+  background: white;
+  padding: 40px 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.empty-state h2 {
+  margin-top: 0;
+}
+
+/* STUDY */
 
 .study-area {
-    display: none;
+  display: none;
 }
 
-.study-topbar {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 10px;
-
-    margin-bottom: 12px;
+.study-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-.back-groups-btn {
-    border: 1px solid #d8dbe2;
-
-    background: white;
-
-    color: #30343a;
-
-    min-height: 42px;
-
-    padding: 8px 13px;
-
-    border-radius: 10px;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
-    touch-action: manipulation;
-}
-
-.back-groups-btn:active {
-    transform: scale(.97);
+.back-btn {
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 9px;
+  padding: 8px 12px;
 }
 
 .current-group-name {
-    min-width: 0;
-
-    font-size: 15px;
-
-    font-weight: 650;
-
-    color: #5f6368;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-
-    text-align: right;
+  font-size: 18px;
+  font-weight: 600;
 }
 
-/* ================= FLASHCARD ================= */
-
 .flashcard {
-    width: 100%;
-
-    min-height: 310px;
-
-    background: white;
-
-    border: 1px solid #e0e2e6;
-
-    border-radius: 20px;
-
-    padding: 28px 22px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    cursor: pointer;
-
-    user-select: none;
-    -webkit-user-select: none;
-
-    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+  background: white;
+  border-radius: 18px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0,0,0,.07);
+  cursor: pointer;
+  user-select: none;
 }
 
 .card-label {
-    color: #8a9098;
-
-    font-size: 13px;
-
-    margin-bottom: 18px;
-
-    font-weight: 650;
-
-    text-transform: uppercase;
-
-    letter-spacing: .04em;
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 .card-text {
-    text-align: center;
-
-    font-size: clamp(25px, 4vw, 40px);
-
-    line-height: 1.25;
-
-    font-weight: 700;
-
-    max-width: 900px;
-
-    word-break: break-word;
+  font-size: 30px;
+  line-height: 1.35;
+  max-width: 800px;
+  word-break: break-word;
 }
 
-.card-hint {
-    margin-top: 18px;
-
-    color: #8a9098;
-
-    font-size: 13px;
+.speech-btn {
+  margin-top: 25px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
 }
-
-.speak-btn {
-    margin-top: 22px;
-
-    width: 44px;
-    height: 44px;
-
-    border: 1px solid #d8dbe2;
-
-    background: white;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    font-size: 19px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    touch-action: manipulation;
-}
-
-.speak-btn:active {
-    transform: scale(.94);
-}
-
-/* ================= NAVIGATION ================= */
 
 .navigation {
-    width: 100%;
-
-    margin: 14px auto 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 15px 0;
 }
 
 .nav-btn {
-    width: 54px;
-    height: 48px;
-
-    padding: 0;
-
-    border: 1px solid #d8dbe2;
-
-    background: white;
-
-    border-radius: 13px;
-
-    font-size: 25px;
-
-    cursor: pointer;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    touch-action: manipulation;
-
-    flex-shrink: 0;
-}
-
-.nav-btn:active {
-    transform: scale(0.96);
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 10px;
+  width: 45px;
+  height: 40px;
+  font-size: 20px;
 }
 
 .page-counter {
-    width: 54px;
-
-    text-align: center;
-
-    color: #4d5156;
-
-    font-size: 15px;
-
-    font-weight: 650;
-
-    flex-shrink: 0;
+  color: #666;
 }
-
-/* ================= ANSWERS ================= */
 
 .answer-buttons {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 10px;
-
-    margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px 0;
 }
 
-.answer-btn {
-    min-height: 52px;
-
-    border-radius: 13px;
-
-    border: 1px solid #d8dbe2;
-
-    background: white;
-
-    font-size: 15px;
-
-    font-weight: 650;
-
-    cursor: pointer;
-
-    touch-action: manipulation;
+.know-btn,
+.dont-know-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 600;
 }
 
-.answer-btn:active {
-    transform: scale(.98);
+.know-btn {
+  background: #e5f7e8;
+  color: #197333;
 }
 
-.answer-btn.unknown {
-    color: #b3261e;
+.dont-know-btn {
+  background: #fdeaea;
+  color: #b3261e;
 }
-
-.answer-btn.known {
-    color: #137333;
-}
-
-/* ================= PROGRESS ================= */
 
 .progress-wrap {
-    margin-top: 15px;
+  background: #ddd;
+  height: 7px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px 0 25px;
 }
 
-.progress-info {
-    display: flex;
-
-    justify-content: space-between;
-
-    color: #777d85;
-
-    font-size: 13px;
-
-    margin-bottom: 7px;
+.progress {
+  height: 100%;
+  width: 0;
+  background: #333;
+  transition: width .2s;
 }
 
-.progress-bar {
-    width: 100%;
-
-    height: 7px;
-
-    background: #e2e4e8;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-
-    width: 0%;
-
-    background: #202124;
-
-    border-radius: inherit;
-
-    transition: width .2s ease;
-}
-
-/* ================= DETAILS ================= */
+/* DETAILS */
 
 details {
-    margin-top: 14px;
-
-    background: white;
-
-    border: 1px solid #e0e2e6;
-
-    border-radius: 14px;
-
-    overflow: hidden;
+  background: white;
+  border-radius: 14px;
+  margin-top: 12px;
+  padding: 15px;
 }
 
 summary {
-    cursor: pointer;
-
-    padding: 15px 16px;
-
-    font-size: 15px;
-
-    font-weight: 650;
-
-    user-select: none;
-    -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-.section-content {
-    padding: 0 16px 16px;
+.settings-row {
+  margin-top: 15px;
 }
 
-.section-content textarea {
-    margin-bottom: 10px;
+.settings-row label {
+  display: block;
+  margin-bottom: 6px;
+  color: #666;
 }
 
-.section-btn {
-    width: 100%;
-
-    min-height: 46px;
-
-    border: 1px solid #d8dbe2;
-
-    background: #f8f9fa;
-
-    border-radius: 10px;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    touch-action: manipulation;
+.settings-row select,
+.settings-row input {
+  padding: 9px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
-/* ================= DELETE ================= */
-
-.delete-all-btn {
-    width: 100%;
-
-    min-height: 46px;
-
-    margin-top: 14px;
-
-    border: 1px solid #e5bcbc;
-
-    background: #fff5f5;
-
-    color: #b3261e;
-
-    border-radius: 10px;
-
-    font-size: 15px;
-
-    font-weight: 650;
-
-    cursor: pointer;
-
-    touch-action: manipulation;
-}
-
-.delete-all-btn:active {
-    transform: scale(.98);
-}
-
-/* ================= VOICE ================= */
-
-.voice-row {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 12px;
-
-    margin-bottom: 12px;
-}
-
-.voice-row:last-child {
-    margin-bottom: 0;
-}
-
-.voice-row label {
-    font-size: 14px;
-}
-
-.voice-row select {
-    border: 1px solid #d8dbe2;
-
-    background: white;
-
-    border-radius: 9px;
-
-    padding: 8px 10px;
-
-    font-size: 14px;
-}
-
-/* ================= CARD LIST ================= */
+/* LIST */
 
 .card-list {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
+  margin-top: 15px;
 }
 
 .card-list-item {
-    border: 1px solid #e0e2e6;
-
-    border-radius: 10px;
-
-    padding: 11px 12px;
-
-    background: #fafbfc;
-
-    cursor: pointer;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
 }
 
-.card-list-item:active {
-    transform: scale(.99);
+.card-list-item:last-child {
+  border-bottom: 0;
 }
 
-.card-list-en {
-    font-weight: 650;
-
-    margin-bottom: 4px;
+.card-en {
+  font-weight: 600;
 }
 
-.card-list-ru {
-    color: #70757d;
-
-    font-size: 14px;
+.card-ru {
+  color: #777;
+  margin-top: 3px;
 }
 
-/* ================= DESKTOP ================= */
+/* DELETE */
 
-@media (min-width: 700px) {
-
-    .flashcard {
-        min-height: 350px;
-    }
-
-    .answer-buttons {
-        max-width: 650px;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .progress-wrap {
-        max-width: 650px;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    details {
-        max-width: 850px;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .add-mobile {
-        max-width: 850px;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .groups-view {
-        max-width: 850px;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
+.delete-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: 1px solid #e0a0a0;
+  background: #fff5f5;
+  color: #b3261e;
+  border-radius: 10px;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
-@media (max-width: 699px) {
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 20px);
+    padding-top: 15px;
+  }
 
-    body {
-        padding:
-            max(12px, env(safe-area-inset-top))
-            max(10px, env(safe-area-inset-right))
-            max(14px, env(safe-area-inset-bottom))
-            max(10px, env(safe-area-inset-left));
-    }
+  .header h1 {
+    font-size: 25px;
+  }
 
-    .header {
-        margin-bottom: 15px;
-    }
+  .groups-view {
+    padding: 15px;
+  }
 
-    .header h1 {
-        font-size: 24px;
-    }
+  .groups-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
 
-    .header p {
-        font-size: 14px;
-    }
+  .create-group-btn {
+    width: 100%;
+  }
 
-    .direction-buttons {
-        gap: 6px;
+  .add-box {
+    padding: 15px;
+  }
 
-        margin-bottom: 13px;
-    }
+  textarea {
+    min-height: 130px;
+    font-size: 16px;
+  }
 
-    .direction-btn {
-        padding: 8px 11px;
+  .flashcard {
+    min-height: 280px;
+    padding: 25px 15px;
+  }
 
-        font-size: 13px;
-    }
+  .card-text {
+    font-size: 24px;
+  }
 
-    .groups-header h2 {
-        font-size: 19px;
-    }
+  .answer-buttons {
+    flex-direction: column;
+  }
 
-    .create-group-btn {
-        min-height: 42px;
+  .know-btn,
+  .dont-know-btn {
+    width: 100%;
+  }
 
-        padding: 8px 11px;
-
-        font-size: 13px;
-    }
-
-    .group-item {
-        min-height: 64px;
-
-        padding: 9px 10px;
-    }
-
-    .group-icon {
-        width: 39px;
-        height: 39px;
-
-        font-size: 19px;
-    }
-
-    .group-main {
-        margin-left: 9px;
-    }
-
-    .group-name {
-        font-size: 15px;
-    }
-
-    .flashcard {
-        min-height: 290px;
-
-        padding: 24px 16px;
-
-        border-radius: 17px;
-    }
-
-    .card-text {
-        font-size: clamp(24px, 7vw, 34px);
-    }
-
-    .navigation {
-        margin-top: 12px;
-
-        gap: 0;
-    }
-
-    .nav-btn {
-        width: 50px;
-        height: 46px;
-
-        border-radius: 12px;
-
-        font-size: 23px;
-    }
-
-    .page-counter {
-        width: 50px;
-
-        font-size: 14px;
-    }
-
-    .answer-buttons {
-        margin-top: 12px;
-
-        gap: 8px;
-    }
-
-    .answer-btn {
-        min-height: 50px;
-
-        font-size: 14px;
-    }
-
-    .study-topbar {
-        margin-bottom: 10px;
-    }
-
-    .back-groups-btn {
-        min-height: 40px;
-
-        padding: 7px 10px;
-
-        font-size: 13px;
-    }
-
-    .current-group-name {
-        font-size: 13px;
-    }
-}
-
-/* ================= SMALL PHONES ================= */
-
-@media (max-width: 390px) {
-
-    .flashcard {
-        min-height: 270px;
-    }
-
-    .card-text {
-        font-size: 23px;
-    }
-
-    .nav-btn {
-        width: 46px;
-        height: 44px;
-    }
-
-    .page-counter {
-        width: 46px;
-
-        font-size: 13px;
-    }
-
-    .add-mobile textarea,
-    .section-content textarea {
-        font-size: 16px;
-
-        height: 130px;
-        min-height: 130px;
-        max-height: 300px;
-    }
-}
-
-/* ================= LANDSCAPE MOBILE ================= */
-
-@media (max-width: 900px) and (orientation: landscape) {
-
-    body {
-        overflow-x: hidden;
-    }
-
-    .flashcard {
-        min-height: 240px;
-    }
-
-    .add-mobile textarea,
-    .section-content textarea {
-        font-size: 16px;
-    }
-
-    details {
-        max-height: 320px;
-
-        overflow: hidden;
-    }
+  .study-top {
+    flex-wrap: wrap;
+  }
 }
 </style>
 </head>
 
-
 <body>
 
-<div class="app">
+<div class="container">
 
-    <!-- ================= HEADER ================= -->
+  <header class="header">
+    <h1>English phrases</h1>
+    <p>Карточки для изучения английского</p>
+    <p id="totalCounter"></p>
+  </header>
 
-    <div class="header">
+  <div class="direction-buttons">
+    <button id="dirEnRu" onclick="setDirection('en-ru')">
+      English → Русский
+    </button>
 
-        <h1>
-            English phrases
-        </h1>
+    <button id="dirRuEn" onclick="setDirection('ru-en')">
+      Русский → English
+    </button>
 
-        <p>
-            Карточки для изучения английского
-        </p>
+    <button id="dirMixed" onclick="setDirection('mixed')">
+      Mixed
+    </button>
+  </div>
 
-        <div
-            class="total-counter"
-            id="totalCounter">
-            0 карточек
-        </div>
+  <!-- GROUPS -->
 
+  <section id="groupsView" class="groups-view">
+
+    <div class="groups-header">
+      <h2>Мои группы</h2>
+
+      <button
+        class="create-group-btn"
+        onclick="showCreateGroup()">
+        ＋ Создать группу
+      </button>
     </div>
 
+    <div id="groupList" class="group-list"></div>
 
-    <!-- ================= DIRECTION ================= -->
+  </section>
 
-    <div class="direction-buttons">
+  <!-- EMPTY -->
 
-        <button
-            class="direction-btn active"
-            id="directionEnRu"
-            onclick="setDirection('en-ru')">
+  <section id="emptyState" class="empty-state">
+    <h2>Пока нет карточек</h2>
+    <p>Создай группу и добавь первые карточки.</p>
+  </section>
 
-            English → Русский
+  <!-- ADD CARDS -->
 
-        </button>
+  <section id="addCardsMobile" class="add-box">
 
-        <button
-            class="direction-btn"
-            id="directionRuEn"
-            onclick="setDirection('ru-en')">
+    <h3>Добавить карточки</h3>
 
-            Русский → English
+    <label>Группа:</label>
 
-        </button>
+    <select id="firstGroupSelect" class="group-select"></select>
 
-        <button
-            class="direction-btn"
-            id="directionMixed"
-            onclick="setDirection('mixed')">
+    <textarea
+      id="cardInput"
+      placeholder="Например:
 
-            Mixed
+How did you pull that off? — Как тебе удалось это сделать?
+You can't be serious. — Ты не можешь быть серьёзным.
+I'm still mortified. — Мне до сих пор ужасно неловко."
+    ></textarea>
 
-        </button>
+    <br><br>
 
+    <button class="primary-btn" onclick="addCards()">
+      Добавить карточки
+    </button>
+
+  </section>
+
+  <!-- STUDY -->
+
+  <section id="studyArea" class="study-area">
+
+    <div class="study-top">
+      <button class="back-btn" onclick="showGroups()">
+        ← Все группы
+      </button>
+
+      <span id="currentGroupName" class="current-group-name"></span>
     </div>
-
-
-    <!-- ================= GROUPS ================= -->
 
     <div
-        class="groups-view"
-        id="groupsView">
+      id="flashcard"
+      class="flashcard"
+      onclick="flipCard()"
+    >
 
-        <div class="groups-header">
+      <div id="cardLabel" class="card-label"></div>
 
-            <h2>
-                Мои группы
-            </h2>
+      <div id="cardText" class="card-text"></div>
 
-            <button
-                class="create-group-btn"
-                onclick="showCreateGroup()">
-
-                ＋ Группа
-
-            </button>
-
-        </div>
-
-        <div
-            class="group-list"
-            id="groupList">
-        </div>
+      <button
+        class="speech-btn"
+        onclick="speakCurrent(event)">
+        🔊
+      </button>
 
     </div>
 
+    <div class="navigation">
 
-    <!-- ================= EMPTY ================= -->
+      <button
+        class="nav-btn"
+        onclick="previousCard(event)">
+        ←
+      </button>
 
-    <div
-        class="empty-state"
-        id="emptyState">
+      <span
+        id="pageCounter"
+        class="page-counter">
+      </span>
 
-        <h2>
-            Пока нет карточек
-        </h2>
-
-        <p>
-            Создай группу и добавь в неё карточки,
-            чтобы начать учить.
-        </p>
-
-        <button
-            class="add-main-btn"
-            onclick="showCreateGroup()">
-
-            ＋ Создать группу
-
-        </button>
+      <button
+        class="nav-btn"
+        onclick="nextCard(event)">
+        →
+      </button>
 
     </div>
 
+    <div class="answer-buttons">
 
-    <!-- ================= FIRST ADD PANEL ================= -->
+      <button
+        class="dont-know-btn"
+        onclick="markUnknown(event)">
+        ✕ Не знаю
+      </button>
 
-    <div
-        class="add-mobile"
-        id="addCardsMobile"
-        style="display:none;">
+      <button
+        class="know-btn"
+        onclick="markKnown(event)">
+        ✓ Знаю
+      </button>
 
-        <h3>
-            Добавить карточки
-        </h3>
+    </div>
+
+    <div class="progress-wrap">
+      <div id="progress" class="progress"></div>
+    </div>
+
+    <!-- VOICE -->
+
+    <details>
+      <summary>🔊 Настройки голоса</summary>
+
+      <div class="settings-row">
+
+        <label>Язык:</label>
+
+        <select id="voiceLanguage">
+          <option value="en-US">English US</option>
+          <option value="en-GB">English UK</option>
+        </select>
+
+      </div>
+
+      <div class="settings-row">
+
+        <label>Скорость:</label>
+
+        <input
+          id="speechRate"
+          type="range"
+          min="0.5"
+          max="1.5"
+          step="0.1"
+          value="1">
+
+        <span id="speechRateValue">1</span>
+
+      </div>
+    </details>
+
+    <!-- ADD FROM STUDY -->
+
+    <details>
+      <summary>➕ Добавить карточки</summary>
+
+      <div style="margin-top:15px">
+
+        <label>Добавить в:</label>
+
+        <select
+          id="studyGroupSelect"
+          class="group-select">
+        </select>
 
         <textarea
-            id="cardInput"
-            placeholder="How did you pull that off? — Как тебе удалось это сделать?
-I can't believe it. — Я не могу в это поверить."></textarea>
+          id="cardInputStudy"
+          placeholder="English — Русский"
+        ></textarea>
 
-
-        <div class="group-select-wrap">
-
-            <label for="firstGroupSelect">
-                Группа
-            </label>
-
-            <select
-                class="group-select"
-                id="firstGroupSelect">
-            </select>
-
-        </div>
-
+        <br><br>
 
         <button
-            class="add-main-btn"
-            style="margin-top:10px;"
-            onclick="addCards()">
-
-            Добавить
-
+          class="primary-btn"
+          onclick="addCardsFromStudy()">
+          Добавить
         </button>
 
-    </div>
+      </div>
 
+    </details>
 
-    <!-- ================= STUDY AREA ================= -->
+    <!-- ALL CARDS -->
 
-    <div
-        class="study-area"
-        id="studyArea">
+    <details>
+      <summary>📋 Карточки этой группы</summary>
 
+      <div
+        id="cardList"
+        class="card-list">
+      </div>
 
-        <!-- ================= STUDY TOP ================= -->
+    </details>
 
-        <div class="study-topbar">
+    <button
+      class="delete-btn"
+      onclick="deleteCurrentGroupCards()">
+      🗑️ Удалить карточки этой группы
+    </button>
 
-            <button
-                class="back-groups-btn"
-                onclick="showGroups()">
-
-                ← Все группы
-
-            </button>
-
-            <div
-                class="current-group-name"
-                id="currentGroupName">
-
-                Все карточки
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= FLASHCARD ================= -->
-
-        <div
-            class="flashcard"
-            id="flashcard"
-            onclick="flipCard()">
-
-            <div
-                class="card-label"
-                id="cardLabel">
-
-                English
-
-            </div>
-
-            <div
-                class="card-text"
-                id="cardText">
-
-                —
-
-            </div>
-
-            <div
-                class="card-hint"
-                id="cardHint">
-
-                Нажми на карточку, чтобы перевернуть
-
-            </div>
-
-            <button
-                class="speak-btn"
-                onclick="speakCurrent(event)"
-                aria-label="Озвучить">
-
-                🔊
-
-            </button>
-
-        </div>
-
-
-        <!-- ================= NAVIGATION ================= -->
-
-        <div class="navigation">
-
-            <button
-                class="nav-btn"
-                onclick="previousCard()"
-                aria-label="Предыдущая">
-
-                ←
-
-            </button>
-
-            <div
-                class="page-counter"
-                id="pageCounter">
-
-                1 / 0
-
-            </div>
-
-            <button
-                class="nav-btn"
-                onclick="nextCard()"
-                aria-label="Следующая">
-
-                →
-
-            </button>
-
-        </div>
-
-
-        <!-- ================= ANSWER BUTTONS ================= -->
-
-        <div class="answer-buttons">
-
-            <button
-                class="answer-btn unknown"
-                onclick="markUnknown()">
-
-                ✕ Не знаю
-
-            </button>
-
-            <button
-                class="answer-btn known"
-                onclick="markKnown()">
-
-                ✓ Знаю
-
-            </button>
-
-        </div>
-
-
-        <!-- ================= PROGRESS ================= -->
-
-        <div class="progress-wrap">
-
-            <div class="progress-info">
-
-                <span>
-                    Прогресс
-                </span>
-
-                <span id="progressText">
-                    0%
-                </span>
-
-            </div>
-
-            <div class="progress-bar">
-
-                <div
-                    class="progress-fill"
-                    id="progressFill">
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= VOICE SETTINGS ================= -->
-
-        <details>
-
-            <summary>
-                🔊 Настройки озвучки
-            </summary>
-
-            <div class="section-content">
-
-                <div class="voice-row">
-
-                    <label for="voiceLanguage">
-                        Язык:
-                    </label>
-
-                    <select id="voiceLanguage">
-
-                        <option value="en-US">
-                            English US
-                        </option>
-
-                        <option value="en-GB">
-                            English UK
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="voice-row">
-
-                    <label for="speechRate">
-                        Скорость:
-                    </label>
-
-                    <select id="speechRate">
-
-                        <option value="0.6">
-                            0.6×
-                        </option>
-
-                        <option value="0.8">
-                            0.8×
-                        </option>
-
-                        <option value="1">
-                            1×
-                        </option>
-
-                        <option value="1.2">
-                            1.2×
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-        </details>
-
-
-        <!-- ================= ADD MORE ================= -->
-
-        <details>
-
-            <summary>
-                ＋ Добавить карточки
-            </summary>
-
-            <div class="section-content">
-
-                <textarea
-                    id="cardInputStudy"
-                    placeholder="English — Русский"></textarea>
-
-
-                <div class="group-select-wrap">
-
-                    <label for="studyGroupSelect">
-                        Группа
-                    </label>
-
-                    <select
-                        class="group-select"
-                        id="studyGroupSelect">
-                    </select>
-
-                </div>
-
-
-                <button
-                    class="section-btn"
-                    style="margin-top:10px;"
-                    onclick="addCardsFromStudy()">
-
-                    Добавить карточки
-
-                </button>
-
-            </div>
-
-        </details>
-
-
-        <!-- ================= ALL CARDS ================= -->
-
-        <details>
-
-            <summary>
-                📚 Карточки этой группы
-            </summary>
-
-            <div class="section-content">
-
-                <div
-                    class="card-list"
-                    id="cardList">
-                </div>
-
-            </div>
-
-        </details>
-
-
-        <!-- ================= DELETE ALL ================= -->
-
-        <button
-            class="delete-all-btn"
-            id="deleteCurrentBtn"
-            onclick="deleteCurrentGroupCards()">
-
-            🗑️ Удалить карточки этой группы
-
-        </button>
-
-    </div>
+  </section>
 
 </div>
-
 
 <script>
 
@@ -1546,37 +711,34 @@ I can't believe it. — Я не могу в это поверить."></textarea
 ========================================================= */
 
 let cards = JSON.parse(
-    localStorage.getItem("englishCards") || "[]"
+  localStorage.getItem("englishCards") || "[]"
 );
 
 let knownCards = JSON.parse(
-    localStorage.getItem("knownCards") || "[]"
+  localStorage.getItem("knownCards") || "[]"
 );
 
 let unknownCards = JSON.parse(
-    localStorage.getItem("unknownCards") || "[]"
+  localStorage.getItem("unknownCards") || "[]"
 );
 
 let groups = JSON.parse(
-    localStorage.getItem("cardGroups") || "[]"
+  localStorage.getItem("cardGroups") || "[]"
 );
 
 let currentGroupId =
-    localStorage.getItem("currentGroupId") || null;
+  localStorage.getItem("currentGroupId") || null;
 
 let direction =
-    localStorage.getItem("cardDirection") || "en-ru";
+  localStorage.getItem("cardDirection") || "en-ru";
 
 let speechRate =
-    Number(
-        localStorage.getItem("speechRate") || "1"
-    );
+  Number(localStorage.getItem("speechRate") || "1");
 
 let voiceLanguage =
-    localStorage.getItem("voiceLanguage") || "en-US";
+  localStorage.getItem("voiceLanguage") || "en-US";
 
 let currentIndex = 0;
-
 let isFlipped = false;
 
 let studyCards = [];
@@ -1587,2102 +749,132 @@ let studyCards = [];
 ========================================================= */
 
 function makeId() {
-
-    return Date.now() +
-        "_" +
-        Math.random()
-            .toString(36)
-            .slice(2, 9);
-
+  return Date.now() + "_" +
+    Math.random().toString(36).slice(2, 9);
 }
 
 
 /* =========================================================
-   MIGRATION OLD CARDS
-========================================================= */
-
-function migrateOldCards() {
-
-    /*
-        Если приложение уже использовалось раньше,
-        старые карточки не пропадут.
-
-        Они автоматически попадут
-        в группу "Без группы".
-    */
-
-    if (cards.length === 0) {
-        return;
-    }
-
-
-    let changed = false;
-
-
-    if (groups.length === 0) {
-
-        const defaultGroup = {
-
-            id: makeId(),
-
-            name: "Без группы"
-
-        };
-
-
-        groups.push(defaultGroup);
-
-
-        cards.forEach(card => {
-
-            if (!card.groupId) {
-
-                card.groupId =
-                    defaultGroup.id;
-
-                changed = true;
-
-            }
-
-        });
-
-    } else {
-
-        let fallback =
-            groups.find(
-                group =>
-                    group.name === "Без группы"
-            );
-
-
-        const hasOrphans =
-            cards.some(
-                card => !card.groupId
-            );
-
-
-        if (
-            hasOrphans &&
-            !fallback
-        ) {
-
-            fallback = {
-
-                id: makeId(),
-
-                name: "Без группы"
-
-            };
-
-
-            groups.push(fallback);
-
-        }
-
-
-        if (fallback) {
-
-            cards.forEach(card => {
-
-                if (!card.groupId) {
-
-                    card.groupId =
-                        fallback.id;
-
-                    changed = true;
-
-                }
-
-            });
-
-        }
-
-    }
-
-
-    if (changed) {
-
-        saveAll();
-
-    }
-
-}
-
-
-/* =========================================================
-   INIT
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        migrateOldCards();
-
-
-        document.getElementById(
-            "speechRate"
-        ).value = speechRate;
-
-
-        document.getElementById(
-            "voiceLanguage"
-        ).value = voiceLanguage;
-
-
-        document
-            .getElementById("speechRate")
-            .addEventListener(
-                "change",
-                function () {
-
-                    speechRate =
-                        Number(this.value);
-
-                    localStorage.setItem(
-                        "speechRate",
-                        speechRate
-                    );
-
-                }
-            );
-
-
-        document
-            .getElementById("voiceLanguage")
-            .addEventListener(
-                "change",
-                function () {
-
-                    voiceLanguage =
-                        this.value;
-
-                    localStorage.setItem(
-                        "voiceLanguage",
-                        voiceLanguage
-                    );
-
-                }
-            );
-
-
-        updateDirectionButtons();
-
-        updateGroupSelects();
-
-        updateCounters();
-
-
-        if (cards.length > 0) {
-
-            /*
-                При открытии приложения
-                возвращаем последнюю группу,
-                если она существует.
-            */
-
-            if (
-                currentGroupId &&
-                !groups.some(
-                    group =>
-                        group.id === currentGroupId
-                )
-            ) {
-
-                currentGroupId = null;
-
-            }
-
-
-            openGroup(
-                currentGroupId,
-                false
-            );
-
-        } else {
-
-            showEmpty();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   SAVE EVERYTHING
+   SAVE
 ========================================================= */
 
 function saveAll() {
 
+  localStorage.setItem(
+    "englishCards",
+    JSON.stringify(cards)
+  );
+
+  localStorage.setItem(
+    "knownCards",
+    JSON.stringify(knownCards)
+  );
+
+  localStorage.setItem(
+    "unknownCards",
+    JSON.stringify(unknownCards)
+  );
+
+  localStorage.setItem(
+    "cardGroups",
+    JSON.stringify(groups)
+  );
+
+  if (currentGroupId) {
     localStorage.setItem(
-        "englishCards",
-        JSON.stringify(cards)
+      "currentGroupId",
+      currentGroupId
     );
+  } else {
+    localStorage.removeItem("currentGroupId");
+  }
 
-
-    localStorage.setItem(
-        "knownCards",
-        JSON.stringify(knownCards)
-    );
-
-
-    localStorage.setItem(
-        "unknownCards",
-        JSON.stringify(unknownCards)
-    );
-
-
-    localStorage.setItem(
-        "cardGroups",
-        JSON.stringify(groups)
-    );
-
-
-    if (currentGroupId) {
-
-        localStorage.setItem(
-            "currentGroupId",
-            currentGroupId
-        );
-
-    } else {
-
-        localStorage.removeItem(
-            "currentGroupId"
-        );
-
-    }
-
-
-    updateCounters();
-
-    renderGroups();
-
+  updateCounters();
 }
 
 
 /* =========================================================
-   DIRECTION
+   OLD CARDS MIGRATION
 ========================================================= */
 
-function setDirection(value) {
+function migrateOldCards() {
 
-    direction = value;
+  if (cards.length === 0) return;
 
-    localStorage.setItem(
-        "cardDirection",
-        direction
-    );
+  let changed = false;
 
-    currentIndex = 0;
+  /*
+    Если группы ещё никогда не существовали,
+    создаём "Без группы" и переносим туда
+    старые карточки.
+  */
 
-    isFlipped = false;
+  if (groups.length === 0) {
 
-    updateDirectionButtons();
-
-    if (studyCards.length > 0) {
-
-        showCard();
-
-    }
-
-}
-
-
-/* =========================================================
-   DIRECTION BUTTONS
-========================================================= */
-
-function updateDirectionButtons() {
-
-    document
-        .getElementById("directionEnRu")
-        .classList.toggle(
-            "active",
-            direction === "en-ru"
-        );
-
-
-    document
-        .getElementById("directionRuEn")
-        .classList.toggle(
-            "active",
-            direction === "ru-en"
-        );
-
-
-    document
-        .getElementById("directionMixed")
-        .classList.toggle(
-            "active",
-            direction === "mixed"
-        );
-
-}
-
-
-/* =========================================================
-   GROUP COUNT WORD
-========================================================= */
-
-function plural(
-    number,
-    one,
-    few,
-    many
-) {
-
-    if (
-        number % 10 === 1 &&
-        number % 100 !== 11
-    ) {
-
-        return one;
-
-    }
-
-
-    if (
-        number % 10 >= 2 &&
-        number % 10 <= 4 &&
-        (
-            number % 100 < 10 ||
-            number % 100 >= 20
-        )
-    ) {
-
-        return few;
-
-    }
-
-
-    return many;
-
-}
-
-
-/* =========================================================
-   RENDER GROUPS
-========================================================= */
-
-function renderGroups() {
-
-    const list =
-        document.getElementById(
-            "groupList"
-        );
-
-
-    if (!list) {
-        return;
-    }
-
-
-    list.innerHTML = "";
-
-
-    /*
-        ВСЕ КАРТОЧКИ
-    */
-
-    const allItem =
-        document.createElement("div");
-
-
-    allItem.className =
-        "group-item";
-
-
-    allItem.innerHTML = `
-
-        <div class="group-icon">
-            📚
-        </div>
-
-        <div class="group-main">
-
-            <div class="group-name">
-                Все карточки
-            </div>
-
-            <div class="group-count">
-                ${cards.length}
-                ${plural(
-                    cards.length,
-                    "карточка",
-                    "карточки",
-                    "карточек"
-                )}
-            </div>
-
-        </div>
-
-    `;
-
-
-    allItem.onclick = () => {
-
-        openGroup(null);
-
+    const defaultGroup = {
+      id: makeId(),
+      name: "Без группы"
     };
 
+    groups.push(defaultGroup);
 
-    list.appendChild(allItem);
+    cards.forEach(card => {
 
+      if (!card.groupId) {
 
-    /*
-        ОБЫЧНЫЕ ГРУППЫ
-    */
+        card.groupId = defaultGroup.id;
+        changed = true;
 
-    groups.forEach(group => {
-
-        const count =
-            cards.filter(
-                card =>
-                    card.groupId === group.id
-            ).length;
-
-
-        const item =
-            document.createElement("div");
-
-
-        item.className =
-            "group-item";
-
-
-        item.innerHTML = `
-
-            <div class="group-icon">
-                📁
-            </div>
-
-            <div class="group-main">
-
-                <div class="group-name">
-                    ${escapeHtml(group.name)}
-                </div>
-
-                <div class="group-count">
-                    ${count}
-                    ${plural(
-                        count,
-                        "карточка",
-                        "карточки",
-                        "карточек"
-                    )}
-                </div>
-
-            </div>
-
-            <button
-                class="group-menu"
-                aria-label="Меню группы">
-
-                ⋮
-
-            </button>
-
-        `;
-
-
-        item
-            .querySelector(".group-menu")
-            .onclick = event => {
-
-                event.stopPropagation();
-
-                groupMenu(group.id);
-
-            };
-
-
-        item.onclick = () => {
-
-            openGroup(group.id);
-
-        };
-
-
-        list.appendChild(item);
+      }
 
     });
 
-}
+  } else {
 
+    /*
+      Если группы уже есть, но есть карточки
+      без groupId — отправляем их в "Без группы".
+    */
 
-/* =========================================================
-   CREATE GROUP
-========================================================= */
+    let fallback = groups.find(
+      group => group.name === "Без группы"
+    );
 
-function showCreateGroup() {
+    const hasOrphans = cards.some(
+      card => !card.groupId
+    );
 
-    const name =
-        prompt(
-            "Название новой группы:"
-        );
+    if (hasOrphans && !fallback) {
 
-
-    if (name === null) {
-        return;
-    }
-
-
-    const cleanName =
-        name.trim();
-
-
-    if (!cleanName) {
-
-        alert(
-            "Название группы не может быть пустым."
-        );
-
-        return;
-
-    }
-
-
-    const exists =
-        groups.some(
-            group =>
-                group.name.toLowerCase() ===
-                cleanName.toLowerCase()
-        );
-
-
-    if (exists) {
-
-        alert(
-            "Такая группа уже существует."
-        );
-
-        return;
-
-    }
-
-
-    const newGroup = {
-
+      fallback = {
         id: makeId(),
+        name: "Без группы"
+      };
 
-        name: cleanName
-
-    };
-
-
-    groups.push(newGroup);
-
-
-    saveAll();
-
-
-    /*
-        После создания сразу открываем
-        добавление карточек.
-    */
-
-    showGroups();
-
-    updateGroupSelects();
-
-    document
-        .getElementById("firstGroupSelect")
-        .value = newGroup.id;
-
-    showAddPanel();
-
-}
-
-
-/* =========================================================
-   GROUP MENU
-========================================================= */
-
-function groupMenu(groupId) {
-
-    const group =
-        groups.find(
-            item =>
-                item.id === groupId
-        );
-
-
-    if (!group) {
-        return;
-    }
-
-
-    const action =
-        prompt(
-            `Группа: ${group.name}\n\n` +
-            `1 — Переименовать\n` +
-            `2 — Удалить\n\n` +
-            `Введи 1 или 2:`
-        );
-
-
-    if (action === "1") {
-
-        renameGroup(groupId);
+      groups.push(fallback);
 
     }
 
+    if (fallback) {
 
-    if (action === "2") {
+      cards.forEach(card => {
 
-        deleteGroup(groupId);
+        if (!card.groupId) {
 
-    }
-
-}
-
-
-/* =========================================================
-   RENAME GROUP
-========================================================= */
-
-function renameGroup(groupId) {
-
-    const group =
-        groups.find(
-            item =>
-                item.id === groupId
-        );
-
-
-    if (!group) {
-        return;
-    }
-
-
-    const newName =
-        prompt(
-            "Новое название группы:",
-            group.name
-        );
-
-
-    if (newName === null) {
-        return;
-    }
-
-
-    const cleanName =
-        newName.trim();
-
-
-    if (!cleanName) {
-
-        alert(
-            "Название не может быть пустым."
-        );
-
-        return;
-
-    }
-
-
-    const duplicate =
-        groups.some(
-            item =>
-                item.id !== groupId &&
-                item.name.toLowerCase() ===
-                cleanName.toLowerCase()
-        );
-
-
-    if (duplicate) {
-
-        alert(
-            "Такая группа уже существует."
-        );
-
-        return;
-
-    }
-
-
-    group.name = cleanName;
-
-
-    saveAll();
-
-    updateGroupSelects();
-
-
-    if (
-        currentGroupId === groupId
-    ) {
-
-        document
-            .getElementById(
-                "currentGroupName"
-            )
-            .textContent = cleanName;
-
-    }
-
-}
-
-
-/* =========================================================
-   DELETE GROUP
-========================================================= */
-
-function deleteGroup(groupId) {
-
-    const group =
-        groups.find(
-            item =>
-                item.id === groupId
-        );
-
-
-    if (!group) {
-        return;
-    }
-
-
-    const groupCards =
-        cards.filter(
-            card =>
-                card.groupId === groupId
-        );
-
-
-    const confirmed =
-        confirm(
-            `Удалить группу "${group.name}"?\n\n` +
-
-            `Карточек внутри: ${groupCards.length}\n\n` +
-
-            `Все карточки этой группы тоже будут удалены.\n\n` +
-
-            `Это действие нельзя отменить.`
-        );
-
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    const deletedIds =
-        new Set(
-            groupCards.map(
-                card => card.id
-            )
-        );
-
-
-    cards =
-        cards.filter(
-            card =>
-                card.groupId !== groupId
-        );
-
-
-    knownCards =
-        knownCards.filter(
-            id =>
-                !deletedIds.has(id)
-        );
-
-
-    unknownCards =
-        unknownCards.filter(
-            id =>
-                !deletedIds.has(id)
-        );
-
-
-    groups =
-        groups.filter(
-            item =>
-                item.id !== groupId
-        );
-
-
-    currentGroupId = null;
-
-    currentIndex = 0;
-
-    isFlipped = false;
-
-
-    saveAll();
-
-    updateGroupSelects();
-
-    showGroups();
-
-}
-
-
-/* =========================================================
-   SHOW GROUPS
-========================================================= */
-
-function showGroups() {
-
-    document
-        .getElementById("studyArea")
-        .style.display = "none";
-
-
-    document
-        .getElementById("emptyState")
-        .style.display = "none";
-
-
-    document
-        .getElementById("addCardsMobile")
-        .style.display = "none";
-
-
-    document
-        .getElementById("groupsView")
-        .style.display = "block";
-
-
-    renderGroups();
-
-}
-
-
-/* =========================================================
-   SHOW EMPTY
-========================================================= */
-
-function showEmpty() {
-
-    document
-        .getElementById("studyArea")
-        .style.display = "none";
-
-
-    document
-        .getElementById("groupsView")
-        .style.display = "none";
-
-
-    document
-        .getElementById("addCardsMobile")
-        .style.display = "none";
-
-
-    document
-        .getElementById("emptyState")
-        .style.display = "block";
-
-}
-
-
-/* =========================================================
-   OPEN GROUP
-========================================================= */
-
-function openGroup(
-    groupId,
-    autoShow = true
-) {
-
-    currentGroupId = groupId;
-
-    currentIndex = 0;
-
-    isFlipped = false;
-
-
-    /*
-        Создаём набор карточек
-        для текущей группы.
-    */
-
-    if (groupId === null) {
-
-        studyCards =
-            cards.slice();
-
-    } else {
-
-        studyCards =
-            cards.filter(
-                card =>
-                    card.groupId === groupId
-            );
-
-    }
-
-
-    /*
-        Если группа пустая —
-        предлагаем добавить карточки.
-    */
-
-    if (studyCards.length === 0) {
-
-        if (autoShow) {
-
-            updateGroupSelects();
-
-
-            document
-                .getElementById(
-                    "firstGroupSelect"
-                )
-                .value =
-                groupId || "";
-
-
-            showGroups();
-
-
-            if (groupId) {
-
-                showAddPanel();
-
-            }
+          card.groupId = fallback.id;
+          changed = true;
 
         }
 
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "currentGroupId",
-        groupId || ""
-    );
-
-
-    document
-        .getElementById("groupsView")
-        .style.display = "none";
-
-
-    document
-        .getElementById("emptyState")
-        .style.display = "none";
-
-
-    document
-        .getElementById("addCardsMobile")
-        .style.display = "none";
-
-
-    document
-        .getElementById("studyArea")
-        .style.display = "block";
-
-
-    updateGroupName();
-
-    updateGroupSelects();
-
-    showCard();
-
-    renderList();
-
-    updateCounters();
-
-}
-
-
-/* =========================================================
-   UPDATE CURRENT GROUP NAME
-========================================================= */
-
-function updateGroupName() {
-
-    const element =
-        document.getElementById(
-            "currentGroupName"
-        );
-
-
-    if (currentGroupId === null) {
-
-        element.textContent =
-            "Все карточки";
-
-        return;
+      });
 
     }
 
+  }
 
-    const group =
-        groups.find(
-            item =>
-                item.id === currentGroupId
-        );
-
-
-    element.textContent =
-        group
-            ? group.name
-            : "Все карточки";
-
-}
-
-
-/* =========================================================
-   GROUP SELECTS
-========================================================= */
-
-function updateGroupSelects() {
-
-    const first =
-        document.getElementById(
-            "firstGroupSelect"
-        );
-
-
-    const study =
-        document.getElementById(
-            "studyGroupSelect"
-        );
-
-
-    if (!first || !study) {
-        return;
-    }
-
-
-    /*
-        Первый select:
-        только реальные группы.
-    */
-
-    first.innerHTML = "";
-
-
-    groups.forEach(group => {
-
-        const option =
-            document.createElement("option");
-
-
-        option.value =
-            group.id;
-
-
-        option.textContent =
-            group.name;
-
-
-        first.appendChild(option);
-
-    });
-
-
-    /*
-        Второй select:
-        можно выбрать "Все карточки"
-        или конкретную группу.
-    */
-
-    study.innerHTML = "";
-
-
-    const allOption =
-        document.createElement("option");
-
-
-    allOption.value = "";
-
-    allOption.textContent =
-        "Все карточки";
-
-
-    study.appendChild(allOption);
-
-
-    groups.forEach(group => {
-
-        const option =
-            document.createElement("option");
-
-
-        option.value =
-            group.id;
-
-
-        option.textContent =
-            group.name;
-
-
-        study.appendChild(option);
-
-    });
-
-
-    if (
-        currentGroupId &&
-        groups.some(
-            group =>
-                group.id === currentGroupId
-        )
-    ) {
-
-        first.value =
-            currentGroupId;
-
-
-        study.value =
-            currentGroupId;
-
-    } else {
-
-        if (groups.length > 0) {
-
-            first.value =
-                groups[0].id;
-
-        }
-
-
-        study.value = "";
-
-    }
-
-}
-
-
-/* =========================================================
-   SHOW ADD PANEL
-========================================================= */
-
-function showAddPanel() {
-
-    if (groups.length === 0) {
-
-        showCreateGroup();
-
-        return;
-
-    }
-
-
-    const panel =
-        document.getElementById(
-            "addCardsMobile"
-        );
-
-
-    panel.style.display = "block";
-
-
-    updateGroupSelects();
-
-
-    if (
-        currentGroupId &&
-        groups.some(
-            group =>
-                group.id === currentGroupId
-        )
-    ) {
-
-        document
-            .getElementById(
-                "firstGroupSelect"
-            )
-            .value =
-            currentGroupId;
-
-    }
-
-
-    setTimeout(
-        () => {
-
-            document
-                .getElementById("cardInput")
-                .focus();
-
-        },
-        100
-    );
-
-}
-
-
-/* =========================================================
-   PARSE CARDS
-========================================================= */
-
-function parseCards(
-    text,
-    groupId
-) {
-
-    const lines =
-        text
-            .split(/\r?\n/)
-            .map(
-                line =>
-                    line.trim()
-            )
-            .filter(Boolean);
-
-
-    let added = 0;
-
-
-    lines.forEach(
-        line => {
-
-            const parts =
-                line.split(
-                    /\s*[—–-]\s*/
-                );
-
-
-            if (
-                parts.length < 2
-            ) {
-
-                return;
-
-            }
-
-
-            const english =
-                parts[0].trim();
-
-
-            const russian =
-                parts
-                    .slice(1)
-                    .join(" - ")
-                    .trim();
-
-
-            if (
-                !english ||
-                !russian
-            ) {
-
-                return;
-
-            }
-
-
-            cards.push({
-
-                id: makeId(),
-
-                en: english,
-
-                ru: russian,
-
-                groupId: groupId
-
-            });
-
-
-            added++;
-
-        }
-    );
-
-
-    return added;
-
-}
-
-
-/* =========================================================
-   ADD FIRST CARDS
-========================================================= */
-
-function addCards() {
-
-    const input =
-        document.getElementById(
-            "cardInput"
-        );
-
-
-    const text =
-        input.value.trim();
-
-
-    if (!text) {
-
-        alert(
-            "Введи хотя бы одну карточку."
-        );
-
-        return;
-
-    }
-
-
-    const groupId =
-        document.getElementById(
-            "firstGroupSelect"
-        ).value;
-
-
-    if (!groupId) {
-
-        alert(
-            "Сначала создай группу."
-        );
-
-        return;
-
-    }
-
-
-    const added =
-        parseCards(
-            text,
-            groupId
-        );
-
-
-    if (added === 0) {
-
-        alert(
-            "Не удалось добавить карточки.\n\n" +
-            "Формат:\n" +
-            "English — Русский"
-        );
-
-        return;
-
-    }
-
-
-    input.value = "";
-
-
+  if (changed) {
     saveAll();
-
-
-    /*
-        Сразу открываем группу,
-        куда добавили карточки.
-    */
-
-    openGroup(groupId);
-
-
-    /*
-        Начинаем с первой добавленной
-        карточки в этой группе.
-    */
-
-    const firstNewIndex =
-        studyCards.findIndex(
-            card =>
-                cards
-                    .slice(
-                        cards.length - added
-                    )
-                    .some(
-                        newCard =>
-                            newCard.id === card.id
-                    )
-        );
-
-
-    if (firstNewIndex >= 0) {
-
-        currentIndex =
-            firstNewIndex;
-
-        showCard();
-
-    }
-
-}
-
-
-/* =========================================================
-   ADD FROM STUDY
-========================================================= */
-
-function addCardsFromStudy() {
-
-    const input =
-        document.getElementById(
-            "cardInputStudy"
-        );
-
-
-    const text =
-        input.value.trim();
-
-
-    if (!text) {
-
-        alert(
-            "Введи хотя бы одну карточку."
-        );
-
-        return;
-
-    }
-
-
-    const selectedGroup =
-        document.getElementById(
-            "studyGroupSelect"
-        ).value;
-
-
-    let groupId =
-        selectedGroup;
-
-
-    /*
-        Если выбрано "Все карточки",
-        добавляем в текущую группу.
-
-        Если мы сейчас в "Все карточки"
-        и группа не выбрана —
-        просим выбрать группу.
-    */
-
-    if (!groupId) {
-
-        if (currentGroupId) {
-
-            groupId =
-                currentGroupId;
-
-        } else {
-
-            alert(
-                "Выбери группу для новых карточек."
-            );
-
-            return;
-
-        }
-
-    }
-
-
-    const added =
-        parseCards(
-            text,
-            groupId
-        );
-
-
-    if (added === 0) {
-
-        alert(
-            "Не удалось добавить карточки.\n\n" +
-            "Формат:\n" +
-            "English — Русский"
-        );
-
-        return;
-
-    }
-
-
-    input.value = "";
-
-
-    saveAll();
-
-
-    /*
-        Если добавляли в текущую группу —
-        обновляем её.
-
-        Если добавляли в другую группу —
-        оставляем текущую группу открытой.
-    */
-
-    if (
-        currentGroupId === groupId
-    ) {
-
-        currentIndex =
-            Math.max(
-                0,
-                studyCards.length
-            );
-
-
-        studyCards =
-            cards.filter(
-                card =>
-                    card.groupId ===
-                    currentGroupId
-            );
-
-
-        currentIndex =
-            Math.max(
-                0,
-                studyCards.length - added
-            );
-
-
-        showCard();
-
-        renderList();
-
-    }
-
-
-    const details =
-        input.closest("details");
-
-
-    if (details) {
-
-        details.open = false;
-
-    }
-
-}
-
-
-/* =========================================================
-   SHOW CARD
-========================================================= */
-
-function showCard() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    if (currentIndex < 0) {
-
-        currentIndex = 0;
-
-    }
-
-
-    if (
-        currentIndex >=
-        studyCards.length
-    ) {
-
-        currentIndex =
-            studyCards.length - 1;
-
-    }
-
-
-    isFlipped = false;
-
-
-    const card =
-        studyCards[currentIndex];
-
-
-    let showEnglish = true;
-
-
-    if (
-        direction === "ru-en"
-    ) {
-
-        showEnglish = false;
-
-    }
-
-
-    else if (
-        direction === "mixed"
-    ) {
-
-        showEnglish =
-            Math.random() > 0.5;
-
-    }
-
-
-    const cardText =
-        document.getElementById(
-            "cardText"
-        );
-
-
-    const cardLabel =
-        document.getElementById(
-            "cardLabel"
-        );
-
-
-    const cardHint =
-        document.getElementById(
-            "cardHint"
-        );
-
-
-    if (showEnglish) {
-
-        cardText.textContent =
-            card.en;
-
-        cardLabel.textContent =
-            "English";
-
-    } else {
-
-        cardText.textContent =
-            card.ru;
-
-        cardLabel.textContent =
-            "Русский";
-
-    }
-
-
-    cardHint.textContent =
-        "Нажми на карточку, чтобы перевернуть";
-
-
-    cardText.dataset.side =
-        showEnglish
-            ? "en"
-            : "ru";
-
-
-    document
-        .getElementById("pageCounter")
-        .textContent =
-        `${currentIndex + 1} / ${studyCards.length}`;
-
-
-    updateProgress();
-
-}
-
-
-/* =========================================================
-   FLIP
-========================================================= */
-
-function flipCard() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    const card =
-        studyCards[currentIndex];
-
-
-    const cardText =
-        document.getElementById(
-            "cardText"
-        );
-
-
-    const cardLabel =
-        document.getElementById(
-            "cardLabel"
-        );
-
-
-    const currentSide =
-        cardText.dataset.side;
-
-
-    if (
-        currentSide === "en"
-    ) {
-
-        cardText.textContent =
-            card.ru;
-
-        cardLabel.textContent =
-            "Русский";
-
-        cardText.dataset.side =
-            "ru";
-
-    } else {
-
-        cardText.textContent =
-            card.en;
-
-        cardLabel.textContent =
-            "English";
-
-        cardText.dataset.side =
-            "en";
-
-    }
-
-
-    isFlipped =
-        !isFlipped;
-
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function nextCard() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    currentIndex++;
-
-
-    if (
-        currentIndex >=
-        studyCards.length
-    ) {
-
-        currentIndex = 0;
-
-    }
-
-
-    showCard();
-
-}
-
-
-function previousCard() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    currentIndex--;
-
-
-    if (currentIndex < 0) {
-
-        currentIndex =
-            studyCards.length - 1;
-
-    }
-
-
-    showCard();
-
-}
-
-
-/* =========================================================
-   KNOWN
-========================================================= */
-
-function markKnown() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    const id =
-        studyCards[currentIndex].id;
-
-
-    if (
-        !knownCards.includes(id)
-    ) {
-
-        knownCards.push(id);
-
-    }
-
-
-    unknownCards =
-        unknownCards.filter(
-            item =>
-                item !== id
-        );
-
-
-    saveAll();
-
-
-    nextCard();
-
-}
-
-
-/* =========================================================
-   UNKNOWN
-========================================================= */
-
-function markUnknown() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    const id =
-        studyCards[currentIndex].id;
-
-
-    if (
-        !unknownCards.includes(id)
-    ) {
-
-        unknownCards.push(id);
-
-    }
-
-
-    knownCards =
-        knownCards.filter(
-            item =>
-                item !== id
-        );
-
-
-    saveAll();
-
-
-    nextCard();
-
-}
-
-
-/* =========================================================
-   DELETE CURRENT GROUP CARDS
-========================================================= */
-
-function deleteCurrentGroupCards() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    const groupName =
-        currentGroupId
-            ? (
-                groups.find(
-                    group =>
-                        group.id ===
-                        currentGroupId
-                )?.name ||
-                "группы"
-            )
-            : "всех карточек";
-
-
-    const confirmed =
-        confirm(
-            `Удалить ${studyCards.length} карточек из "${groupName}"?\n\n` +
-            `Прогресс обучения этих карточек тоже будет удалён.\n\n` +
-            `Это действие нельзя отменить.`
-        );
-
-
-    if (!confirmed) {
-
-        return;
-
-    }
-
-
-    const deletedIds =
-        new Set(
-            studyCards.map(
-                card =>
-                    card.id
-            )
-        );
-
-
-    cards =
-        cards.filter(
-            card =>
-                !deletedIds.has(
-                    card.id
-                )
-        );
-
-
-    knownCards =
-        knownCards.filter(
-            id =>
-                !deletedIds.has(id)
-        );
-
-
-    unknownCards =
-        unknownCards.filter(
-            id =>
-                !deletedIds.has(id)
-        );
-
-
-    currentIndex = 0;
-
-    isFlipped = false;
-
-
-    saveAll();
-
-
-    if (
-        currentGroupId === null
-    ) {
-
-        showGroups();
-
-    } else {
-
-        const remaining =
-            cards.filter(
-                card =>
-                    card.groupId ===
-                    currentGroupId
-            );
-
-
-        if (
-            remaining.length === 0
-        ) {
-
-            showGroups();
-
-            updateGroupSelects();
-
-            document
-                .getElementById(
-                    "firstGroupSelect"
-                )
-                .value =
-                currentGroupId;
-
-        } else {
-
-            openGroup(
-                currentGroupId
-            );
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function updateProgress() {
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        document
-            .getElementById(
-                "progressText"
-            )
-            .textContent =
-            "0%";
-
-
-        document
-            .getElementById(
-                "progressFill"
-            )
-            .style.width =
-            "0%";
-
-
-        return;
-
-    }
-
-
-    const studyIds =
-        new Set(
-            studyCards.map(
-                card =>
-                    card.id
-            )
-        );
-
-
-    const knownCount =
-        knownCards.filter(
-            id =>
-                studyIds.has(id)
-        ).length;
-
-
-    const percent =
-        Math.round(
-            (knownCount /
-                studyCards.length) *
-            100
-        );
-
-
-    document
-        .getElementById(
-            "progressText"
-        )
-        .textContent =
-        `${percent}%`;
-
-
-    document
-        .getElementById(
-            "progressFill"
-        )
-        .style.width =
-        `${percent}%`;
-
+  }
 }
 
 
@@ -3692,146 +884,8 @@ function updateProgress() {
 
 function updateCounters() {
 
-    const total =
-        cards.length;
-
-
-    const counter =
-        document.getElementById(
-            "totalCounter"
-        );
-
-
-    if (total === 0) {
-
-        counter.textContent =
-            "0 карточек";
-
-        return;
-
-    }
-
-
-    if (total === 1) {
-
-        counter.textContent =
-            "1 карточка";
-
-    }
-
-    else if (
-        total >= 2 &&
-        total <= 4
-    ) {
-
-        counter.textContent =
-            `${total} карточки`;
-
-    }
-
-    else {
-
-        counter.textContent =
-            `${total} карточек`;
-
-    }
-
-}
-
-
-/* =========================================================
-   CARD LIST
-========================================================= */
-
-function renderList() {
-
-    const list =
-        document.getElementById(
-            "cardList"
-        );
-
-
-    if (!list) {
-        return;
-    }
-
-
-    list.innerHTML = "";
-
-
-    studyCards.forEach(
-        (card, index) => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "card-list-item";
-
-
-            item.innerHTML = `
-
-                <div class="card-list-en">
-                    ${escapeHtml(card.en)}
-                </div>
-
-                <div class="card-list-ru">
-                    ${escapeHtml(card.ru)}
-                </div>
-
-            `;
-
-
-            item.onclick = () => {
-
-                currentIndex =
-                    index;
-
-
-                showCard();
-
-
-                window.scrollTo({
-
-                    top: 0,
-
-                    behavior: "smooth"
-
-                });
-
-            };
-
-
-            list.appendChild(item);
-
-        }
-    );
-
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        list.innerHTML = `
-
-            <div
-                style="
-                    text-align:center;
-                    color:#777d85;
-                    padding:15px 5px;
-                "
-            >
-
-                В этой группе пока нет карточек.
-
-            </div>
-
-        `;
-
-    }
+  document.getElementById("totalCounter").textContent =
+    `Всего карточек: ${cards.length}`;
 
 }
 
@@ -3842,17 +896,1186 @@ function renderList() {
 
 function escapeHtml(text) {
 
-    const div =
-        document.createElement(
-            "div"
-        );
+  const div = document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
+}
 
 
-    div.textContent =
-        text;
+/* =========================================================
+   GROUPS
+========================================================= */
+
+function renderGroups() {
+
+  const list =
+    document.getElementById("groupList");
+
+  list.innerHTML = "";
 
 
-    return div.innerHTML;
+  /* ALL CARDS */
+
+  const allItem =
+    document.createElement("div");
+
+  allItem.className = "group-item";
+
+  allItem.innerHTML = `
+    <div class="group-icon">📚</div>
+
+    <div class="group-main">
+      <div class="group-name">
+        Все карточки
+      </div>
+
+      <div class="group-count">
+        ${cards.length} карточек
+      </div>
+    </div>
+  `;
+
+  allItem.onclick = () => openGroup(null);
+
+  list.appendChild(allItem);
+
+
+  /* GROUPS */
+
+  groups.forEach(group => {
+
+    const count =
+      cards.filter(
+        card => card.groupId === group.id
+      ).length;
+
+    const item =
+      document.createElement("div");
+
+    item.className = "group-item";
+
+    item.innerHTML = `
+      <div class="group-icon">📁</div>
+
+      <div class="group-main">
+        <div class="group-name">
+          ${escapeHtml(group.name)}
+        </div>
+
+        <div class="group-count">
+          ${count} карточек
+        </div>
+      </div>
+
+      <button
+        class="group-menu"
+        aria-label="Меню группы">
+        ⋮
+      </button>
+    `;
+
+    const menu =
+      item.querySelector(".group-menu");
+
+    menu.onclick = function(event) {
+
+      event.stopPropagation();
+
+      groupMenu(group.id);
+
+    };
+
+    item.onclick = () =>
+      openGroup(group.id);
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+/* =========================================================
+   SHOW GROUPS
+========================================================= */
+
+function showGroups() {
+
+  document.getElementById(
+    "groupsView"
+  ).style.display = "block";
+
+  document.getElementById(
+    "studyArea"
+  ).style.display = "none";
+
+  document.getElementById(
+    "emptyState"
+  ).style.display =
+    cards.length === 0 ? "block" : "none";
+
+  document.getElementById(
+    "addCardsMobile"
+  ).style.display =
+    groups.length === 0 ? "block" : "none";
+
+  renderGroups();
+  updateGroupSelects();
+
+}
+
+
+/* =========================================================
+   CREATE GROUP
+========================================================= */
+
+function showCreateGroup() {
+
+  const name = prompt(
+    "Введите название новой группы:"
+  );
+
+  if (name === null) return;
+
+  const cleanName = name.trim();
+
+  if (!cleanName) {
+
+    alert(
+      "Название группы не может быть пустым."
+    );
+
+    return;
+  }
+
+  const exists = groups.some(
+    group =>
+      group.name.toLowerCase() ===
+      cleanName.toLowerCase()
+  );
+
+  if (exists) {
+
+    alert(
+      "Такая группа уже существует."
+    );
+
+    return;
+  }
+
+  const newGroup = {
+    id: makeId(),
+    name: cleanName
+  };
+
+  groups.push(newGroup);
+
+  currentGroupId = newGroup.id;
+
+  saveAll();
+
+  renderGroups();
+
+  updateGroupSelects();
+
+  document.getElementById(
+    "firstGroupSelect"
+  ).value = newGroup.id;
+
+  /*
+    После создания сразу показываем
+    добавление карточек.
+  */
+
+  document.getElementById(
+    "groupsView"
+  ).style.display = "block";
+
+  document.getElementById(
+    "emptyState"
+  ).style.display = "none";
+
+  document.getElementById(
+    "addCardsMobile"
+  ).style.display = "block";
+
+  document.getElementById(
+    "cardInput"
+  ).focus();
+
+}
+
+
+/* =========================================================
+   GROUP MENU
+========================================================= */
+
+function groupMenu(groupId) {
+
+  const group =
+    groups.find(
+      item => item.id === groupId
+    );
+
+  if (!group) return;
+
+  const action =
+    prompt(
+      `Группа: ${group.name}\n\n` +
+      `1 — Переименовать\n` +
+      `2 — Удалить\n\n` +
+      `Введите 1 или 2:`
+    );
+
+  if (action === "1") {
+
+    renameGroup(groupId);
+
+  }
+
+  if (action === "2") {
+
+    deleteGroup(groupId);
+
+  }
+
+}
+
+
+/* =========================================================
+   RENAME GROUP
+========================================================= */
+
+function renameGroup(groupId) {
+
+  const group =
+    groups.find(
+      item => item.id === groupId
+    );
+
+  if (!group) return;
+
+  const newName =
+    prompt(
+      "Новое название группы:",
+      group.name
+    );
+
+  if (newName === null) return;
+
+  const cleanName = newName.trim();
+
+  if (!cleanName) {
+
+    alert(
+      "Название не может быть пустым."
+    );
+
+    return;
+  }
+
+  const duplicate =
+    groups.some(
+      item =>
+        item.id !== groupId &&
+        item.name.toLowerCase() ===
+        cleanName.toLowerCase()
+    );
+
+  if (duplicate) {
+
+    alert(
+      "Такая группа уже существует."
+    );
+
+    return;
+  }
+
+  group.name = cleanName;
+
+  saveAll();
+
+  renderGroups();
+
+  updateGroupSelects();
+
+  updateGroupName();
+
+}
+
+
+/* =========================================================
+   DELETE GROUP
+========================================================= */
+
+function deleteGroup(groupId) {
+
+  const group =
+    groups.find(
+      item => item.id === groupId
+    );
+
+  if (!group) return;
+
+  const groupCards =
+    cards.filter(
+      card => card.groupId === groupId
+    );
+
+  const confirmed =
+    confirm(
+      `Удалить группу "${group.name}"?\n\n` +
+      `Карточек внутри: ${groupCards.length}\n\n` +
+      `Все карточки этой группы тоже будут удалены.\n\n` +
+      `Это действие нельзя отменить.`
+    );
+
+  if (!confirmed) return;
+
+  const deletedIds =
+    new Set(
+      groupCards.map(card => card.id)
+    );
+
+  cards =
+    cards.filter(
+      card => card.groupId !== groupId
+    );
+
+  knownCards =
+    knownCards.filter(
+      id => !deletedIds.has(id)
+    );
+
+  unknownCards =
+    unknownCards.filter(
+      id => !deletedIds.has(id)
+    );
+
+  groups =
+    groups.filter(
+      item => item.id !== groupId
+    );
+
+  currentGroupId = null;
+  currentIndex = 0;
+  isFlipped = false;
+
+  saveAll();
+
+  showGroups();
+
+}
+
+
+/* =========================================================
+   OPEN GROUP
+========================================================= */
+
+function openGroup(
+  groupId,
+  autoShow = true
+) {
+
+  currentGroupId = groupId;
+
+  currentIndex = 0;
+
+  isFlipped = false;
+
+
+  if (groupId === null) {
+
+    studyCards = cards.slice();
+
+  } else {
+
+    studyCards =
+      cards.filter(
+        card => card.groupId === groupId
+      );
+
+  }
+
+
+  /*
+    Пустая группа.
+  */
+
+  if (studyCards.length === 0) {
+
+    if (autoShow) {
+
+      document.getElementById(
+        "groupsView"
+      ).style.display = "block";
+
+      document.getElementById(
+        "studyArea"
+      ).style.display = "none";
+
+      document.getElementById(
+        "emptyState"
+      ).style.display = "none";
+
+      document.getElementById(
+        "addCardsMobile"
+      ).style.display = "block";
+
+      updateGroupSelects();
+
+      document.getElementById(
+        "firstGroupSelect"
+      ).value = groupId || "";
+
+    }
+
+    return;
+  }
+
+
+  localStorage.setItem(
+    "currentGroupId",
+    groupId || ""
+  );
+
+
+  document.getElementById(
+    "groupsView"
+  ).style.display = "none";
+
+  document.getElementById(
+    "emptyState"
+  ).style.display = "none";
+
+  document.getElementById(
+    "addCardsMobile"
+  ).style.display = "none";
+
+  document.getElementById(
+    "studyArea"
+  ).style.display = "block";
+
+
+  updateGroupName();
+
+  updateGroupSelects();
+
+  showCard();
+
+  renderList();
+
+  updateCounters();
+
+}
+
+
+/* =========================================================
+   GROUP NAME
+========================================================= */
+
+function updateGroupName() {
+
+  const el =
+    document.getElementById(
+      "currentGroupName"
+    );
+
+  if (currentGroupId === null) {
+
+    el.textContent =
+      "Все карточки";
+
+    return;
+  }
+
+  const group =
+    groups.find(
+      item => item.id === currentGroupId
+    );
+
+  el.textContent =
+    group ? group.name : "Все карточки";
+
+}
+
+
+/* =========================================================
+   SELECTS
+========================================================= */
+
+function updateGroupSelects() {
+
+  const first =
+    document.getElementById(
+      "firstGroupSelect"
+    );
+
+  const study =
+    document.getElementById(
+      "studyGroupSelect"
+    );
+
+  if (!first || !study) return;
+
+
+  first.innerHTML = "";
+
+  groups.forEach(group => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = group.id;
+
+    option.textContent = group.name;
+
+    first.appendChild(option);
+
+  });
+
+
+  study.innerHTML = "";
+
+  const allOption =
+    document.createElement("option");
+
+  allOption.value = "";
+
+  allOption.textContent =
+    "Все карточки";
+
+  study.appendChild(allOption);
+
+
+  groups.forEach(group => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = group.id;
+
+    option.textContent = group.name;
+
+    study.appendChild(option);
+
+  });
+
+
+  if (
+    currentGroupId &&
+    groups.some(
+      group => group.id === currentGroupId
+    )
+  ) {
+
+    first.value = currentGroupId;
+
+    study.value = currentGroupId;
+
+  } else {
+
+    if (groups.length > 0) {
+
+      first.value = groups[0].id;
+
+    }
+
+    study.value = "";
+
+  }
+
+}
+
+
+/* =========================================================
+   PARSE CARDS
+========================================================= */
+
+function parseCards(
+  text,
+  groupId
+) {
+
+  const lines =
+    text
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(Boolean);
+
+  let added = 0;
+
+  lines.forEach(line => {
+
+    /*
+      Поддерживаем:
+      English — Русский
+      English – Русский
+      English - Русский
+    */
+
+    const parts =
+      line.split(
+        /\s*[—–-]\s*/
+      );
+
+    if (parts.length < 2) return;
+
+    const english =
+      parts[0].trim();
+
+    const russian =
+      parts
+        .slice(1)
+        .join(" - ")
+        .trim();
+
+    if (!english || !russian) return;
+
+    cards.push({
+      id: makeId(),
+      en: english,
+      ru: russian,
+      groupId: groupId
+    });
+
+    added++;
+
+  });
+
+  return added;
+
+}
+
+
+/* =========================================================
+   ADD CARDS
+========================================================= */
+
+function addCards() {
+
+  const input =
+    document.getElementById(
+      "cardInput"
+    );
+
+  const text =
+    input.value.trim();
+
+  if (!text) {
+
+    alert(
+      "Введи хотя бы одну карточку."
+    );
+
+    return;
+  }
+
+
+  const groupId =
+    document.getElementById(
+      "firstGroupSelect"
+    ).value;
+
+
+  if (!groupId) {
+
+    alert(
+      "Сначала создай группу."
+    );
+
+    return;
+  }
+
+
+  const oldLength =
+    cards.length;
+
+
+  const added =
+    parseCards(
+      text,
+      groupId
+    );
+
+
+  if (added === 0) {
+
+    alert(
+      "Не удалось добавить карточки.\n\n" +
+      "Формат:\n" +
+      "English — Русский"
+    );
+
+    return;
+  }
+
+
+  input.value = "";
+
+  saveAll();
+
+
+  /*
+    Открываем группу.
+  */
+
+  openGroup(groupId);
+
+
+  /*
+    Переходим на первую добавленную карточку.
+  */
+
+  const newCards =
+    cards.slice(oldLength);
+
+  const firstNewId =
+    newCards.length
+      ? newCards[0].id
+      : null;
+
+  const index =
+    studyCards.findIndex(
+      card => card.id === firstNewId
+    );
+
+  if (index >= 0) {
+
+    currentIndex = index;
+
+    showCard();
+
+  }
+
+}
+
+
+/* =========================================================
+   ADD CARDS FROM STUDY
+========================================================= */
+
+function addCardsFromStudy() {
+
+  const input =
+    document.getElementById(
+      "cardInputStudy"
+    );
+
+  const text =
+    input.value.trim();
+
+  if (!text) {
+
+    alert(
+      "Введи хотя бы одну карточку."
+    );
+
+    return;
+  }
+
+
+  const selectedGroup =
+    document.getElementById(
+      "studyGroupSelect"
+    ).value;
+
+
+  let groupId =
+    selectedGroup;
+
+
+  if (!groupId) {
+
+    if (currentGroupId) {
+
+      groupId = currentGroupId;
+
+    } else {
+
+      alert(
+        "Выбери группу для новых карточек."
+      );
+
+      return;
+    }
+
+  }
+
+
+  const added =
+    parseCards(
+      text,
+      groupId
+    );
+
+
+  if (added === 0) {
+
+    alert(
+      "Не удалось добавить карточки.\n\n" +
+      "Формат:\n" +
+      "English — Русский"
+    );
+
+    return;
+  }
+
+
+  input.value = "";
+
+  saveAll();
+
+
+  if (currentGroupId === groupId) {
+
+    studyCards =
+      cards.filter(
+        card =>
+          card.groupId === currentGroupId
+      );
+
+    currentIndex =
+      Math.max(
+        0,
+        studyCards.length - added
+      );
+
+    showCard();
+
+    renderList();
+
+  }
+
+
+  const details =
+    input.closest("details");
+
+  if (details) {
+
+    details.open = false;
+
+  }
+
+}
+
+
+/* =========================================================
+   DIRECTION
+========================================================= */
+
+function setDirection(value) {
+
+  direction = value;
+
+  localStorage.setItem(
+    "cardDirection",
+    value
+  );
+
+  updateDirectionButtons();
+
+  isFlipped = false;
+
+  showCard();
+
+}
+
+
+function updateDirectionButtons() {
+
+  document
+    .getElementById("dirEnRu")
+    .classList.toggle(
+      "active",
+      direction === "en-ru"
+    );
+
+  document
+    .getElementById("dirRuEn")
+    .classList.toggle(
+      "active",
+      direction === "ru-en"
+    );
+
+  document
+    .getElementById("dirMixed")
+    .classList.toggle(
+      "active",
+      direction === "mixed"
+    );
+
+}
+
+
+/* =========================================================
+   CARD DISPLAY
+========================================================= */
+
+function getCurrentCard() {
+
+  return studyCards[currentIndex];
+
+}
+
+
+function getFrontBack(card) {
+
+  if (direction === "en-ru") {
+
+    return {
+      front: card.en,
+      back: card.ru
+    };
+
+  }
+
+  if (direction === "ru-en") {
+
+    return {
+      front: card.ru,
+      back: card.en
+    };
+
+  }
+
+  /*
+    Mixed
+  */
+
+  if (Math.random() > 0.5) {
+
+    return {
+      front: card.en,
+      back: card.ru
+    };
+
+  }
+
+  return {
+    front: card.ru,
+    back: card.en
+  };
+
+}
+
+
+/* =========================================================
+   SHOW CARD
+========================================================= */
+
+let currentFront = "";
+let currentBack = "";
+
+
+function showCard() {
+
+  if (
+    !studyCards.length
+  ) {
+    return;
+  }
+
+
+  const card =
+    getCurrentCard();
+
+  if (!card) return;
+
+
+  /*
+    Для Mixed сохраняем сторону,
+    чтобы карточка не менялась
+    при каждом обновлении.
+  */
+
+  if (!currentFront || isFlipped) {
+
+    const sides =
+      getFrontBack(card);
+
+    currentFront =
+      sides.front;
+
+    currentBack =
+      sides.back;
+
+  }
+
+
+  const text =
+    isFlipped
+      ? currentBack
+      : currentFront;
+
+
+  const label =
+    isFlipped
+      ? "Ответ"
+      : "Вопрос";
+
+
+  document.getElementById(
+    "cardText"
+  ).textContent = text;
+
+
+  document.getElementById(
+    "cardLabel"
+  ).textContent = label;
+
+
+  document.getElementById(
+    "pageCounter"
+  ).textContent =
+    `${currentIndex + 1} / ${studyCards.length}`;
+
+
+  const percent =
+    ((currentIndex + 1) /
+      studyCards.length) * 100;
+
+
+  document.getElementById(
+    "progress"
+  ).style.width =
+    percent + "%";
+
+}
+
+
+/* =========================================================
+   FLIP
+========================================================= */
+
+function flipCard() {
+
+  if (!studyCards.length) return;
+
+  isFlipped = !isFlipped;
+
+  showCard();
+
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function nextCard(event) {
+
+  if (event) {
+    event.stopPropagation();
+  }
+
+  if (!studyCards.length) return;
+
+  currentIndex =
+    (currentIndex + 1) %
+    studyCards.length;
+
+  isFlipped = false;
+
+  currentFront = "";
+  currentBack = "";
+
+  showCard();
+
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function previousCard(event) {
+
+  if (event) {
+    event.stopPropagation();
+  }
+
+  if (!studyCards.length) return;
+
+  currentIndex =
+    (currentIndex - 1 +
+      studyCards.length) %
+    studyCards.length;
+
+  isFlipped = false;
+
+  currentFront = "";
+  currentBack = "";
+
+  showCard();
+
+}
+
+
+/* =========================================================
+   KNOW / UNKNOWN
+========================================================= */
+
+function markKnown(event) {
+
+  if (event) {
+    event.stopPropagation();
+  }
+
+  const card =
+    getCurrentCard();
+
+  if (!card) return;
+
+
+  knownCards =
+    knownCards.filter(
+      id => id !== card.id
+    );
+
+  unknownCards =
+    unknownCards.filter(
+      id => id !== card.id
+    );
+
+  knownCards.push(card.id);
+
+  saveAll();
+
+  nextCard();
+
+}
+
+
+function markUnknown(event) {
+
+  if (event) {
+    event.stopPropagation();
+  }
+
+  const card =
+    getCurrentCard();
+
+  if (!card) return;
+
+
+  knownCards =
+    knownCards.filter(
+      id => id !== card.id
+    );
+
+  unknownCards =
+    unknownCards.filter(
+      id => id !== card.id
+    );
+
+  unknownCards.push(card.id);
+
+  saveAll();
+
+  nextCard();
 
 }
 
@@ -3863,61 +2086,230 @@ function escapeHtml(text) {
 
 function speakCurrent(event) {
 
-    if (event) {
+  if (event) {
+    event.stopPropagation();
+  }
 
-        event.stopPropagation();
+  const card =
+    getCurrentCard();
 
-    }
-
-
-    if (
-        studyCards.length === 0
-    ) {
-
-        return;
-
-    }
+  if (!card) return;
 
 
-    const card =
-        studyCards[currentIndex];
+  /*
+    Всегда произносим английскую
+    версию.
+  */
 
-
-    if (
-        !("speechSynthesis" in window)
-    ) {
-
-        alert(
-            "Озвучка не поддерживается этим браузером."
-        );
-
-        return;
-
-    }
-
-
-    speechSynthesis.cancel();
-
-
-    const utterance =
-        new SpeechSynthesisUtterance(
-            card.en
-        );
-
-
-    utterance.lang =
-        voiceLanguage;
-
-
-    utterance.rate =
-        speechRate;
-
-
-    speechSynthesis.speak(
-        utterance
+  const utterance =
+    new SpeechSynthesisUtterance(
+      card.en
     );
 
+  utterance.lang =
+    voiceLanguage;
+
+  utterance.rate =
+    speechRate;
+
+  speechSynthesis.cancel();
+
+  speechSynthesis.speak(
+    utterance
+  );
+
 }
+
+
+/* =========================================================
+   CARD LIST
+========================================================= */
+
+function renderList() {
+
+  const list =
+    document.getElementById(
+      "cardList"
+    );
+
+  list.innerHTML = "";
+
+
+  studyCards.forEach(card => {
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "card-list-item";
+
+    item.innerHTML = `
+      <div class="card-en">
+        ${escapeHtml(card.en)}
+      </div>
+
+      <div class="card-ru">
+        ${escapeHtml(card.ru)}
+      </div>
+    `;
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+/* =========================================================
+   DELETE CURRENT GROUP CARDS
+========================================================= */
+
+function deleteCurrentGroupCards() {
+
+  let groupName =
+    "Все карточки";
+
+  let idsToDelete;
+
+
+  if (currentGroupId === null) {
+
+    idsToDelete =
+      new Set(
+        cards.map(card => card.id)
+      );
+
+  } else {
+
+    const group =
+      groups.find(
+        item =>
+          item.id === currentGroupId
+      );
+
+    groupName =
+      group
+        ? group.name
+        : "Группа";
+
+
+    idsToDelete =
+      new Set(
+        cards
+          .filter(
+            card =>
+              card.groupId ===
+              currentGroupId
+          )
+          .map(card => card.id)
+      );
+
+  }
+
+
+  if (idsToDelete.size === 0) {
+
+    alert(
+      "В этой группе нет карточек."
+    );
+
+    return;
+  }
+
+
+  const confirmed =
+    confirm(
+      `Удалить ${idsToDelete.size} карточек из "${groupName}"?\n\n` +
+      `Это действие нельзя отменить.`
+    );
+
+  if (!confirmed) return;
+
+
+  cards =
+    cards.filter(
+      card =>
+        !idsToDelete.has(card.id)
+    );
+
+  knownCards =
+    knownCards.filter(
+      id =>
+        !idsToDelete.has(id)
+    );
+
+  unknownCards =
+    unknownCards.filter(
+      id =>
+        !idsToDelete.has(id)
+    );
+
+
+  saveAll();
+
+  showGroups();
+
+}
+
+
+/* =========================================================
+   VOICE SETTINGS
+========================================================= */
+
+document
+  .getElementById("voiceLanguage")
+  .value = voiceLanguage;
+
+
+document
+  .getElementById("speechRate")
+  .value = speechRate;
+
+
+document
+  .getElementById("speechRateValue")
+  .textContent = speechRate;
+
+
+document
+  .getElementById("voiceLanguage")
+  .addEventListener(
+    "change",
+    function() {
+
+      voiceLanguage =
+        this.value;
+
+      localStorage.setItem(
+        "voiceLanguage",
+        voiceLanguage
+      );
+
+    }
+  );
+
+
+document
+  .getElementById("speechRate")
+  .addEventListener(
+    "input",
+    function() {
+
+      speechRate =
+        Number(this.value);
+
+      document.getElementById(
+        "speechRateValue"
+      ).textContent =
+        speechRate;
+
+      localStorage.setItem(
+        "speechRate",
+        speechRate
+      );
+
+    }
+  );
 
 
 /* =========================================================
@@ -3925,148 +2317,184 @@ function speakCurrent(event) {
 ========================================================= */
 
 document.addEventListener(
-    "keydown",
-    event => {
+  "keydown",
+  function(event) {
 
-        if (
-            studyCards.length === 0
-        ) {
+    if (
+      document.activeElement.tagName ===
+      "TEXTAREA"
+    ) {
+      return;
+    }
 
-            return;
-
-        }
-
-
-        if (
-            event.target.tagName ===
-                "TEXTAREA" ||
-
-            event.target.tagName ===
-                "INPUT" ||
-
-            event.target.tagName ===
-                "SELECT"
-        ) {
-
-            return;
-
-        }
+    if (
+      document.activeElement.tagName ===
+      "INPUT"
+    ) {
+      return;
+    }
 
 
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
+    if (event.key === "ArrowRight") {
 
-            nextCard();
-
-        }
-
-
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            previousCard();
-
-        }
-
-
-        if (
-            event.key === " " ||
-            event.key === "Enter"
-        ) {
-
-            event.preventDefault();
-
-            flipCard();
-
-        }
+      nextCard();
 
     }
+
+
+    if (event.key === "ArrowLeft") {
+
+      previousCard();
+
+    }
+
+
+    if (event.key === " ") {
+
+      event.preventDefault();
+
+      flipCard();
+
+    }
+
+  }
 );
 
 
 /* =========================================================
-   SWIPE MOBILE
+   MOBILE SWIPE
 ========================================================= */
 
 let touchStartX = 0;
-
 let touchEndX = 0;
 
 
 const flashcard =
-    document.getElementById(
-        "flashcard"
-    );
+  document.getElementById(
+    "flashcard"
+  );
 
 
 flashcard.addEventListener(
-    "touchstart",
-    event => {
+  "touchstart",
+  function(event) {
 
-        touchStartX =
-            event.changedTouches[0]
-                .screenX;
+    touchStartX =
+      event.changedTouches[0].screenX;
 
-    },
-    {
-        passive: true
-    }
+  }
 );
 
 
 flashcard.addEventListener(
-    "touchend",
-    event => {
+  "touchend",
+  function(event) {
 
-        touchEndX =
-            event.changedTouches[0]
-                .screenX;
+    touchEndX =
+      event.changedTouches[0].screenX;
 
-
-        const diff =
-            touchEndX -
-            touchStartX;
+    const difference =
+      touchEndX - touchStartX;
 
 
-        if (
-            Math.abs(diff) < 50
-        ) {
-
-            return;
-
-        }
-
-
-        if (diff < 0) {
-
-            nextCard();
-
-        } else {
-
-            previousCard();
-
-        }
-
-    },
-    {
-        passive: true
+    if (Math.abs(difference) < 50) {
+      return;
     }
+
+
+    if (difference < 0) {
+
+      nextCard();
+
+    } else {
+
+      previousCard();
+
+    }
+
+  }
 );
 
 
 /* =========================================================
-   START
+   INIT
 ========================================================= */
+
+migrateOldCards();
 
 updateCounters();
 
+updateDirectionButtons();
+
 renderGroups();
+
+updateGroupSelects();
+
+
+if (cards.length > 0) {
+
+  /*
+    Открываем последнюю выбранную группу,
+    если она существует.
+  */
+
+  if (
+    currentGroupId &&
+    groups.some(
+      group =>
+        group.id === currentGroupId
+    )
+  ) {
+
+    openGroup(
+      currentGroupId,
+      false
+    );
+
+    if (studyCards.length > 0) {
+
+      document.getElementById(
+        "groupsView"
+      ).style.display = "none";
+
+      document.getElementById(
+        "emptyState"
+      ).style.display = "none";
+
+      document.getElementById(
+        "addCardsMobile"
+      ).style.display = "none";
+
+      document.getElementById(
+        "studyArea"
+      ).style.display = "block";
+
+      updateGroupName();
+
+      showCard();
+
+      renderList();
+
+    } else {
+
+      showGroups();
+
+    }
+
+  } else {
+
+    showGroups();
+
+  }
+
+} else {
+
+  showGroups();
+
+}
 
 </script>
 
 </body>
 </html>
+```
