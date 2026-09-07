@@ -457,6 +457,46 @@ let currentDirection = direction;
 
 
 /* =========================
+   ПРИМЕРЫ
+========================= */
+
+const examples = {
+
+    "en-ru":
+        "How did you pull that off? — Как тебе это удалось?",
+
+    "ru-en":
+        "Как тебе это удалось? — How did you pull that off?"
+
+};
+
+
+/* =========================
+   ОБНОВИТЬ ПОДСКАЗКУ
+========================= */
+
+function updatePlaceholder() {
+
+    const input =
+        document.getElementById("cardInput");
+
+    if (direction === "ru-en") {
+
+        input.placeholder =
+            examples["ru-en"];
+
+    }
+    else {
+
+        input.placeholder =
+            examples["en-ru"];
+
+    }
+
+}
+
+
+/* =========================
    СОХРАНЕНИЕ
 ========================= */
 
@@ -471,7 +511,7 @@ function saveCards() {
 
 
 /* =========================
-   ДОБАВЛЕНИЕ
+   ДОБАВЛЕНИЕ КАРТОЧЕК
 ========================= */
 
 function addCards() {
@@ -492,30 +532,42 @@ function addCards() {
         let parts;
 
         if (line.includes("—")) {
+
             parts = line.split("—");
+
         }
         else if (line.includes("–")) {
+
             parts = line.split("–");
+
         }
         else {
-            parts = line.split(/\s+-\s+/);
+
+            parts =
+                line.split(/\s+-\s+/);
+
         }
 
         if (parts.length < 2) return;
 
-        const english = parts[0].trim();
+        const english =
+            parts[0].trim();
+
         const russian =
-            parts.slice(1).join("—").trim();
+            parts.slice(1)
+                .join("—")
+                .trim();
 
         if (!english || !russian) return;
 
-        const exists = cards.some(card =>
-            card.english.toLowerCase() ===
-                english.toLowerCase()
-            &&
-            card.russian.toLowerCase() ===
-                russian.toLowerCase()
-        );
+        const exists =
+            cards.some(card =>
+                card.english.toLowerCase() ===
+                    english.toLowerCase()
+                &&
+                card.russian.toLowerCase() ===
+                    russian.toLowerCase()
+            );
 
         if (!exists) {
 
@@ -535,7 +587,10 @@ function addCards() {
     input.value = "";
 
     currentIndex =
-        Math.max(0, cards.length - added);
+        Math.max(
+            0,
+            cards.length - added
+        );
 
     showCard();
 
@@ -543,13 +598,26 @@ function addCards() {
 
 
 /* =========================
-   ПРИМЕР
+   КНОПКА ПРИМЕР
 ========================= */
 
 function loadExample() {
 
-    document.getElementById("cardInput").value =
-        "How did you pull that off? — Как тебе это удалось?";
+    const input =
+        document.getElementById("cardInput");
+
+    if (direction === "ru-en") {
+
+        input.value =
+            examples["ru-en"];
+
+    }
+    else {
+
+        input.value =
+            examples["en-ru"];
+
+    }
 
 }
 
@@ -577,16 +645,23 @@ function setDirection(newDirection) {
     }
     else {
 
-        currentDirection = direction;
+        currentDirection =
+            direction;
 
     }
 
     updateDirectionButtons();
 
+    updatePlaceholder();
+
     showCard();
 
 }
 
+
+/* =========================
+   КНОПКИ НАПРАВЛЕНИЯ
+========================= */
 
 function updateDirectionButtons() {
 
@@ -623,22 +698,28 @@ function showCard() {
     const flashcard =
         document.getElementById("flashcard");
 
-    flashcard.classList.remove("flipped");
+    flashcard.classList.remove(
+        "flipped"
+    );
 
     if (cards.length === 0) {
 
-        document.getElementById("frontText")
-            .textContent =
+        document.getElementById(
+            "frontText"
+        ).textContent =
             "Добавь карточки";
 
-        document.getElementById("backText")
-            .textContent = "—";
+        document.getElementById(
+            "backText"
+        ).textContent = "—";
 
-        document.getElementById("frontLabel")
-            .textContent = "";
+        document.getElementById(
+            "frontLabel"
+        ).textContent = "";
 
-        document.getElementById("backLabel")
-            .textContent = "";
+        document.getElementById(
+            "backLabel"
+        ).textContent = "";
 
         updateStats();
 
@@ -649,14 +730,20 @@ function showCard() {
     }
 
     if (currentIndex >= cards.length) {
-        currentIndex = cards.length - 1;
+
+        currentIndex =
+            cards.length - 1;
+
     }
 
     if (currentIndex < 0) {
+
         currentIndex = 0;
+
     }
 
-    const card = cards[currentIndex];
+    const card =
+        cards[currentIndex];
 
     if (direction === "mixed") {
 
@@ -668,38 +755,52 @@ function showCard() {
     }
     else {
 
-        currentDirection = direction;
+        currentDirection =
+            direction;
 
     }
 
+
     if (currentDirection === "en-ru") {
 
-        document.getElementById("frontLabel")
-            .textContent = "English";
+        document.getElementById(
+            "frontLabel"
+        ).textContent = "English";
 
-        document.getElementById("backLabel")
-            .textContent = "Русский";
+        document.getElementById(
+            "backLabel"
+        ).textContent = "Русский";
 
-        document.getElementById("frontText")
-            .textContent = card.english;
+        document.getElementById(
+            "frontText"
+        ).textContent =
+            card.english;
 
-        document.getElementById("backText")
-            .textContent = card.russian;
+        document.getElementById(
+            "backText"
+        ).textContent =
+            card.russian;
 
     }
     else {
 
-        document.getElementById("frontLabel")
-            .textContent = "Русский";
+        document.getElementById(
+            "frontLabel"
+        ).textContent = "Русский";
 
-        document.getElementById("backLabel")
-            .textContent = "English";
+        document.getElementById(
+            "backLabel"
+        ).textContent = "English";
 
-        document.getElementById("frontText")
-            .textContent = card.russian;
+        document.getElementById(
+            "frontText"
+        ).textContent =
+            card.russian;
 
-        document.getElementById("backText")
-            .textContent = card.english;
+        document.getElementById(
+            "backText"
+        ).textContent =
+            card.english;
 
     }
 
@@ -709,7 +810,7 @@ function showCard() {
 
 
 /* =========================
-   FLIP
+   ПЕРЕВОРОТ
 ========================= */
 
 function flipCard() {
@@ -718,7 +819,9 @@ function flipCard() {
 
     document
         .getElementById("flashcard")
-        .classList.toggle("flipped");
+        .classList.toggle(
+            "flipped"
+        );
 
 }
 
@@ -734,7 +837,9 @@ function nextCard() {
     currentIndex++;
 
     if (currentIndex >= cards.length) {
+
         currentIndex = 0;
+
     }
 
     showCard();
@@ -749,7 +854,10 @@ function previousCard() {
     currentIndex--;
 
     if (currentIndex < 0) {
-        currentIndex = cards.length - 1;
+
+        currentIndex =
+            cards.length - 1;
+
     }
 
     showCard();
@@ -766,10 +874,14 @@ function answer(isKnown) {
     if (cards.length === 0) return;
 
     if (isKnown) {
+
         known++;
+
     }
     else {
+
         unknown++;
+
     }
 
     localStorage.setItem(
@@ -800,13 +912,14 @@ function shuffleCards() {
     ) {
 
         const j =
-            Math.floor(Math.random() * (i + 1));
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
         [
             cards[i],
             cards[j]
-        ] =
-        [
+        ] = [
             cards[j],
             cards[i]
         ];
@@ -828,34 +941,45 @@ function shuffleCards() {
 
 function updateStats() {
 
-    document.getElementById("totalCount")
-        .textContent = cards.length;
+    document.getElementById(
+        "totalCount"
+    ).textContent =
+        cards.length;
 
-    document.getElementById("knownCount")
-        .textContent = known;
+    document.getElementById(
+        "knownCount"
+    ).textContent =
+        known;
 
-    document.getElementById("unknownCount")
-        .textContent = unknown;
+    document.getElementById(
+        "unknownCount"
+    ).textContent =
+        unknown;
 
     const progress =
         cards.length
-            ? ((currentIndex + 1) / cards.length) * 100
+            ? ((currentIndex + 1) /
+                cards.length) * 100
             : 0;
 
-    document.getElementById("progressBar")
-        .style.width = progress + "%";
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        progress + "%";
 
 }
 
 
 /* =========================
-   СПИСОК
+   СПИСОК КАРТОЧЕК
 ========================= */
 
 function renderList() {
 
     const list =
-        document.getElementById("cardList");
+        document.getElementById(
+            "cardList"
+        );
 
     if (cards.length === 0) {
 
@@ -868,39 +992,48 @@ function renderList() {
 
     list.innerHTML = "";
 
-    cards.forEach((card, index) => {
+    cards.forEach(
+        (card, index) => {
 
-        const item =
-            document.createElement("div");
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-        item.className = "card-item";
+            item.className =
+                "card-item";
 
-        item.innerHTML = `
+            item.innerHTML = `
 
-            <div class="card-item-text">
+                <div class="card-item-text">
 
-                <strong>
-                    ${escapeHtml(card.english)}
-                </strong>
+                    <strong>
+                        ${escapeHtml(
+                            card.english
+                        )}
+                    </strong>
 
-                <span>
-                    ${escapeHtml(card.russian)}
-                </span>
+                    <span>
+                        ${escapeHtml(
+                            card.russian
+                        )}
+                    </span>
 
-            </div>
+                </div>
 
-            <button
-                class="danger"
-                onclick="deleteCard(${index})"
-            >
-                🗑
-            </button>
+                <button
+                    class="danger"
+                    onclick="deleteCard(${index})"
+                >
+                    🗑
+                </button>
 
-        `;
+            `;
 
-        list.appendChild(item);
+            list.appendChild(item);
 
-    });
+        }
+    );
 
 }
 
@@ -913,9 +1046,16 @@ function deleteCard(index) {
 
     cards.splice(index, 1);
 
-    if (currentIndex >= cards.length) {
+    if (
+        currentIndex >= cards.length
+    ) {
+
         currentIndex =
-            Math.max(0, cards.length - 1);
+            Math.max(
+                0,
+                cards.length - 1
+            );
+
     }
 
     saveCards();
@@ -933,8 +1073,14 @@ function clearAll() {
 
     if (!cards.length) return;
 
-    if (!confirm("Удалить все карточки?")) {
+    if (
+        !confirm(
+            "Удалить все карточки?"
+        )
+    ) {
+
         return;
+
     }
 
     cards = [];
@@ -942,11 +1088,20 @@ function clearAll() {
     currentIndex = 0;
 
     known = 0;
+
     unknown = 0;
 
-    localStorage.removeItem("englishCards");
-    localStorage.removeItem("knownCards");
-    localStorage.removeItem("unknownCards");
+    localStorage.removeItem(
+        "englishCards"
+    );
+
+    localStorage.removeItem(
+        "knownCards"
+    );
+
+    localStorage.removeItem(
+        "unknownCards"
+    );
 
     showCard();
 
@@ -978,13 +1133,20 @@ document.addEventListener(
     function(event) {
 
         if (
-            event.target.tagName === "TEXTAREA" ||
-            event.target.tagName === "INPUT"
+            event.target.tagName ===
+                "TEXTAREA"
+            ||
+            event.target.tagName ===
+                "INPUT"
         ) {
+
             return;
+
         }
 
-        if (event.code === "Space") {
+        if (
+            event.code === "Space"
+        ) {
 
             event.preventDefault();
 
@@ -992,20 +1154,32 @@ document.addEventListener(
 
         }
 
-        if (event.key === "ArrowRight") {
+        if (
+            event.key === "ArrowRight"
+        ) {
+
             nextCard();
+
         }
 
-        if (event.key === "ArrowLeft") {
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
             previousCard();
+
         }
 
         if (event.key === "1") {
+
             answer(true);
+
         }
 
         if (event.key === "2") {
+
             answer(false);
+
         }
 
     }
@@ -1017,6 +1191,8 @@ document.addEventListener(
 ========================= */
 
 updateDirectionButtons();
+
+updatePlaceholder();
 
 showCard();
 
