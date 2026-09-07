@@ -1725,103 +1725,111 @@ I'm still mortified about everything — Мне до сих пор ужасно 
      SPEAK ENGLISH
   ========================= */
 
-  function speakEnglish(event) {
+function speakEnglish(event) {
 
-    /*
-      Очень важно:
-      кнопка не должна
-      переворачивать карточку.
-    */
+  event.stopPropagation();
 
-    event.stopPropagation();
+  if (cards.length === 0) {
+    return;
+  }
 
+  const text = cards[currentIndex].english;
 
-    if (
-      cards.length === 0
-    ) {
-      return;
-    }
+  if (!text) {
+    return;
+  }
 
+  // Останавливаем предыдущую озвучку
+  window.speechSynthesis.cancel();
 
-    const text =
-      cards[currentIndex].english;
+  const utterance =
+    new SpeechSynthesisUtterance(text);
 
+  /*
+    Получаем доступные голоса браузера
+  */
+  const voices =
+    window.speechSynthesis.getVoices();
 
-    if (!text) {
-      return;
-    }
-
-
-    /* Stop previous */
-
-    window.speechSynthesis.cancel();
-
-
-    /* New speech */
-
-    const utterance =
-      new SpeechSynthesisUtterance(
-        text
-      );
-
-
-    utterance.lang =
-      "en-US";
-
-    utterance.rate =
-      speechRate;
-
-    utterance.pitch =
-      1;
-
-    utterance.volume =
-      1;
-
-
-    utterance.onstart = function() {
-
-      speakBtn.classList.add(
-        "speaking"
-      );
-
-      speakBackBtn.classList.add(
-        "speaking"
-      );
-
-    };
-
-
-    utterance.onend = function() {
-
-      speakBtn.classList.remove(
-        "speaking"
-      );
-
-      speakBackBtn.classList.remove(
-        "speaking"
-      );
-
-    };
-
-
-    utterance.onerror = function() {
-
-      speakBtn.classList.remove(
-        "speaking"
-      );
-
-      speakBackBtn.classList.remove(
-        "speaking"
-      );
-
-    };
-
-
-    window.speechSynthesis.speak(
-      utterance
+  /*
+    Сначала пытаемся найти американский английский,
+    потом британский, потом любой английский.
+  */
+  let voice =
+    voices.find(v =>
+      v.lang.toLowerCase() === "en-us"
     );
 
+  if (!voice) {
+    voice =
+      voices.find(v =>
+        v.lang.toLowerCase() === "en-gb"
+      );
   }
+
+  if (!voice) {
+    voice =
+      voices.find(v =>
+        v.lang.toLowerCase().startsWith("en")
+      );
+  }
+
+  if (voice) {
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
+  } else {
+    utterance.lang = "en-US";
+  }
+
+  // Скорость
+  utterance.rate = speechRate;
+
+  // Обычная высота голоса
+  utterance.pitch = 1;
+
+  // Громкость
+  utterance.volume = 1;
+
+  /*
+    Включаем визуальное состояние кнопки
+  */
+
+  utterance.onstart = function() {
+
+    speakBtn.classList.add("speaking");
+    speakBackBtn.classList.add("speaking");
+
+  };
+
+  utterance.onend = function() {
+
+    speakBtn.classList.remove("speaking");
+    speakBackBtn.classList.remove("speaking");
+
+  };
+
+  utterance.onerror = function() {
+
+    speakBtn.classList.remove("speaking");
+    speakBackBtn.classList.remove("speaking");
+
+  };
+
+  window.speechSynthesis.speak(
+    utterance
+  );
+}
+
+
+/*
+  Браузер иногда загружает голоса
+  не сразу. Поэтому обновляем их,
+  когда они становятся доступны.
+*/
+
+window.speechSynthesis.onvoiceschanged = function() {
+  window.speechSynthesis.getVoices();
+};
 
 
   /* =========================
