@@ -18,48 +18,89 @@ export default {
       const targetLanguage = String(body?.targetLanguage || 'Russian').trim()
 
       if (!text) {
-        return Response.json({ error: 'Text is required' }, { status: 400, headers: corsHeaders })
+        return Response.json(
+          { error: 'Text is required' },
+          { status: 400, headers: corsHeaders }
+        )
       }
+
       if (text.length > 500) {
-        return Response.json({ error: 'Text is too long' }, { status: 400, headers: corsHeaders })
+        return Response.json(
+          { error: 'Text is too long' },
+          { status: 400, headers: corsHeaders }
+        )
       }
 
       const apiKey = Deno.env.get('api_key')
+
       if (!apiKey) {
-        return Response.json({ error: 'OPENAI_API_KEY is not configured in Supabase' }, { status: 500, headers: corsHeaders })
+        return Response.json(
+          { error: 'OPENAI_API_KEY is not configured in Supabase' },
+          { status: 500, headers: corsHeaders }
+        )
       }
 
-      const prompt = `Translate the English word or phrase below into ${targetLanguage}.\n\nRules:\n- Return ONLY the translation, nothing else.\n- Keep it concise and natural.\n- If it is an idiom, phrasal verb, or expression, translate its actual meaning rather than word-for-word.\n- If there are two common meanings, separate them with a semicolon.\n\nEnglish: ${text}`
+      const prompt = `Translate the English word or phrase below into ${targetLanguage}.
 
-      const response = await fetch('https://api.openai.com/v1/responses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: 'gpt-5-mini',
-          input: prompt,
-          max_output_tokens: 100,
-          store: false,
-        }),
-      })
+Rules:
+- Return ONLY the translation, nothing else.
+- Keep it concise and natural.
+- If it is an idiom, phrasal verb, or expression, translate its actual meaning rather than word-for-word.
+- If there are two common meanings, separate them with a semicolon.
+
+English: ${text}`
+
+      const response = await fetch(
+        'https://api.openai.com/v1/responses',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model: 'gpt-5-mini',
+            input: prompt,
+            max_output_tokens: 100,
+            store: false,
+          }),
+        }
+      )
 
       const result = await response.json()
+
       if (!response.ok) {
         console.error('OpenAI error:', result)
-        return Response.json({ error: 'OpenAI request failed' }, { status: 502, headers: corsHeaders })
+
+        return Response.json(
+          { error: 'OpenAI request failed' },
+          { status: 502, headers: corsHeaders }
+        )
       }
 
-      const translation = String(result?.output_text || '').trim()
+      const translation = String(
+        result?.output_text || ''
+      ).trim()
+
       if (!translation) {
-        return Response.json({ error: 'OpenAI returned an empty translation' }, { status: 502, headers: corsHeaders })
+        return Response.json(
+          { error: 'OpenAI returned an empty translation' },
+          { status: 502, headers: corsHeaders }
+        )
       }
 
-      return Response.json({ translation }, { headers: corsHeaders })
+      return Response.json(
+        { translation },
+        { headers: corsHeaders }
+      )
+
     } catch (error) {
       console.error('ai-translate error:', error)
-      return Response.json({ error: 'Translation failed' }, { status: 500, headers: corsHeaders })
+
+      return Response.json(
+        { error: 'Translation failed' },
+        { status: 500, headers: corsHeaders }
+      )
     }
   }),
 }
