@@ -65,6 +65,65 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.app{min-height:
   .deck-actions{grid-template-columns:1fr;}
 }
 
+
+/* Responsive deck layout */
+.deck{grid-template-columns:minmax(0,1fr) 76px 76px minmax(230px,auto)}
+.deck-col{min-width:0;text-align:center;padding:7px 8px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.025)}
+.deck-col b{display:block;font-size:15px;line-height:18px}
+.deck-col span{margin-top:2px}
+.deck-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:nowrap;min-width:0;border:0;background:transparent;padding:0}
+.deck-actions .ghost,.deck-actions .delete-deck{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;height:38px;min-width:76px;padding:9px 12px;border:1px solid var(--border);border-radius:9px;font-size:13px;line-height:18px;white-space:nowrap;flex:0 1 auto}
+.deck-actions .delete-deck{background:transparent;color:var(--muted);font:inherit;cursor:pointer}
+.deck-actions .delete-deck:hover{color:var(--red);background:rgba(255,114,114,.06);border-color:rgba(255,114,114,.35)}
+
+/* Tablet: deck info first, Due/New together, actions below */
+@media(max-width:1050px){
+  .deck{grid-template-columns:minmax(0,1fr) 78px 78px;}
+  .deck-info{min-width:0}
+  .deck-actions{grid-column:1/-1;justify-content:flex-start;flex-wrap:wrap;padding-top:2px}
+}
+
+/* Phone: Due/New become two equal compact blocks, actions below */
+@media(max-width:760px){
+  .deck{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:15px}
+  .deck-info{grid-column:1/-1}
+  .deck-col{width:100%;padding:8px 10px}
+  .deck-actions{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%;padding-top:0}
+  .deck-actions .ghost,.deck-actions .delete-deck{width:100%;min-width:0;height:40px;padding:9px 8px}
+}
+
+/* Very narrow phones: action buttons stack; Due/New stay side by side */
+@media(max-width:390px){
+  .deck-actions{grid-template-columns:1fr}
+}
+
+/* Card manager: Edit and Delete use the same button style */
+.edit-actions .ghost,.edit-actions .delete-deck{
+  box-sizing:border-box;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:76px;
+  height:38px;
+  padding:8px 10px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  font-size:13px;
+  line-height:18px;
+  white-space:nowrap;
+}
+.edit-actions .delete-deck{
+  background:transparent;
+  color:var(--muted);
+  font:inherit;
+  cursor:pointer;
+}
+.edit-actions .delete-deck:hover{
+  color:var(--red);
+  background:rgba(255,114,114,.06);
+  border-color:rgba(255,114,114,.35);
+}
+
 </style>
 </head>
 <body>
