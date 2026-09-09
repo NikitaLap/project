@@ -24,7 +24,7 @@ export default {
         return Response.json({ error: 'Text is too long' }, { status: 400, headers: corsHeaders })
       }
 
-      const apiKey = Deno.env.get('OPENAI_API_KEY')
+      const apiKey = Deno.env.get('api_key')
       if (!apiKey) {
         return Response.json({ error: 'OPENAI_API_KEY is not configured in Supabase' }, { status: 500, headers: corsHeaders })
       }
